@@ -8,3 +8,10 @@
 html{
   font-family: "Work Sans", sans-serif;
 }
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  --color-primary: #403F3F;
+  --color-secondary: #E76F51;
+}
