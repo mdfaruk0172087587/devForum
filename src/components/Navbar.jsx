@@ -89,7 +89,7 @@ const Navbar = () => {
                             >
                                 <p>Your Nme: {user?.displayName}</p>
                                 <li>
-                                    <Link>Dashboard</Link>
+                                    <Link to='/dashboard'>Dashboard</Link>
                                 </li>
                                 <li>
                                     <button onClick={handleLogOut} className="btn btn-error btn-sm">Logout</button>

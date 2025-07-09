@@ -11,9 +11,10 @@ import GoogleLogin from '../components/GoogleLogin';
 const Register = () => {
     const { createUser, updateUser } = useAuth();
     const [uploadImage, setUploadImage] = useState('');
+     const [showPassword, setShowPassword] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
-    const [showPassword, setShowPassword] = useState(false);
+   
 
 
     // handle submit
