@@ -2,16 +2,19 @@ import React from 'react';
 import useAuth from '../hooks/useAuth';
 import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router';
+import axiosUnSecure from '../hooks/axiosUnSecure';
 
 const GoogleLogin = () => {
-    const { googleLogin } = useAuth();
+    const { googleLogin, user } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
-
+    const useAxios = axiosUnSecure();
+    console.log(user)
     // handle google login
     const handleGoogleLogin = () => {
         googleLogin()
-            .then(() => {
+            .then(async(result) => {
+                const loggedInUser = result.user;
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -19,6 +22,18 @@ const GoogleLogin = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+
+                //  user collection post
+                const userPost = {
+                    name: loggedInUser.displayName,
+                    email: loggedInUser.email,
+                    role: 'user',
+                    image: loggedInUser.photoURL,
+                    createdAt: new Date().toISOString(),
+                    last_log_in: new Date().toISOString(),
+                }
+                await useAxios.post('/users', userPost);
+
                 navigate(location.state || '/')
             })
             .catch(error => {

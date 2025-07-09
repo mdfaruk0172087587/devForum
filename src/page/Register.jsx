@@ -7,23 +7,25 @@ import Swal from 'sweetalert2';
 import { PiEyesFill } from 'react-icons/pi';
 import { LiaEyeSlash } from 'react-icons/lia';
 import GoogleLogin from '../components/GoogleLogin';
+import axiosUnSecure from '../hooks/axiosUnSecure';
 
 const Register = () => {
     const { createUser, updateUser } = useAuth();
     const [uploadImage, setUploadImage] = useState('');
-     const [showPassword, setShowPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
-   
+    const useAxios = axiosUnSecure();
 
+ 
 
     // handle submit
     const onSubmit = (data) => {
-
-        console.log(data)
+        
+      
         // register
         createUser(data?.email, data?.password)
-            .then(() => {
+            .then( async() => {
 
                 // update user firebase
                 const updateFirebase = {
@@ -32,11 +34,7 @@ const Register = () => {
                 }
                 updateUser(updateFirebase)
                     .then(() => {
-                        Swal.fire({
-                            title: "Your Profile Successfully update!",
-                            icon: "success",
-                            draggable: true
-                        });
+                      
                     })
                     .catch(error => {
                         Swal.fire({
@@ -45,6 +43,17 @@ const Register = () => {
                             draggable: true
                         });
                     })
+
+                // users database a post
+                const userPost = {
+                    name: data.name,
+                    email: data.email,
+                    role: 'user',
+                    image: uploadImage,
+                    createdAt: new Date().toISOString(),
+                    last_log_in: new Date().toISOString(),
+                }
+             await useAxios.post('/users', userPost)
 
                 // success
                 Swal.fire({
@@ -58,7 +67,7 @@ const Register = () => {
             .catch(error => {
                 Swal.fire({
                     title: error.message,
-                    icon: "success",
+                    icon: "error",
                     draggable: true
                 });
             })
@@ -112,33 +121,33 @@ const Register = () => {
                             }
                             {/* password */}
                             <label className="label relative">Password</label>
-                          
-                                <input
-                                    type={showPassword ? 'text' : 'password'}
-                                    {...register('password', {
-                                        required: 'Password is required',
-                                        minLength: {
-                                            value: 6,
-                                            message: 'Password must be at least 6 characters'
-                                        },
-                                        pattern: {
-                                            value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%]).{6,}$/,
-                                            message: 'Password must include uppercase, lowercase, number & special character (!@#$%)'
-                                        }
-                                    })}
-                                    className="input input-bordered w-full pr-12"
-                                    placeholder="Password"
-                                />
 
-                                {/*  Eye Toggle Button */}
-                                <button
-                                    type="button"
-                                    onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute bottom-32 right-14  -translate-y-1/2 text-gray-500 hover:text-blue-500"
-                                >
-                                    {showPassword ? <PiEyesFill size={22} /> : <LiaEyeSlash size={22} />}
-                                </button>
-                           
+                            <input
+                                type={showPassword ? 'text' : 'password'}
+                                {...register('password', {
+                                    required: 'Password is required',
+                                    minLength: {
+                                        value: 6,
+                                        message: 'Password must be at least 6 characters'
+                                    },
+                                    pattern: {
+                                        value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%]).{6,}$/,
+                                        message: 'Password must include uppercase, lowercase, number & special character (!@#$%)'
+                                    }
+                                })}
+                                className="input input-bordered w-full pr-12"
+                                placeholder="Password"
+                            />
+
+                            {/*  Eye Toggle Button */}
+                            <button
+                                type="button"
+                                onClick={() => setShowPassword(!showPassword)}
+                                className="absolute bottom-32 right-14  -translate-y-1/2 text-gray-500 hover:text-blue-500"
+                            >
+                                {showPassword ? <PiEyesFill size={22} /> : <LiaEyeSlash size={22} />}
+                            </button>
+
 
                             {/* Error Message */}
 

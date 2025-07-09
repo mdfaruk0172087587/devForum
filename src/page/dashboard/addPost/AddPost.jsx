@@ -1,22 +1,23 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../../hooks/useAuth';
-import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 import Loading from '../../../components/Loading';
+import axiosSecure from '../../../hooks/axiosSecure';
 
 const AddPost = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const axiosInstance = axiosSecure();
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
   // get user's post count
   const { data: postCount = 0, isLoading } = useQuery({
     queryKey: ['userPostCount', user?.email],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:3000/devForum/count?email=${user?.email}`);
+      const res = await axiosInstance.get(`/devForum/count?email=${user?.email}`);
       return res.data.count;
     },
     enabled: !!user?.email
@@ -37,7 +38,7 @@ const AddPost = () => {
     };
 
     try {
-      const res = await axios.post('http://localhost:3000/devForum', addPost);
+      const res = await axiosInstance.post('/devForum', addPost);
       if (res.data.insertedId) {
         Swal.fire({
           position: "top-end",
@@ -49,7 +50,8 @@ const AddPost = () => {
         reset(); // reset form
         navigate('/dashboard/myPosts'); // redirect
       }
-    } catch (err) {
+    } 
+    catch (err) {
       Swal.fire({
         position: "top-end",
         icon: "error",
