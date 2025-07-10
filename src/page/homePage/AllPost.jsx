@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axiosUnSecure from '../../hooks/axiosUnSecure';
 import Loading from '../../components/Loading';
+import { Link } from 'react-router';
 
 const AllPost = () => {
   const useAxios = axiosUnSecure();
@@ -55,9 +56,11 @@ const AllPost = () => {
             <p><strong>Upvotes:</strong> {post.upVote} | <strong>Downvotes:</strong> {post.downVote}</p>
             <p><strong>Total Votes:</strong> {post.upVote - post.downVote}</p>
           </div>
-          <div className='flex justify-end'>
-            <button className='btn btn-primary'>View More</button>
-          </div>
+        
+           <div className='flex justify-end'>
+             <Link to={`/postDetails/${post?._id}`} className='btn btn-primary '>View More</Link>
+           </div>
+         
         </div>
       ))}
       </div>

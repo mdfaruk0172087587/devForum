@@ -11,6 +11,7 @@ import DashboardLayOut from "../layout/DashboardLayOut";
 import AddPost from "../page/dashboard/addPost/AddPost";
 import MyProfile from "../page/dashboard/myProfile/MyProfile";
 import MyPosts from "../page/dashboard/myPosts/MyPosts";
+import PostDetails from "../page/homePage/PostDetails";
 
 
 export const router = createBrowserRouter([
@@ -27,6 +28,12 @@ export const router = createBrowserRouter([
                 path : '/membership',
                 element : <PrivateRoute>
                     <Membership></Membership>
+                </PrivateRoute>
+            },
+            {
+                path : '/postDetails/:id',
+                element : <PrivateRoute>
+                    <PostDetails></PostDetails>
                 </PrivateRoute>
             },
             {
