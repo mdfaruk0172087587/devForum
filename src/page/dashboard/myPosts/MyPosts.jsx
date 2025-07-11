@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import axiosSecure from '../../../hooks/axiosSecure';
 import Loading from '../../../components/Loading';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router';
 
 const MyPosts = () => {
     const axiosInstance = axiosSecure();
@@ -57,6 +58,7 @@ const MyPosts = () => {
             }
         });
     }
+  
     return (
         <div className="max-w-5xl mx-auto p-6 bg-white shadow rounded">
             <h2 className="text-2xl font-bold mb-4">My Posts</h2>
@@ -81,13 +83,12 @@ const MyPosts = () => {
                                 <td className="font-medium">{post.title}</td>
                                 <td>{post.upVote + post.downVote}</td>
                                 <td className="flex gap-2">
-                                    <button
-                                        // onClick={() => handleComment(post._id)}
-
+                                    <Link to={`/dashboard/comments/${post._id}`}
+                                      
                                         className="btn btn-sm btn-info"
                                     >
                                         Comment
-                                    </button>
+                                    </Link>
                                     <button
                                         onClick={() => handleDelete(post._id)}
                                         className="btn btn-sm btn-error"

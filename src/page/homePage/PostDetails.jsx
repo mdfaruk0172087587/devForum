@@ -7,11 +7,13 @@ import { FaShareAlt, FaThumbsDown, FaThumbsUp } from 'react-icons/fa';
 import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
 import PostShareButton from './PostShareButton ';
+import { useForm } from 'react-hook-form';
 
 const PostDetails = () => {
     const axiosInstance = axiosSecure();
     const { user } = useAuth();
     const { id } = useParams();
+    const { register, handleSubmit, reset } = useForm();
     const { data: post = {}, isLoading, refetch } = useQuery({
         queryKey: ['postDetails', id],
         queryFn: async () => {
@@ -56,6 +58,25 @@ const PostDetails = () => {
             });
         }
     }
+
+    // form submit 
+    const onSubmit = async (data) => {
+        const commentPost = {
+            commenterEmail: user?.email,
+            commentText: data.text,
+            postId: id
+        }
+        //    post
+        const commentRes = await axiosInstance.post('/comments', commentPost);
+        if (commentRes.data.success) {
+            Swal.fire({
+                title: "Your Comment Save",
+                icon: "success",
+                draggable: true
+            });
+                reset();
+        }
+    }
     return (
         <div className="max-w-3xl mx-auto bg-white p-6 shadow rounded my-8">
             <div className="flex items-center gap-4 mb-4">
@@ -71,52 +92,41 @@ const PostDetails = () => {
             <p className="text-sm mb-4"><strong>Tag:</strong> {post?.tag}</p>
 
             {
-                user && 
+                user &&
                 <div className="flex items-center gap-4 mb-6">
-                <button
-                    onClick={() => handleUpVote(id)}
-                    className="btn btn-outline btn-sm flex items-center gap-1">
-                    <FaThumbsUp /> {post?.upVote}
-                </button>
-                <button
-                    onClick={() => handleDownVote(id)}
-                    className="btn btn-outline btn-sm flex items-center gap-1">
-                    <FaThumbsDown /> {post?.downVote}
-                </button>
-                <PostShareButton postId={id}></PostShareButton>
-            </div>
+                    <button
+                        onClick={() => handleUpVote(id)}
+                        className="btn btn-outline btn-sm flex items-center gap-1">
+                        <FaThumbsUp /> {post?.upVote}
+                    </button>
+                    <button
+                        onClick={() => handleDownVote(id)}
+                        className="btn btn-outline btn-sm flex items-center gap-1">
+                        <FaThumbsDown /> {post?.downVote}
+                    </button>
+                    <PostShareButton postId={id}></PostShareButton>
+                </div>
             }
 
             {/* Comment Section */}
-           {
-            user &&  
-            
-            <div>
-                <h3 className="text-lg font-semibold mb-2">Comments</h3>
-                <div className="flex gap-2">
-                    <input
-                        type="text"
-                        // value={commentText}
-                        // onChange={(e) => setCommentText(e.target.value)}
-                        placeholder="Write a comment..."
-                        className="input input-bordered w-full"
-                    // disabled={!user}
-                    />
-                    <button
-                        // onClick={handleComment}
-                        className="btn btn-primary"
-                    // disabled={!user || !commentText.trim()}
-                    >
-                        Comment
-                    </button>
-                </div>
+            {
+                user &&
 
-                {!user && (
-                    <p className="text-sm text-red-500 mt-2">You must be logged in to comment or vote.</p>
-                )}
-            </div>
-           }
-            
+                <div>
+                    <h3 className="text-lg font-semibold mb-2">Comments</h3>
+                    <div className="flex gap-2">
+                        <form onSubmit={handleSubmit(onSubmit)} className='flex w-full gap-2 items-center'>
+                            <input type="text" {...register('text', {required: true})} placeholder="Write comment..." className="textarea input-bordered w-full" />
+                            <button type='submit' className="btn btn-primary" >  Comment </button>
+                        </form>
+                    </div>
+
+                    {!user && (
+                        <p className="text-sm text-red-500 mt-2">You must be logged in to comment or vote.</p>
+                    )}
+                </div>
+            }
+
         </div>
     );
 };

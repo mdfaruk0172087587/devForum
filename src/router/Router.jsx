@@ -12,6 +12,7 @@ import AddPost from "../page/dashboard/addPost/AddPost";
 import MyProfile from "../page/dashboard/myProfile/MyProfile";
 import MyPosts from "../page/dashboard/myPosts/MyPosts";
 import PostDetails from "../page/homePage/PostDetails";
+import Comment from "../page/homePage/comment/Comment";
 
 
 export const router = createBrowserRouter([
@@ -63,6 +64,10 @@ export const router = createBrowserRouter([
             {
                 path : 'myPosts',
                 element : <MyPosts></MyPosts>
+            },
+            {
+                path : 'comments/:postId',
+                element: <Comment></Comment>
             }
         ]
     }
