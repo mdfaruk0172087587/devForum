@@ -3,18 +3,23 @@ import axiosSecure from '../../../hooks/axiosSecure';
 import { useParams } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
 import CommentTr from './CommentTr';
+import Loading from '../../../components/Loading';
 
 const Comment = () => {
     const axiosInstance = axiosSecure();
     const {postId} = useParams();
    
-    const {data:commentData = []} = useQuery({
+    const {data:commentData = [], isLoading, refetch} = useQuery({
         queryKey: ['comments', postId],
         queryFn: async() => {
             const res = await axiosInstance.get(`/comments/${postId}`);
             return res.data.comments;
         }
     })
+
+    if(isLoading){
+        return <Loading></Loading>
+    }
 
     
     return (
@@ -41,7 +46,7 @@ const Comment = () => {
             :
             (
               commentData.map((comment, index) => (
-               <CommentTr key={comment._id} comment={comment} index={index}></CommentTr>
+               <CommentTr key={comment._id} comment={comment} index={index} refetch={refetch}></CommentTr>
               ))
             )
             }

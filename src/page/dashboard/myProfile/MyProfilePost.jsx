@@ -6,11 +6,12 @@ import Loading from '../../../components/Loading';
 
 const MyProfilePost = () => {
     const { user } = useAuth();
+   
     const axiosInstance = axiosSecure();
     const { data: profilePost = [], isLoading } = useQuery({
         queryKey: ['userPost', user?.email],
         queryFn: async () => {
-            const res = await axiosInstance.get(`/devForum/${user?.email}`);
+            const res = await axiosInstance.get(`/devForum/myProfile/${user?.email}`);
             return res.data.posts
         }
     })
