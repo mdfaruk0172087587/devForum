@@ -33,10 +33,14 @@ const MyProfile = () => {
 
           {/* Badges */}
           <div className="mt-2 flex gap-2">
-            <span className="badge badge-accent">🥉 Bronze</span>
-            {userInfo.role === 'member' && (
-              <span className="badge badge-warning">🥇 Gold</span>
-            )}
+            
+            {userInfo.role === 'member' ? <>
+             <span className="badge badge-warning">🥇 Gold</span>
+            </> 
+            :
+             <>
+             <span className="badge badge-accent">🥉 Bronze</span>
+             </>}
           </div>
         </div>
       </div>

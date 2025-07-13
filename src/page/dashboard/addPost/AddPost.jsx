@@ -14,15 +14,16 @@ const AddPost = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
   // Check if user is available before running query
-  const { data: postCount = 0, isLoading } = useQuery({
+  const { data: LoadPost = {}, isLoading } = useQuery({
     queryKey: ['userPostCount', user?.email],
     queryFn: async () => {
       const res = await axiosInstance.get(`/devForum/count?email=${user.email}`);
-      return res.data.count;
+      return res.data;
     },
     enabled: !!user?.email,
   });
-
+const postCount = LoadPost.count;
+const member = LoadPost.role;
   // Handle form submission
   const onSubmit = async (data) => {
     const newPost = {
@@ -65,7 +66,7 @@ const AddPost = () => {
   if (isLoading || !user?.email) return <Loading />;
 
   // If post limit exceeded
-  if (postCount >= 5) {
+  if (postCount >= 5 && member !=='member') {
     return (
       <div className="text-center mt-20 space-y-4">
         <p className="text-xl font-semibold text-red-600">

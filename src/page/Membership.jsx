@@ -1,9 +1,10 @@
 import React from 'react';
+import Payment from './payment/Payment';
 
 const Membership = () => {
     return (
         <div>
-            <h1>this is men</h1>
+           <Payment></Payment>
         </div>
     );
 };
