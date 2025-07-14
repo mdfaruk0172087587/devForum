@@ -3,14 +3,28 @@ import React, { useState } from 'react';
 import axiosSecure from '../../hooks/axiosSecure';
 import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
+import { useQuery } from '@tanstack/react-query';
+import Loading from '../../components/Loading';
+import { Link, useNavigate } from 'react-router';
 
 const CheckoutForm = () => {
     const axiosInstance = axiosSecure();
     const {user} = useAuth();
     const stripe = useStripe();
     const elements = useElements();
+    const navigate = useNavigate();
     const [error, setError] = useState('');
 
+    const {data:userData={}, isLoading, refetch} = useQuery({
+        queryKey: ['checkForm', user?.email],
+        queryFn: async() => {
+            const userRes = await axiosInstance.get(`/users/${user?.email}`);
+            return userRes.data.user;
+        }
+    })
+    
+
+    // handle submit
     const handleSubmit = async(e) => {
         e.preventDefault();
 
@@ -73,19 +87,40 @@ const CheckoutForm = () => {
 
                     const paymentRes = await axiosInstance.post('/payments', paymentData);
                     if(paymentRes.data.insertedId){
+                        refetch()
                         await Swal.fire({
                             icon: 'success',
                             title: 'payment successfully',
                             html: `<strong>Transaction ID:</strong> <code>${result.paymentIntent.id}</code>`,
-                            confirmButtonText: '',
+                            confirmButtonText: 'Go To Add Post',
                         })
 
-                        // navigate('/dashboard/myParcel')
+                        navigate('/dashboard/addPost')
                     }
                 }
             }
 
     }
+
+    if(isLoading){
+        return <Loading></Loading>
+    }
+
+
+    if(userData.role === 'member'){
+        return <section>
+            <div className="bg-green-100 border border-green-300 text-green-800 px-4 py-3 rounded-md">
+    🎉 You are already a <strong>Member</strong>!  
+    Now you can post without any limitations and enjoy all the exclusive features.  
+    Thank you for being with us ❤️
+   
+  </div>
+   <div className='flex justify-center'>
+    <Link to='/dashboard/addPost' className='btn btn-primary '> Go To Add Post</Link>
+   </div>
+        </section>
+    }
+
     return (
         <div>
             <form onSubmit={handleSubmit} className='space-y-4 bg-white p-6 rounded-xl shadow-md w-full max-w-md mx-auto'>
@@ -94,7 +129,7 @@ const CheckoutForm = () => {
 
                 </CardElement>
                 <button className='btn btn-primary w-full' type="submit" disabled={!stripe}>
-                    Pay $20
+                   Membership  (Pay $20)
                 </button>
                 {
                     error && <p className='text-red-500'>{error}</p>

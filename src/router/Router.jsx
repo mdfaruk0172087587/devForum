@@ -13,6 +13,8 @@ import MyProfile from "../page/dashboard/myProfile/MyProfile";
 import MyPosts from "../page/dashboard/myPosts/MyPosts";
 import PostDetails from "../page/homePage/PostDetails";
 import Comment from "../page/homePage/comment/Comment";
+import AdminProfile from "../page/adminDashboard/AdminProfile";
+import ManageUsers from "../page/adminDashboard/manageUsers/ManageUsers";
 
 
 export const router = createBrowserRouter([
@@ -68,7 +70,16 @@ export const router = createBrowserRouter([
             {
                 path : 'comments/:postId',
                 element: <Comment></Comment>
+            },
+            {
+                path: 'adminProfile',
+                element : <AdminProfile></AdminProfile>
+            },
+            {
+                path : 'manageUsers',
+                element : <ManageUsers></ManageUsers>
             }
+            
         ]
     }
 ]);

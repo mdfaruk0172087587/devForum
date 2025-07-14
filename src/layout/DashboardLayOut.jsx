@@ -2,8 +2,11 @@ import React from 'react';
 import Logo from '../components/Logo';
 import { NavLink, Outlet } from 'react-router';
 import { FaListUl, FaPlusSquare, FaUserCircle } from 'react-icons/fa';
+import useUserRole from '../hooks/useUserRole';
 
 const DashboardLayOut = () => {
+    const {role, roleLoading} = useUserRole();
+   
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -42,7 +45,9 @@ const DashboardLayOut = () => {
                 <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
                     {/* Sidebar content here */}
                     <Logo></Logo>
-                    <li>
+                   { !roleLoading && role !== 'admin' &&
+                    <>
+                     <li>
                         <NavLink to='/dashboard/myProfile' className="flex items-center gap-2">
                             <FaUserCircle /> My Profile
                         </NavLink>
@@ -57,6 +62,20 @@ const DashboardLayOut = () => {
                             <FaListUl /> My Posts
                         </NavLink>
                     </li>
+                    </>
+                   }
+
+                   {/* admin */}
+                   { !roleLoading && role === 'admin' &&
+                    <>
+                    <li>
+                        <NavLink to='/dashboard/adminProfile'>Admin Profile</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/dashboard/manageUsers'>Manage Users</NavLink>
+                    </li>
+                    </>
+                   }
 
                 </ul>
             </div>
