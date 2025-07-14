@@ -15,6 +15,7 @@ import PostDetails from "../page/homePage/PostDetails";
 import Comment from "../page/homePage/comment/Comment";
 import AdminProfile from "../page/adminDashboard/AdminProfile";
 import ManageUsers from "../page/adminDashboard/manageUsers/ManageUsers";
+import MakeAnnouncement from "../page/adminDashboard/makeAnnouncement/MakeAnnouncement";
 
 
 export const router = createBrowserRouter([
@@ -78,6 +79,10 @@ export const router = createBrowserRouter([
             {
                 path : 'manageUsers',
                 element : <ManageUsers></ManageUsers>
+            },
+            {
+                path : 'makeAnnouncement',
+                element: <MakeAnnouncement></MakeAnnouncement>
             }
             
         ]

@@ -74,6 +74,9 @@ const DashboardLayOut = () => {
                     <li>
                         <NavLink to='/dashboard/manageUsers'>Manage Users</NavLink>
                     </li>
+                    <li>
+                        <NavLink to='/dashboard/makeAnnouncement'>Make Announcement</NavLink>
+                    </li>
                     </>
                    }
 
