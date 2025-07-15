@@ -44,6 +44,7 @@ const AllPost = () => {
     <div className="py-6">
       <BannerWithSearch setSearchTag={setSearchTag} setCurrentPage={setCurrentPage}></BannerWithSearch>
       <TagSection setCurrentPage={setCurrentPage} setSearchTag={setSearchTag}></TagSection>
+      
       <h2 className="text-2xl font-bold mb-6 text-center">All Posts</h2>
        <div className='flex  justify-center'>
         <button

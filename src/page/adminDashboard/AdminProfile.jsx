@@ -14,19 +14,19 @@ import Loading from '../../components/Loading';
 const COLORS = ['#8884d8', '#82ca9d', '#ffc658'];
 
 const AdminProfile = () => {
-    const { user, totalPosts } = useAuth();
+    const { user, totalPosts, loading } = useAuth();
     const axiosInstance = axiosSecure();
 
     const { register, handleSubmit, reset } = useForm();
 
-    const { data: commentCount = 0 } = useQuery({
+    const { data: commentCount = 0 , isLoading:commentLoading} = useQuery({
         queryKey: ['comments'],
         queryFn: async () => {
             const commentRes = await axiosInstance.get('/comments');
             return commentRes.data.count;
         }
     });
-    const { data: usersCount = 0 } = useQuery({
+    const { data: usersCount = 0 , isLoading:usersLoading} = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
             const usersRes = await axiosInstance.get('/users');
@@ -60,6 +60,9 @@ const AdminProfile = () => {
 
     };
 
+    if(loading || commentLoading || usersLoading){
+        return <Loading></Loading>
+    }
 
 
     return (
