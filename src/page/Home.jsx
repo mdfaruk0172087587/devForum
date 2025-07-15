@@ -5,9 +5,6 @@ import AnnouncementsSection from './homePage/announcementsSection/AnnouncementsS
 const Home = () => {
     return (
         <div>
-           
-           
-            
             {/* announcements */}
             <AnnouncementsSection></AnnouncementsSection>
            {/* allPost */}

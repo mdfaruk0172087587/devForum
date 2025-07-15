@@ -13,7 +13,7 @@ const BannerWithSearch = ({ setCurrentPage, setSearchTag }) => {
     };
 
     return (
-        <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-6 text-white text-center">
+        <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-6 text-white text-center py-24">
             <h1 className="text-3xl font-bold mb-4">Search Posts by Tag</h1>
 
             <div className="flex justify-center gap-2">

@@ -6,6 +6,7 @@ import { Link } from 'react-router';
 import useAuth from '../../hooks/useAuth';
 import BannerWithSearch from './BannerWithSearch/BannerWithSearch';
 import TagSection from './tags/TagSection';
+import DisplayAllPost from './displayAllPost/DisplayAllPost';
 
 const AllPost = () => {
   const { setTotalPosts} = useAuth();
@@ -37,9 +38,10 @@ const AllPost = () => {
     return <Loading />;
   }
   const totalPages = data?.totalPages || 1;
+  console.log(data.posts)
 
   return (
-    <div className=" p-6">
+    <div className="py-6">
       <BannerWithSearch setSearchTag={setSearchTag} setCurrentPage={setCurrentPage}></BannerWithSearch>
       <TagSection setCurrentPage={setCurrentPage} setSearchTag={setSearchTag}></TagSection>
       <h2 className="text-2xl font-bold mb-6 text-center">All Posts</h2>
@@ -56,27 +58,9 @@ const AllPost = () => {
        </div>
       {/* Posts */}
       <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-2'>
-        {data?.posts?.map(post => (
-        <div key={post._id} className="border p-4 mb-4 rounded shadow-sm bg-white">
-          <div className="flex items-center gap-3">
-            <img src={post.authorImage} alt="" className="w-12 h-12 rounded-full" />
-            <div>
-              <h3 className="text-lg font-semibold">{post.title}</h3>
-              <p className="text-sm text-gray-500">{new Date(post.createdAt).toLocaleString()}</p>
-            </div>
-          </div>
-          <div className="mt-3 text-sm text-gray-700">
-            <p><strong>Tag:</strong> {post.tag}</p>
-            <p><strong>Upvotes:</strong> {post.upVote} | <strong>Downvotes:</strong> {post.downVote}</p>
-            <p><strong>Total Votes:</strong> {post.upVote - post.downVote}</p>
-          </div>
-        
-           <div className='flex justify-end'>
-             <Link to={`/postDetails/${post?._id}`} className='btn btn-primary '>View More</Link>
-           </div>
-         
-        </div>
-      ))}
+       {
+        data?.posts?.map(post => <DisplayAllPost post={post} key={post._id}></DisplayAllPost>)
+       }
       </div>
 
       {/* Pagination */}
