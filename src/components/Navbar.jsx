@@ -4,8 +4,9 @@ import useAuth from '../hooks/useAuth';
 import Swal from 'sweetalert2';
 
 const Navbar = () => {
-    const { user, logout } = useAuth();
-    
+    const { user, logout, announcementCount } = useAuth();
+
+
     const links = <>
         <li>
             <NavLink to='/'>Home</NavLink>
@@ -74,7 +75,16 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <IoMdNotificationsOutline size={24} />
+                <div className="relative mr-4">
+                    <IoMdNotificationsOutline size={24} />
+                    {
+                        announcementCount > 0 && (
+                            <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold px-1.5 py-0.5 rounded-full">
+                                {announcementCount}
+                            </span>
+                        )
+                    }
+                </div>
                 {
                     user ? <>
                         <div className="dropdown dropdown-end">
