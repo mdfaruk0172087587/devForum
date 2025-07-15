@@ -22,6 +22,16 @@ const AddPost = () => {
     },
     enabled: !!user?.email,
   });
+
+  // tag load 
+  const {data:tagData=[], isLoading:tagLoading} = useQuery({
+    queryKey: ['tags'],
+    queryFn: async() => {
+      const tagRes = await axiosInstance.get('/tags');
+      return tagRes.data.tags;
+    }
+  })
+  
 const postCount = LoadPost.count;
 const member = LoadPost.role;
   // Handle form submission
@@ -63,7 +73,7 @@ const member = LoadPost.role;
   };
 
   // If loading or user not ready
-  if (isLoading || !user?.email) return <Loading />;
+  if (isLoading || tagLoading || !user?.email) return <Loading />;
 
   // If post limit exceeded
   if (postCount >= 5 && member !=='member') {
@@ -142,11 +152,10 @@ const member = LoadPost.role;
             <option value="" disabled>
               Select Tag
             </option>
-            <option value="React">React</option>
-            <option value="JavaScript">JavaScript</option>
-            <option value="MongoDB">MongoDB</option>
-            <option value="Node.js">Node.js</option>
-            <option value="Express">Express</option>
+           {
+            tagData.map(data => ( <option key={data._id} value={data.tag}>{data.tag}</option>))
+           }
+            
           </select>
           {errors.tag && <p className="text-red-500 text-sm mt-1">{errors.tag.message}</p>}
         </div>

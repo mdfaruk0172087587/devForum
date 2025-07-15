@@ -1,31 +1,29 @@
-import React, { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React from 'react';
+import axiosUnSecure from '../../../hooks/axiosUnSecure';
+import Loading from '../../../components/Loading';
 
-const TagSection = () => {
-    const [selectedTag, setSelectedTag] = useState('');
+const TagSection = ({setSearchTag, setCurrentPage}) => {
+  const axiosUse = axiosUnSecure();
+  const {data:tagData = [], isLoading} = useQuery({
+    queryKey: ['tags'],
+    queryFn: async() => {
+      const res = await axiosUse.get('/tags');
+      return res.data.tags;
+    }
+  })
 
-     const tags = ['Express', 'Node.js', 'MongoDB', 'JavaScript', 'React'];
-    //  handle tag click
-    conts
-    return (
-          <div className="max-w-4xl mx-auto mt-10 mb-6 px-4">
-      <h2 className="text-2xl font-bold mb-4 text-gray-800">Explore by Tags</h2>
-      <div className="flex flex-wrap gap-3">
-        {tags.map((tag) => (
-          <button
-            key={tag}
-            // onClick={() => handleTagClick(tag)}
-            className={`px-4 py-2 rounded-full border text-sm font-medium transition-all duration-200 ${
-              selectedTag === tag
-                ? 'bg-blue-600 text-white border-blue-600'
-                : 'bg-white text-gray-800 border-gray-300 hover:bg-blue-100'
-            }`}
-          >
-            #{tag}
-          </button>
-        ))}
-      </div>
+  if(isLoading){
+    return <Loading></Loading>
+  }
+  
+  return (
+    <div className='flex gap-2 justify-center mb-6'>
+      {
+        tagData.map(data => <button onClick={() => {setSearchTag(data.tag); setCurrentPage(1)}}  className="btn text-black bg-[rgba(0,0,0,0.05)] hover:bg-[rgba(0,0,0,0.1)] border-none" key={data._id}>{data.tag}</button>)
+      }
     </div>
-    );
+  );
 };
 
 export default TagSection;

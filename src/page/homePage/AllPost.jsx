@@ -4,19 +4,23 @@ import axiosUnSecure from '../../hooks/axiosUnSecure';
 import Loading from '../../components/Loading';
 import { Link } from 'react-router';
 import useAuth from '../../hooks/useAuth';
+import BannerWithSearch from './BannerWithSearch/BannerWithSearch';
+import TagSection from './tags/TagSection';
 
 const AllPost = () => {
   const { setTotalPosts} = useAuth();
   const useAxios = axiosUnSecure();
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchTag, setSearchTag] = useState('');
   const [sortByPopularity, setSortByPopularity] = useState(false);
   const limit = 5;
 
   const { data, isLoading } = useQuery({
-    queryKey: ['allPost', currentPage, sortByPopularity],
+    queryKey: ['allPost', currentPage, sortByPopularity, searchTag],
     queryFn: async () => {
+      const tagQuery = searchTag? `&tag=${searchTag}`: '';
         const endpoint = sortByPopularity? '/devForum/popular' : '/devForum'
-      const res = await useAxios.get(`${endpoint}?page=${currentPage}&limit=${limit}`);
+      const res = await useAxios.get(`${endpoint}?page=${currentPage}&limit=${limit}${tagQuery}`);
       return res.data;
     },
     keepPreviousData: true,
@@ -36,6 +40,8 @@ const AllPost = () => {
 
   return (
     <div className=" p-6">
+      <BannerWithSearch setSearchTag={setSearchTag} setCurrentPage={setCurrentPage}></BannerWithSearch>
+      <TagSection setCurrentPage={setCurrentPage} setSearchTag={setSearchTag}></TagSection>
       <h2 className="text-2xl font-bold mb-6 text-center">All Posts</h2>
        <div className='flex  justify-center'>
         <button

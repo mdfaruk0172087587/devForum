@@ -12,6 +12,7 @@ const [totalPosts, setTotalPosts] = useState(0);
 
 
 
+
 // register
 const createUser = (email, password) => {
     setLoading(true);
@@ -63,7 +64,7 @@ const logout = () => {
         announcementCount,
         setAnnouncementCount,
         setTotalPosts,
-        totalPosts
+        totalPosts,
 
     }
     return (
