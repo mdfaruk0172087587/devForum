@@ -8,6 +8,7 @@ const AuthProvider = ({children}) => {
 const [user, setUser] = useState(null);
 const [loading, setLoading] = useState(true);
 const [announcementCount, setAnnouncementCount] = useState(0);
+const [totalPosts, setTotalPosts] = useState(0);
 
 
 
@@ -60,7 +61,9 @@ const logout = () => {
         googleLogin,
         updateUser,
         announcementCount,
-        setAnnouncementCount
+        setAnnouncementCount,
+        setTotalPosts,
+        totalPosts
 
     }
     return (

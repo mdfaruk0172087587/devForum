@@ -89,9 +89,10 @@ const CommentTr = ({ comment, index , refetch}) => {
           >
             {reported ? 'Reported' : 'Report'}
           </button>
+           <Modal text={comment.commentText}></Modal>
         </td>
       </tr>
-      <Modal text={comment.commentText}></Modal>
+     
     </>
   );
 };

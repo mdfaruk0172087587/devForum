@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axiosUnSecure from '../../hooks/axiosUnSecure';
 import Loading from '../../components/Loading';
 import { Link } from 'react-router';
+import useAuth from '../../hooks/useAuth';
 
 const AllPost = () => {
+  const { setTotalPosts} = useAuth();
   const useAxios = axiosUnSecure();
   const [currentPage, setCurrentPage] = useState(1);
   const [sortByPopularity, setSortByPopularity] = useState(false);
@@ -20,10 +22,16 @@ const AllPost = () => {
     keepPreviousData: true,
   });
 
+  
+  // totalPosts cha ck
+  useEffect(() => {
+    if(data?.totalPosts >= 0){
+      setTotalPosts(data.totalPosts)
+    }
+  }, [data,setTotalPosts ])
   if (isLoading) {
     return <Loading />;
   }
-  
   const totalPages = data?.totalPages || 1;
 
   return (
