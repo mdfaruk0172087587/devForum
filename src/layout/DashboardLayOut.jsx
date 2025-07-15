@@ -77,6 +77,9 @@ const DashboardLayOut = () => {
                     <li>
                         <NavLink to='/dashboard/makeAnnouncement'>Make Announcement</NavLink>
                     </li>
+                    <li>
+                        <NavLink to='/dashboard/reportedActivities'>Reported Activities</NavLink>
+                    </li>
                     </>
                    }
 
