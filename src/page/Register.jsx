@@ -8,6 +8,8 @@ import { PiEyesFill } from 'react-icons/pi';
 import { LiaEyeSlash } from 'react-icons/lia';
 import GoogleLogin from '../components/GoogleLogin';
 import axiosUnSecure from '../hooks/axiosUnSecure';
+import registerLottie from '../assets/lottie/registarLottie.json'
+import Lottie from 'lottie-react';
 
 const Register = () => {
     const { createUser, updateUser } = useAuth();
@@ -91,10 +93,7 @@ const Register = () => {
         <div className="hero bg-base-200 min-h-screen">
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
-                    <p className="py-6">
-                        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                        quasi. In deleniti eaque aut repudiandae et a id nisi.
-                    </p>
+                   <Lottie animationData={registerLottie} loop={true}></Lottie>
                 </div>
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
                     <h1 className="text-3xl text-center mt-2 font-bold">Register now!</h1>
@@ -143,7 +142,7 @@ const Register = () => {
                             <button
                                 type="button"
                                 onClick={() => setShowPassword(!showPassword)}
-                                className="absolute bottom-32 right-14  -translate-y-1/2 text-gray-500 hover:text-blue-500"
+                                className="absolute bottom-44 right-14  -translate-y-1/2 text-gray-500 hover:text-blue-500"
                             >
                                 {showPassword ? <PiEyesFill size={22} /> : <LiaEyeSlash size={22} />}
                             </button>

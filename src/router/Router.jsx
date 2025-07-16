@@ -17,6 +17,8 @@ import AdminProfile from "../page/adminDashboard/AdminProfile";
 import ManageUsers from "../page/adminDashboard/manageUsers/ManageUsers";
 import MakeAnnouncement from "../page/adminDashboard/makeAnnouncement/MakeAnnouncement";
 import ReportedActivities from "../page/adminDashboard/reportedActivities/ReportedActivities";
+import Forbidden from "../page/Forbidden";
+import AdminRoute from "./AdminRoute";
 
 
 export const router = createBrowserRouter([
@@ -44,6 +46,10 @@ export const router = createBrowserRouter([
             {
                 path : '/login',
                 element : <Login></Login>,
+            },
+            {
+                path : '/forbidden',
+                element: <Forbidden></Forbidden>
             },
             {
                 path : '/register',
@@ -75,19 +81,27 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'adminProfile',
-                element : <AdminProfile></AdminProfile>
+                element : <AdminRoute>
+                    <AdminProfile></AdminProfile>
+                </AdminRoute>
             },
             {
                 path : 'manageUsers',
-                element : <ManageUsers></ManageUsers>
+                element : <AdminRoute>
+                    <ManageUsers></ManageUsers>
+                </AdminRoute>
             },
             {
                 path : 'makeAnnouncement',
-                element: <MakeAnnouncement></MakeAnnouncement>
+                element: <AdminRoute>
+                    <MakeAnnouncement></MakeAnnouncement>
+                </AdminRoute>
             },
             {
                 path : 'reportedActivities',
-                element : <ReportedActivities></ReportedActivities>
+                element : <AdminRoute>
+                     <ReportedActivities></ReportedActivities>
+                </AdminRoute>
             }
             
         ]
