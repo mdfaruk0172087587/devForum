@@ -6,6 +6,8 @@ import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 import Loading from '../../../components/Loading';
 import axiosSecure from '../../../hooks/axiosSecure';
+import { FaUser, FaEnvelope, FaImage, FaTag, FaHeading } from 'react-icons/fa';
+import { MdDescription } from 'react-icons/md';
 
 const AddPost = () => {
   const { user } = useAuth();
@@ -13,7 +15,6 @@ const AddPost = () => {
   const axiosInstance = axiosSecure();
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
-  // Check if user is available before running query
   const { data: LoadPost = {}, isLoading } = useQuery({
     queryKey: ['userPostCount', user?.email],
     queryFn: async () => {
@@ -23,18 +24,17 @@ const AddPost = () => {
     enabled: !!user?.email,
   });
 
-  // tag load 
-  const {data:tagData=[], isLoading:tagLoading} = useQuery({
+  const { data: tagData = [], isLoading: tagLoading } = useQuery({
     queryKey: ['tags'],
-    queryFn: async() => {
+    queryFn: async () => {
       const tagRes = await axiosInstance.get('/tags');
       return tagRes.data.tags;
     }
-  })
-  
-const postCount = LoadPost.count;
-const member = LoadPost.role;
-  // Handle form submission
+  });
+
+  const postCount = LoadPost.count;
+  const member = LoadPost.role;
+
   const onSubmit = async (data) => {
     const newPost = {
       authorImage: user?.photoURL,
@@ -72,11 +72,9 @@ const member = LoadPost.role;
     }
   };
 
-  // If loading or user not ready
   if (isLoading || tagLoading || !user?.email) return <Loading />;
 
-  // If post limit exceeded
-  if (postCount >= 5 && member !=='member') {
+  if (postCount >= 5 && member !== 'member') {
     return (
       <div className="text-center mt-20 space-y-4">
         <p className="text-xl font-semibold text-red-600">
@@ -89,13 +87,12 @@ const member = LoadPost.role;
     );
   }
 
-  // Form UI
   return (
-    <div className="max-w-2xl mx-auto bg-white p-6 shadow-md rounded-lg">
-      <h2 className="text-2xl font-bold mb-4">Add a New Post</h2>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+    <div className="max-w-2xl mx-auto bg-white p-8 shadow-lg rounded-lg">
+      <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">📢 Add a New Post</h2>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         <div>
-          <label className="label">Image</label>
+          <label className="label flex items-center gap-2"><FaImage /> Image</label>
           <input
             {...register('authorImage')}
             value={user?.photoURL}
@@ -105,7 +102,7 @@ const member = LoadPost.role;
         </div>
 
         <div>
-          <label className="label">Your Name</label>
+          <label className="label flex items-center gap-2"><FaUser /> Your Name</label>
           <input
             {...register('authorName')}
             value={user?.displayName}
@@ -115,7 +112,7 @@ const member = LoadPost.role;
         </div>
 
         <div>
-          <label className="label">Your Email</label>
+          <label className="label flex items-center gap-2"><FaEnvelope /> Your Email</label>
           <input
             {...register('authorEmail')}
             value={user?.email}
@@ -125,7 +122,7 @@ const member = LoadPost.role;
         </div>
 
         <div>
-          <label className="label">Post Title</label>
+          <label className="label flex items-center gap-2"><FaHeading /> Post Title</label>
           <input
             {...register('title', { required: 'Post title is required' })}
             className="input input-bordered w-full"
@@ -134,7 +131,7 @@ const member = LoadPost.role;
         </div>
 
         <div>
-          <label className="label">Post Description</label>
+          <label className="label flex items-center gap-2"><MdDescription /> Post Description</label>
           <textarea
             {...register('description', { required: 'Description is required' })}
             className="textarea textarea-bordered w-full"
@@ -143,25 +140,22 @@ const member = LoadPost.role;
         </div>
 
         <div>
-          <label className="label">Select Tag</label>
+          <label className="label flex items-center gap-2"><FaTag /> Select Tag</label>
           <select
             {...register('tag', { required: 'Tag is required' })}
             defaultValue=""
             className="select select-accent w-full"
           >
-            <option value="" disabled>
-              Select Tag
-            </option>
-           {
-            tagData.map(data => ( <option key={data._id} value={data.tag}>{data.tag}</option>))
-           }
-            
+            <option value="" disabled>Select Tag</option>
+            {tagData.map(data => (
+              <option key={data._id} value={data.tag}>{data.tag}</option>
+            ))}
           </select>
           {errors.tag && <p className="text-red-500 text-sm mt-1">{errors.tag.message}</p>}
         </div>
 
-        <button type="submit" className="btn btn-primary w-full">
-          Add Post
+        <button type="submit" className="btn btn-primary w-full mt-4">
+          🚀 Add Post
         </button>
       </form>
     </div>

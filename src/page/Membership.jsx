@@ -3,7 +3,7 @@ import Payment from './payment/Payment';
 
 const Membership = () => {
     return (
-        <div>
+        <div className=' '>
            <Payment></Payment>
         </div>
     );

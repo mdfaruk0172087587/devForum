@@ -51,7 +51,7 @@ const AllPost = () => {
       <h2 className="text-3xl font-extrabold text-center mb-2 flex items-center justify-center gap-2 text-gray-800">
         <FaClipboardList className="text-blue-500" /> All Posts
       </h2>
-     <p className="text-center text-gray-700 mb-6 max-w-2xl mx-auto leading-relaxed text-base md:text-lg">
+     <div className="text-center text-gray-700 mb-6 max-w-2xl mx-auto leading-relaxed text-base md:text-lg">
   <motion.span
     initial={{ opacity: 0, y: 10 }}
     animate={{ opacity: 1, y: 0 }}
@@ -81,7 +81,7 @@ const AllPost = () => {
   <span className="block mt-4 text-sm text-gray-600">
     Use the search bar or select a tag above to explore content you're most interested in. Let's learn and grow together 💡
   </span>
-</p>
+</div>
 
       <div className='flex  justify-center'>
         <button

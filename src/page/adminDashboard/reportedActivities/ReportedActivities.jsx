@@ -3,6 +3,7 @@ import axiosSecure from '../../../hooks/axiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../../../components/Loading';
 import ReportedReplay from './ReportedReplay';
+import { MdNavigateBefore, MdNavigateNext, MdOutlineReportProblem } from 'react-icons/md';
 
 const ReportedActivities = () => {
   const axiosInstance = axiosSecure();
@@ -17,7 +18,7 @@ const ReportedActivities = () => {
     },
     keepPreviousData: true
   });
-console.log(data)
+
   const replays = data.replays || [];
   const totalPages = data.totalPages || 1;
 
@@ -26,21 +27,29 @@ console.log(data)
   }
 
   if (replays.length === 0) {
-    return <p className="text-center text-gray-500 py-10">No reported activities found.</p>;
+    return (
+      <p className="text-center text-gray-500 py-10 text-lg">
+        <MdOutlineReportProblem className="inline-block mr-2 text-xl" />
+        No reported activities found.
+      </p>
+    );
   }
 
   return (
-    <div className="max-w-6xl mx-auto p-6 bg-white shadow rounded">
-      <h1 className="text-2xl font-bold mb-4">Reported Activities</h1>
+    <div className="max-w-6xl mx-auto p-6 bg-white shadow-md rounded-md border my-10">
+      <h1 className="text-2xl font-semibold mb-6 text-center text-gray-800 flex items-center justify-center gap-2">
+        <MdOutlineReportProblem className="text-red-500 text-3xl" />
+        Reported Activities
+      </h1>
 
       <div className="overflow-x-auto">
         <table className="table w-full">
-          <thead>
+          <thead className="bg-gray-100 text-gray-700 text-sm">
             <tr>
-              <th>#</th>
-              <th>Feedback</th>
-              <th>Reported Email</th>
-              <th>Actions</th>
+              <th className="py-3 px-4">#</th>
+              <th className="py-3 px-4">Feedback</th>
+              <th className="py-3 px-4">Reported Email</th>
+              <th className="py-3 px-4">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -57,20 +66,20 @@ console.log(data)
       </div>
 
       {/* Pagination */}
-      <div className="flex justify-center mt-6 gap-2">
+      <div className="flex justify-center mt-8 gap-2 flex-wrap items-center">
         <button
           onClick={() => setCurrentPage(p => Math.max(p - 1, 1))}
           disabled={currentPage === 1}
-          className="btn btn-sm"
+          className="btn btn-sm flex items-center gap-1"
         >
-          Previous
+          <MdNavigateBefore /> Prev
         </button>
 
         {[...Array(totalPages).keys()].map(n => (
           <button
             key={n}
             onClick={() => setCurrentPage(n + 1)}
-            className={`btn btn-sm ${currentPage === n + 1 ? 'btn-primary' : 'btn-outline'}`}
+            className={`btn btn-sm ${currentPage === n + 1 ? 'btn-primary' : 'btn-outline'} rounded-full w-9`}
           >
             {n + 1}
           </button>
@@ -79,9 +88,9 @@ console.log(data)
         <button
           onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))}
           disabled={currentPage === totalPages}
-          className="btn btn-sm"
+          className="btn btn-sm flex items-center gap-1"
         >
-          Next
+          Next <MdNavigateNext />
         </button>
       </div>
     </div>

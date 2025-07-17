@@ -3,16 +3,15 @@ import Modal from './Modal';
 import useAuth from '../../../hooks/useAuth';
 import Swal from 'sweetalert2';
 import axiosSecure from '../../../hooks/axiosSecure';
+import { FiAlertTriangle, FiCheckCircle, FiEye } from 'react-icons/fi';
 
-const CommentTr = ({ comment, index , refetch}) => {
+const CommentTr = ({ comment, index, refetch }) => {
   const { user } = useAuth();
   const axiosInstance = axiosSecure();
   const [feedback, setFeedback] = useState('');
   const [reported, setReported] = useState(false);
 
-
   const handleReport = async () => {
-    // comment replay post
     const replayPost = {
       postId: comment?.postId,
       commentId: comment?._id,
@@ -23,41 +22,41 @@ const CommentTr = ({ comment, index , refetch}) => {
     try {
       const postRes = await axiosInstance.post('/commentsReplay', replayPost);
       if (postRes.data.insertedId) {
-    refetch()
+        refetch();
         Swal.fire({
           title: "Feedback submitted!",
           icon: "success",
-          draggable: true
+          draggable: true,
+          timer: 1500,
+          showConfirmButton: false,
         });
+        setReported(true);
       }
-    }
-    catch (err) {
+    } catch (err) {
       Swal.fire({
         title: "Failed to submit feedback!",
         icon: "error",
         text: err.message,
-        draggable: true
+        draggable: true,
       });
     }
-
-
-    setReported(true);
   };
 
   return (
     <>
-      <tr>
-        <td>{index}</td>
-        <td>{comment.commenterEmail}</td>
+      <tr className="hover:bg-gray-100 transition-colors duration-200">
+        <td className="text-center font-semibold">{index}</td>
+        <td className="font-mono text-sm">{comment.commenterEmail}</td>
         <td>
           {comment.commentText.length > 20 ? (
             <>
               {comment.commentText.slice(0, 20)}...
               <button
                 onClick={() => document.getElementById('comment_modal').showModal()}
-                className="text-blue-500 underline ml-1"
+                className="text-indigo-600 underline ml-2 flex items-center gap-1 hover:text-indigo-800"
+                aria-label="Read full comment"
               >
-                Read More
+                <FiEye /> Read More
               </button>
             </>
           ) : (
@@ -70,27 +69,32 @@ const CommentTr = ({ comment, index , refetch}) => {
             className="select select-sm select-bordered w-full max-w-xs"
             value={feedback}
             onChange={(e) => setFeedback(e.target.value)}
-            disabled={comment.status=== true}
+            disabled={comment.status === true || reported}
+            aria-label="Select feedback type"
           >
-            <option value="" disabled>{comment.status === true ? 'Already Reported' : 'Select feedback'}</option>
+            <option value="" disabled>
+              {comment.status === true || reported ? 'Already Reported' : 'Select feedback'}
+            </option>
             <option value="Off-topic or irrelevant">Off-topic or irrelevant</option>
             <option value="Spam or self-promotion">Spam or self-promotion</option>
             <option value="Abusive or inappropriate language">Abusive or inappropriate language</option>
           </select>
         </td>
 
-        <td>
+        <td className="flex items-center gap-2">
           <button
-            className="btn btn-sm btn-warning"
+            className={`btn btn-sm flex items-center gap-1 ${
+              reported ? 'btn-success cursor-default' : 'btn-warning hover:btn-error'
+            }`}
             onClick={handleReport}
-            disabled={!feedback || reported}
+            disabled={!feedback || reported || comment.status === true}
+            aria-label={reported ? 'Reported' : 'Report comment'}
           >
-            {reported ? 'Reported' : 'Report'}
+            {reported ? <><FiCheckCircle /> Reported</> : <><FiAlertTriangle /> Report</>}
           </button>
-           <Modal text={comment.commentText}></Modal>
+          <Modal text={comment.commentText} />
         </td>
       </tr>
-     
     </>
   );
 };

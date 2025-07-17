@@ -4,9 +4,10 @@ import axiosSecure from '../../../hooks/axiosSecure';
 import Swal from 'sweetalert2';
 import Loading from '../../../components/Loading';
 import useAuth from '../../../hooks/useAuth';
+import { FaSearch, FaUserShield, FaUserTimes } from 'react-icons/fa';
 
 const ManageUsers = () => {
-    const {user} = useAuth();
+    const { user } = useAuth();
     const axiosInstance = axiosSecure();
     const [searchName, setSearchName] = useState('');
     const [queryName, setQueryName] = useState('');
@@ -57,11 +58,11 @@ const ManageUsers = () => {
     };
 
     return (
-        <div className="p-6 max-w-6xl mx-auto">
-            <h2 className="text-2xl font-bold mb-4">Manage Users</h2>
+        <div className="p-6 max-w-6xl mx-auto space-y-6">
+            <h2 className="text-2xl font-bold text-center mb-4">Manage Users</h2>
 
             {/* Search Input */}
-            <form onSubmit={handleSearch} className="mb-6 flex gap-2">
+            <form onSubmit={handleSearch} className="mb-6 flex max-w-md mx-auto gap-2">
                 <input
                     type="text"
                     value={searchName}
@@ -69,7 +70,9 @@ const ManageUsers = () => {
                     placeholder="Search by name"
                     className="input input-bordered w-full"
                 />
-                <button type="submit" className="btn btn-primary">Search</button>
+                <button type="submit" className="btn btn-primary flex items-center gap-2 px-4">
+                    <FaSearch /> Search
+                </button>
             </form>
 
             {/* Users Table */}
@@ -77,10 +80,10 @@ const ManageUsers = () => {
                 {isLoading ? (
                     <Loading />
                 ) : users.length === 0 ? (
-                    <p>No users found.</p>
+                    <p className="text-center text-gray-500 py-6 text-lg">No users found.</p>
                 ) : (
                     <>
-                        <table className="table table-zebra w-full">
+                        <table className="table table-zebra w-full text-center">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -98,16 +101,26 @@ const ManageUsers = () => {
                                         <td>{user.email}</td>
                                         <td>
                                             {user.role === 'admin'
-                                                ? 'Admin'
+                                                ? <span className="text-green-600 font-semibold">Admin</span>
                                                 : user.role === 'member'
-                                                    ? 'Member'
+                                                    ? <span className="text-blue-600 font-semibold">Member</span>
                                                     : 'User'}
                                         </td>
                                         <td>
                                             {user.role === 'admin' ? (
-                                                <button onClick={() => handleRemoveAdmin(user._id)} className="btn btn-sm btn-warning">Remove Admin</button>
+                                                <button
+                                                    onClick={() => handleRemoveAdmin(user._id)}
+                                                    className="btn btn-sm btn-warning flex items-center gap-2"
+                                                >
+                                                    <FaUserTimes /> Remove Admin
+                                                </button>
                                             ) : (
-                                                <button onClick={() => handleMakeAdmin(user._id)} className="btn btn-sm btn-warning">Make Admin</button>
+                                                <button
+                                                    onClick={() => handleMakeAdmin(user._id)}
+                                                    className="btn btn-sm btn-success flex items-center gap-2"
+                                                >
+                                                    <FaUserShield /> Make Admin
+                                                </button>
                                             )}
                                         </td>
                                     </tr>

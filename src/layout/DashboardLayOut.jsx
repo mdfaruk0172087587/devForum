@@ -1,88 +1,92 @@
 import React from 'react';
 import Logo from '../components/Logo';
 import { NavLink, Outlet } from 'react-router';
-import { FaListUl, FaPlusSquare, FaUserCircle } from 'react-icons/fa';
+import { FaListUl, FaPlusSquare, FaUserCircle, FaUserCog, FaBullhorn, FaExclamationTriangle, FaUsersCog } from 'react-icons/fa';
 import useUserRole from '../hooks/useUserRole';
 
 const DashboardLayOut = () => {
-    const {role, roleLoading} = useUserRole();
-   
+    const { role, roleLoading } = useUserRole();
+
+    const linkClasses = ({ isActive }) =>
+        `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-200 ${
+            isActive ? 'bg-primary text-white font-semibold' : 'hover:bg-base-300'
+        }`;
+
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex flex-col ">
-
                 {/* Navbar */}
                 <div className="navbar bg-base-300 w-full lg:hidden">
-                    <div className="flex-none ">
+                    <div className="flex-none">
                         <label htmlFor="my-drawer-2" aria-label="open sidebar" className="btn btn-square btn-ghost">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                className="inline-block h-6 w-6 stroke-current"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M4 6h16M4 12h16M4 18h16"
-                                ></path>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                className="inline-block h-6 w-6 stroke-current">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                    d="M4 6h16M4 12h16M4 18h16" />
                             </svg>
                         </label>
                     </div>
-                    <div className="mx-2 flex-1 px-2">Dashboard</div>
-
+                    <div className="mx-2 flex-1 px-2 text-lg font-semibold">Dashboard</div>
                 </div>
-                {/* Page content here */}
-                <Outlet></Outlet>
 
                 {/* Page content here */}
-
+                <Outlet />
             </div>
+
             <div className="drawer-side">
                 <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-                <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-                    {/* Sidebar content here */}
-                    <Logo></Logo>
-                   { !roleLoading && role !== 'admin' &&
-                    <>
-                     <li>
-                        <NavLink to='/dashboard/myProfile' className="flex items-center gap-2">
-                            <FaUserCircle /> My Profile
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to='/dashboard/addPost' className="flex items-center gap-2">
-                            <FaPlusSquare /> Add Post
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to='/dashboard/myPosts' className="flex items-center gap-2">
-                            <FaListUl /> My Posts
-                        </NavLink>
-                    </li>
-                    </>
-                   }
+                <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4 space-y-2">
+                    <Logo />
 
-                   {/* admin */}
-                   { !roleLoading && role === 'admin' &&
-                    <>
-                    <li>
-                        <NavLink to='/dashboard/adminProfile'>Admin Profile</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to='/dashboard/manageUsers'>Manage Users</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to='/dashboard/makeAnnouncement'>Make Announcement</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to='/dashboard/reportedActivities'>Reported Activities</NavLink>
-                    </li>
-                    </>
-                   }
+                    {/* Member Section */}
+                    {!roleLoading && role !== 'admin' && (
+                        <>
+                            <p className="mt-4 mb-2 text-gray-500 font-semibold">User Menu</p>
+                            <li>
+                                <NavLink to='/dashboard/myProfile' className={linkClasses}>
+                                    <FaUserCircle /> My Profile
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to='/dashboard/addPost' className={linkClasses}>
+                                    <FaPlusSquare /> Add Post
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to='/dashboard/myPosts' className={linkClasses}>
+                                    <FaListUl /> My Posts
+                                </NavLink>
+                            </li>
+                        </>
+                    )}
 
+                    {/* Admin Section */}
+                    {!roleLoading && role === 'admin' && (
+                        <>
+                            <p className="mt-4 mb-2 text-gray-500 font-semibold">Admin Panel</p>
+                            <li>
+                                <NavLink to='/dashboard/adminProfile' className={linkClasses}>
+                                    <FaUserCog /> Admin Profile
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to='/dashboard/manageUsers' className={linkClasses}>
+                                    <FaUsersCog /> Manage Users
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to='/dashboard/makeAnnouncement' className={linkClasses}>
+                                    <FaBullhorn /> Make Announcement
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to='/dashboard/reportedActivities' className={linkClasses}>
+                                    <FaExclamationTriangle /> Reported Activities
+                                </NavLink>
+                            </li>
+                        </>
+                    )}
                 </ul>
             </div>
         </div>

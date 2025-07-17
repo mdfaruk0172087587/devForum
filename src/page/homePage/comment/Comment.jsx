@@ -4,10 +4,9 @@ import { useParams } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
 import CommentTr from './CommentTr';
 import Loading from '../../../components/Loading';
-
+import { FiChevronLeft, FiChevronRight, FiMessageCircle } from 'react-icons/fi';
 
 const Comment = () => {
-   
     const axiosInstance = axiosSecure();
     const { postId } = useParams();
     const [currentPage, setCurrentPage] = useState(1);
@@ -17,7 +16,7 @@ const Comment = () => {
         queryKey: ['comments', postId, currentPage],
         queryFn: async () => {
             const res = await axiosInstance.get(`/comments/${postId}?page=${currentPage}&limit=${limit}`);
-            return res.data; // expects { comments, totalComments }
+            return res.data;
         },
         keepPreviousData: true,
     });
@@ -31,15 +30,18 @@ const Comment = () => {
     }
 
     return (
-        <div className="max-w-5xl mx-auto p-6 bg-white shadow rounded">
-            <h2 className="text-2xl font-bold mb-4">All Comments for Post</h2>
+        <div className="max-w-5xl mx-auto p-6 bg-white shadow-md rounded-lg my-10">
+            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-indigo-700">
+                <FiMessageCircle className="text-3xl" />
+                All Comments for Post
+            </h2>
 
             <div className="overflow-x-auto">
-                <table className="table table-zebra w-full">
-                    <thead>
-                        <tr>
+                <table className="table w-full">
+                    <thead className="bg-gray-100">
+                        <tr className="text-left">
                             <th>#</th>
-                            <th>Commenter Email</th>
+                            <th>Email</th>
                             <th>Comment</th>
                             <th>Feedback</th>
                             <th>Action</th>
@@ -48,7 +50,9 @@ const Comment = () => {
                     <tbody>
                         {commentData.length === 0 ? (
                             <tr>
-                                <td colSpan="5" className="text-center text-gray-500 py-6">No comments found.</td>
+                                <td colSpan="5" className="text-center text-gray-500 py-6">
+                                    No comments found.
+                                </td>
                             </tr>
                         ) : (
                             commentData.map((comment, index) => (
@@ -65,16 +69,16 @@ const Comment = () => {
             </div>
 
             {/* Pagination */}
-            <div className="flex justify-center mt-6 gap-2">
+            <div className="flex justify-center mt-6 gap-2 flex-wrap">
                 <button
-                    onClick={() => setCurrentPage(p => Math.max(p - 1, 1))}
+                    onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
                     disabled={currentPage === 1}
-                    className="btn btn-sm"
+                    className="btn btn-sm btn-outline flex items-center gap-1"
                 >
-                    Previous
+                    <FiChevronLeft /> Prev
                 </button>
 
-                {[...Array(totalPages).keys()].map(n => (
+                {[...Array(totalPages).keys()].map((n) => (
                     <button
                         key={n}
                         onClick={() => setCurrentPage(n + 1)}
@@ -85,11 +89,11 @@ const Comment = () => {
                 ))}
 
                 <button
-                    onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))}
+                    onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
                     disabled={currentPage === totalPages}
-                    className="btn btn-sm"
+                    className="btn btn-sm btn-outline flex items-center gap-1"
                 >
-                    Next
+                    Next <FiChevronRight />
                 </button>
             </div>
         </div>

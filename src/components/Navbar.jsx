@@ -2,6 +2,7 @@ import { IoMdNotificationsOutline } from 'react-icons/io';
 import useAuth from '../hooks/useAuth';
 import Swal from 'sweetalert2';
 import { Link, NavLink } from 'react-router';
+import Logo from './Logo';
 
 const Navbar = () => {
     const { user, logout, announcementCount } = useAuth();
@@ -74,7 +75,7 @@ const Navbar = () => {
                         {links}
                     </ul>
                 </div>
-                <Link to="/" className="text-xl font-bold text-primary">DevForum</Link>
+               <Logo></Logo>
             </div>
 
             {/* Center */}
