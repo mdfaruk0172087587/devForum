@@ -17,7 +17,7 @@ const AddPost = () => {
   const { data: LoadPost = {}, isLoading } = useQuery({
     queryKey: ['userPostCount', user?.email],
     queryFn: async () => {
-      const res = await axiosInstance.get(`/devForum/count?email=${user.email}`);
+      const res = await axiosInstance.get(`/devForum/${user?.email}/count?email=${user.email}`);
       return res.data;
     },
     enabled: !!user?.email,

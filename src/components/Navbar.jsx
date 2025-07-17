@@ -58,7 +58,7 @@ const Navbar = () => {
     );
 
     return (
-        <div className="navbar bg-base-100 shadow-sm px-4">
+        <div className="navbar bg-white shadow-sm px-4">
             {/* Start */}
             <div className="navbar-start">
                 <div className="dropdown">

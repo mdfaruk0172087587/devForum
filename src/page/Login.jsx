@@ -62,7 +62,7 @@ const Login = () => {
                             <label className="label relative">Password</label>
                             <input type= {showPassword? 'text': 'password'} {...register('password', { required: true, minLength: 6 })} className="input" placeholder="Password" />
                             {/* Eye Toggle Button */}
-                            <button className='absolute bottom-44 right-14' type='button' onClick={() => setShowPassword(!showPassword)}>
+                            <button className='absolute bottom-44 right-14 z-20  -translate-y-1/2 text-gray-500 hover:text-blue-500' type='button' onClick={() => setShowPassword(!showPassword)}>
                                 {showPassword? <PiEyesFill size={24}></PiEyesFill > : <LiaEyeSlash size={24}></LiaEyeSlash>}
                             </button>
 

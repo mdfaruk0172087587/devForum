@@ -142,7 +142,7 @@ const Register = () => {
                             <button
                                 type="button"
                                 onClick={() => setShowPassword(!showPassword)}
-                                className="absolute bottom-44 right-14  -translate-y-1/2 text-gray-500 hover:text-blue-500"
+                                className=" z-10 absolute bottom-44 right-14  -translate-y-1/2 text-gray-500 hover:text-blue-500"
                             >
                                 {showPassword ? <PiEyesFill size={22} /> : <LiaEyeSlash size={22} />}
                             </button>

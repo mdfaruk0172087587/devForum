@@ -5,7 +5,9 @@ import { useQuery } from '@tanstack/react-query';
 import CommentTr from './CommentTr';
 import Loading from '../../../components/Loading';
 
+
 const Comment = () => {
+   
     const axiosInstance = axiosSecure();
     const { postId } = useParams();
     const [currentPage, setCurrentPage] = useState(1);

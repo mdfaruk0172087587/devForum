@@ -3,8 +3,10 @@ import { useQuery } from '@tanstack/react-query';
 import axiosSecure from '../../../hooks/axiosSecure';
 import Swal from 'sweetalert2';
 import Loading from '../../../components/Loading';
+import useAuth from '../../../hooks/useAuth';
 
 const ManageUsers = () => {
+    const {user} = useAuth();
     const axiosInstance = axiosSecure();
     const [searchName, setSearchName] = useState('');
     const [queryName, setQueryName] = useState('');
@@ -14,7 +16,7 @@ const ManageUsers = () => {
     const { data: usersData = {}, isLoading, refetch } = useQuery({
         queryKey: ['searchedUsers', queryName, currentPage],
         queryFn: async () => {
-            const res = await axiosInstance.get(`/users/search?name=${queryName}&page=${currentPage}&limit=${limit}`);
+            const res = await axiosInstance.get(`/users/manage/${user?.email}/search?name=${queryName}&page=${currentPage}&limit=${limit}`);
             return res.data;
         },
         enabled: !!queryName,

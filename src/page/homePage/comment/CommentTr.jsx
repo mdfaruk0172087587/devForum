@@ -23,8 +23,6 @@ const CommentTr = ({ comment, index , refetch}) => {
     try {
       const postRes = await axiosInstance.post('/commentsReplay', replayPost);
       if (postRes.data.insertedId) {
-        // update comments collection
-    await axiosInstance.put(`/comments/${comment._id}`)
     refetch()
         Swal.fire({
           title: "Feedback submitted!",
@@ -49,7 +47,7 @@ const CommentTr = ({ comment, index , refetch}) => {
   return (
     <>
       <tr>
-        <td>{index + 1}</td>
+        <td>{index}</td>
         <td>{comment.commenterEmail}</td>
         <td>
           {comment.commentText.length > 20 ? (

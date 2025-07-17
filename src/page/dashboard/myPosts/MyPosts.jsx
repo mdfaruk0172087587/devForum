@@ -44,7 +44,7 @@ const MyPosts = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const res = await axiosInstance.delete(`/devForum/${id}`);
+                    const res = await axiosInstance.delete(`/devForum/${user?.email}/${id}`);
                     if (res.data.deletedId) {
                         Swal.fire({
                             title: 'Deleted!',
