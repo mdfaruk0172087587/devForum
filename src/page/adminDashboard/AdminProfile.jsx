@@ -7,6 +7,7 @@ import useAuth from '../../hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import axiosSecure from '../../hooks/axiosSecure';
 import Loading from '../../components/Loading';
+import { Helmet } from 'react-helmet-async';
 
 const COLORS = ['#8884d8', '#82ca9d', '#ffc658'];
 
@@ -76,7 +77,9 @@ const AdminProfile = () => {
 
     return (
         <div className="max-w-5xl mx-auto p-6 space-y-12">
-
+            <Helmet>
+                <title>Admin Profile</title>
+            </Helmet>
             {/* Profile Section */}
             <div className="bg-white shadow-md rounded-lg p-6 flex flex-col md:flex-row items-center gap-6">
                 <img

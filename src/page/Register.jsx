@@ -10,6 +10,7 @@ import GoogleLogin from '../components/GoogleLogin';
 import axiosUnSecure from '../hooks/axiosUnSecure';
 import registerLottie from '../assets/lottie/registarLottie.json'
 import Lottie from 'lottie-react';
+import { Helmet } from 'react-helmet-async';
 
 const Register = () => {
     const { createUser, updateUser } = useAuth();
@@ -91,6 +92,9 @@ const Register = () => {
 
     return (
         <div className="hero bg-base-200 min-h-screen">
+            <Helmet>
+                <title>Register Page</title>
+            </Helmet>
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
                    <Lottie animationData={registerLottie} loop={true}></Lottie>

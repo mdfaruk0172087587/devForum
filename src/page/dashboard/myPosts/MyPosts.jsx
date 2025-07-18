@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import { FaRegCommentDots, FaTrashAlt } from 'react-icons/fa';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import { Link } from 'react-router';
+import { Helmet } from 'react-helmet-async';
 
 const MyPosts = () => {
   const axiosInstance = axiosSecure();
@@ -67,6 +68,9 @@ const MyPosts = () => {
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 bg-white shadow-md rounded-lg">
+      <Helmet>
+        <title>My Post</title>
+      </Helmet>
       <h2 className="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">My Posts</h2>
 
       <div className="overflow-x-auto">

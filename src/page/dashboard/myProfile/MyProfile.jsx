@@ -4,6 +4,7 @@ import useAuth from '../../../hooks/useAuth';
 import axiosSecure from '../../../hooks/axiosSecure';
 import Loading from '../../../components/Loading';
 import MyProfilePost from './MyProfilePost';
+import { Helmet } from 'react-helmet-async';
 
 const MyProfile = () => {
   const { user } = useAuth();
@@ -22,6 +23,9 @@ const MyProfile = () => {
 
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white shadow-xl rounded-2xl">
+      <Helmet>
+        <title>My Profile</title>
+      </Helmet>
       <h2 className="text-3xl font-bold mb-6 text-indigo-600 text-center">
         My Profile
       </h2>

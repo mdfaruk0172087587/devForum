@@ -1,15 +1,13 @@
 import React from 'react';
+import { FaSpinner } from 'react-icons/fa';
 
 const Loading = () => {
-    return (
-        <div className='flex justify-center'>
-            <span className="loading loading-bars loading-xs"></span>
-<span className="loading loading-bars loading-sm"></span>
-<span className="loading loading-bars loading-md"></span>
-<span className="loading loading-bars loading-lg"></span>
-<span className="loading loading-bars loading-xl"></span>
-        </div>
-    );
+  return (
+    <div className="flex flex-col items-center justify-center min-h-[200px] text-blue-600 space-y-3">
+      <FaSpinner className="animate-spin text-4xl" />
+      <p className="text-lg font-medium">Loading, please wait...</p>
+    </div>
+  );
 };
 
 export default Loading;

@@ -19,12 +19,14 @@ import MakeAnnouncement from "../page/adminDashboard/makeAnnouncement/MakeAnnoun
 import ReportedActivities from "../page/adminDashboard/reportedActivities/ReportedActivities";
 import Forbidden from "../page/Forbidden";
 import AdminRoute from "./AdminRoute";
+import Error from "../page/Error";
 
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <HomeLayOut></HomeLayOut>,
+        errorElement: <Error></Error>,
         children: [
             {
                 index: true,

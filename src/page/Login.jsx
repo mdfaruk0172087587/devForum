@@ -8,6 +8,7 @@ import loginLottie from '../assets/lottie/loginLottie.json';
 import Lottie from 'lottie-react';
 import { PiEyesFill } from 'react-icons/pi';
 import { LiaEyeSlash } from 'react-icons/lia';
+import { Helmet } from 'react-helmet-async';
 
 const Login = () => {
     const { login } = useAuth();
@@ -42,6 +43,9 @@ const Login = () => {
     }
     return (
         <div className="hero bg-base-200 min-h-screen">
+            <Helmet>
+                <title>Login Page</title>
+            </Helmet>
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
                     {/* animation */}

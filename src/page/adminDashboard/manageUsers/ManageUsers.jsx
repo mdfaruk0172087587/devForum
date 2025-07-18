@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import Loading from '../../../components/Loading';
 import useAuth from '../../../hooks/useAuth';
 import { FaSearch, FaUserShield, FaUserTimes } from 'react-icons/fa';
+import { Helmet } from 'react-helmet-async';
 
 const ManageUsers = () => {
     const { user } = useAuth();
@@ -59,6 +60,9 @@ const ManageUsers = () => {
 
     return (
         <div className="p-6 max-w-6xl mx-auto space-y-6">
+            <Helmet>
+                <title>Manage Users</title>
+            </Helmet>
             <h2 className="text-2xl font-bold text-center mb-4">Manage Users</h2>
 
             {/* Search Input */}

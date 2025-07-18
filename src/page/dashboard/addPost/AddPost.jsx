@@ -8,6 +8,7 @@ import Loading from '../../../components/Loading';
 import axiosSecure from '../../../hooks/axiosSecure';
 import { FaUser, FaEnvelope, FaImage, FaTag, FaHeading } from 'react-icons/fa';
 import { MdDescription } from 'react-icons/md';
+import { Helmet } from 'react-helmet-async';
 
 const AddPost = () => {
   const { user } = useAuth();
@@ -89,6 +90,9 @@ const AddPost = () => {
 
   return (
     <div className="max-w-2xl mx-auto bg-white p-8 shadow-lg rounded-lg">
+      <Helmet>
+        <title>Add Post</title>
+      </Helmet>
       <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">📢 Add a New Post</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         <div>

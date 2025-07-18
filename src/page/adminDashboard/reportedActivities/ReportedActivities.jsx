@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import Loading from '../../../components/Loading';
 import ReportedReplay from './ReportedReplay';
 import { MdNavigateBefore, MdNavigateNext, MdOutlineReportProblem } from 'react-icons/md';
+import { Helmet } from 'react-helmet-async';
 
 const ReportedActivities = () => {
   const axiosInstance = axiosSecure();
@@ -37,6 +38,9 @@ const ReportedActivities = () => {
 
   return (
     <div className="max-w-6xl mx-auto p-6 bg-white shadow-md rounded-md border my-10">
+      <Helmet>
+        <title>Reported Activities</title>
+      </Helmet>
       <h1 className="text-2xl font-semibold mb-6 text-center text-gray-800 flex items-center justify-center gap-2">
         <MdOutlineReportProblem className="text-red-500 text-3xl" />
         Reported Activities

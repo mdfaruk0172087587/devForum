@@ -4,6 +4,7 @@ import { FiImage, FiMessageCircle, FiSend, FiType, FiUser } from 'react-icons/fi
 import Swal from 'sweetalert2';
 import axiosSecure from '../../../hooks/axiosSecure';
 import useAuth from '../../../hooks/useAuth';
+import { Helmet } from 'react-helmet-async';
 
 const MakeAnnouncement = () => {
     const { user } = useAuth();
@@ -43,6 +44,9 @@ const MakeAnnouncement = () => {
 
     return (
         <div className="max-w-3xl mx-auto bg-white p-8 shadow-xl rounded-xl mt-10">
+          <Helmet>
+            <title>Make Announcement</title>
+          </Helmet>
             <h2 className="text-3xl font-extrabold mb-8 text-center text-blue-700 flex justify-center items-center gap-2">
                 📢 Make an Announcement
             </h2>
