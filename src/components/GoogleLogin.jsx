@@ -5,15 +5,14 @@ import { useLocation, useNavigate } from 'react-router';
 import axiosUnSecure from '../hooks/axiosUnSecure';
 
 const GoogleLogin = () => {
-    const { googleLogin, user } = useAuth();
+    const { googleLogin } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
     const useAxios = axiosUnSecure();
-    console.log(user)
     // handle google login
     const handleGoogleLogin = () => {
         googleLogin()
-            .then(async(result) => {
+            .then(async (result) => {
                 const loggedInUser = result.user;
                 Swal.fire({
                     position: "top-end",
@@ -22,7 +21,6 @@ const GoogleLogin = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-
                 //  user collection post
                 const userPost = {
                     name: loggedInUser.displayName,
@@ -33,7 +31,6 @@ const GoogleLogin = () => {
                     last_log_in: new Date().toISOString(),
                 }
                 await useAxios.post('/users', userPost);
-
                 navigate(location.state || '/')
             })
             .catch(error => {

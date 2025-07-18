@@ -5,12 +5,10 @@ import AnnouncementsSection from './homePage/announcementsSection/AnnouncementsS
 const Home = () => {
     return (
         <div>
-        
-            
-           {/* allPost */}
-           <AllPost></AllPost>
-           {/* announcement */}
-           <AnnouncementsSection></AnnouncementsSection>
+            {/* allPost */}
+            <AllPost></AllPost>
+            {/* announcement */}
+            <AnnouncementsSection></AnnouncementsSection>
         </div>
     );
 };

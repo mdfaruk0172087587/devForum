@@ -1,12 +1,11 @@
 import React from 'react';
 import axiosSecure from '../../../hooks/axiosSecure';
 import Swal from 'sweetalert2';
-import { FaTrash } from 'react-icons/fa'; // ✅ React Icon import
+import { FaTrash } from 'react-icons/fa'; 
 
 const ReportedReplay = ({ replay, index, refetch }) => {
     const { reportedEmail, feedback, commentId, _id } = replay;
     const axiosInstance = axiosSecure();
-
     const handleDelete = (id, replayDeleteId) => {
         Swal.fire({
             title: "Are you sure?",
@@ -41,10 +40,9 @@ const ReportedReplay = ({ replay, index, refetch }) => {
             }
         });
     };
-
     return (
         <tr>
-            <td>{index }</td>
+            <td>{index}</td>
             <td>{feedback}</td>
             <td>{reportedEmail}</td>
             <td>

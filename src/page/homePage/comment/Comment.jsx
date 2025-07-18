@@ -11,7 +11,6 @@ const Comment = () => {
     const { postId } = useParams();
     const [currentPage, setCurrentPage] = useState(1);
     const limit = 10;
-
     const { data, isLoading, refetch } = useQuery({
         queryKey: ['comments', postId, currentPage],
         queryFn: async () => {
@@ -20,22 +19,18 @@ const Comment = () => {
         },
         keepPreviousData: true,
     });
-
     const commentData = data?.comments || [];
     const totalComments = data?.totalComments || 0;
     const totalPages = Math.ceil(totalComments / limit);
-
     if (isLoading) {
         return <Loading />;
     }
-
     return (
         <div className="max-w-5xl mx-auto p-6 bg-white shadow-md rounded-lg my-10">
             <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-indigo-700">
                 <FiMessageCircle className="text-3xl" />
                 All Comments for Post
             </h2>
-
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead className="bg-gray-100">
@@ -67,7 +62,6 @@ const Comment = () => {
                     </tbody>
                 </table>
             </div>
-
             {/* Pagination */}
             <div className="flex justify-center mt-6 gap-2 flex-wrap">
                 <button
@@ -77,7 +71,6 @@ const Comment = () => {
                 >
                     <FiChevronLeft /> Prev
                 </button>
-
                 {[...Array(totalPages).keys()].map((n) => (
                     <button
                         key={n}
@@ -87,7 +80,6 @@ const Comment = () => {
                         {n + 1}
                     </button>
                 ))}
-
                 <button
                     onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
                     disabled={currentPage === totalPages}

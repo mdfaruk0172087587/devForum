@@ -5,7 +5,7 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
-html{
+html {
   font-family: "Work Sans", sans-serif;
 }
 

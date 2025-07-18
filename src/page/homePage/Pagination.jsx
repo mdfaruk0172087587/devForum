@@ -11,7 +11,7 @@ const Pagination = ({ pageCount, onPageChange }) => {
         breakLabel={'...'}
         pageCount={pageCount}
         marginPagesDisplayed={1}
-        pageRangeDisplayed={2} // mobile e 2 page show korbe
+        pageRangeDisplayed={2} 
         onPageChange={(selectedItem) => {
           onPageChange(selectedItem.selected + 1);
           window.scrollTo({ top: 0, behavior: 'smooth' });

@@ -10,7 +10,6 @@ const CommentTr = ({ comment, index, refetch }) => {
   const axiosInstance = axiosSecure();
   const [feedback, setFeedback] = useState('');
   const [reported, setReported] = useState(false);
-
   const handleReport = async () => {
     const replayPost = {
       postId: comment?.postId,
@@ -18,10 +17,10 @@ const CommentTr = ({ comment, index, refetch }) => {
       reportedEmail: user?.email,
       feedback: feedback,
     };
-
     try {
       const postRes = await axiosInstance.post('/commentsReplay', replayPost);
       if (postRes.data.insertedId) {
+        await axiosInstance.put(`/comments/${user?.email}/${comment._id}`);
         refetch();
         Swal.fire({
           title: "Feedback submitted!",
@@ -41,7 +40,6 @@ const CommentTr = ({ comment, index, refetch }) => {
       });
     }
   };
-
   return (
     <>
       <tr className="hover:bg-gray-100 transition-colors duration-200">
@@ -63,7 +61,6 @@ const CommentTr = ({ comment, index, refetch }) => {
             comment.commentText
           )}
         </td>
-
         <td>
           <select
             className="select select-sm select-bordered w-full max-w-xs"
@@ -80,12 +77,10 @@ const CommentTr = ({ comment, index, refetch }) => {
             <option value="Abusive or inappropriate language">Abusive or inappropriate language</option>
           </select>
         </td>
-
         <td className="flex items-center gap-2">
           <button
-            className={`btn btn-sm flex items-center gap-1 ${
-              reported ? 'btn-success cursor-default' : 'btn-warning hover:btn-error'
-            }`}
+            className={`btn btn-sm flex items-center gap-1 ${reported ? 'btn-success cursor-default' : 'btn-warning hover:btn-error'
+              }`}
             onClick={handleReport}
             disabled={!feedback || reported || comment.status === true}
             aria-label={reported ? 'Reported' : 'Report comment'}

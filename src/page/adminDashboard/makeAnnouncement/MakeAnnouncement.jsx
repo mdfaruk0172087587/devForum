@@ -8,10 +8,8 @@ import { Helmet } from 'react-helmet-async';
 
 const MakeAnnouncement = () => {
     const { user } = useAuth();
-
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const axiosInstance = axiosSecure();
-
     const onSubmit = async (data) => {
         const announcement = {
             authorImage: data.authorImage,
@@ -20,10 +18,8 @@ const MakeAnnouncement = () => {
             description: data.description,
             createdAt: new Date().toISOString()
         };
-
         try {
             const res = await axiosInstance.post('/announcements', announcement);
-
             if (res.data.insertedId) {
                 Swal.fire({
                     icon: 'success',
@@ -41,12 +37,11 @@ const MakeAnnouncement = () => {
             });
         }
     };
-
     return (
         <div className="max-w-3xl mx-auto bg-white p-8 shadow-xl rounded-xl mt-10">
-          <Helmet>
-            <title>Make Announcement</title>
-          </Helmet>
+            <Helmet>
+                <title>Make Announcement</title>
+            </Helmet>
             <h2 className="text-3xl font-extrabold mb-8 text-center text-blue-700 flex justify-center items-center gap-2">
                 📢 Make an Announcement
             </h2>
@@ -62,7 +57,6 @@ const MakeAnnouncement = () => {
                     />
                     {errors.authorImage && <p className="text-red-500 text-sm mt-1">{errors.authorImage.message}</p>}
                 </div>
-
                 {/* Author Name */}
                 <div>
                     <label className="label font-semibold"><FiUser></FiUser> Author Name</label>
@@ -86,7 +80,6 @@ const MakeAnnouncement = () => {
                     />
                     {errors.title && <p className="text-red-500 text-sm mt-1">{errors.title.message}</p>}
                 </div>
-
                 {/* Description */}
                 <div>
                     <label className="label font-semibold"> <FiMessageCircle></FiMessageCircle> Description</label>
@@ -98,7 +91,6 @@ const MakeAnnouncement = () => {
                     ></textarea>
                     {errors.description && <p className="text-red-500 text-sm mt-1">{errors.description.message}</p>}
                 </div>
-
                 {/* Submit Button */}
                 <div className="flex justify-center">
                     <button type="submit" className="btn btn-primary flex items-center gap-2 px-6 py-3 text-lg font-semibold">

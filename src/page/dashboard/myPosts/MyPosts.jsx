@@ -14,7 +14,6 @@ const MyPosts = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 10;
   const { user } = useAuth();
-
   const { data, isLoading, refetch } = useQuery({
     queryKey: ['myPosts', user?.email, currentPage],
     queryFn: async () => {
@@ -25,13 +24,10 @@ const MyPosts = () => {
     },
     keepPreviousData: true,
   });
-
   const myPosts = data?.posts || [];
   const totalPosts = data?.totalPosts || 0;
   const totalPages = Math.ceil(totalPosts / limit);
-
   if (isLoading) return <Loading />;
-
   const handleDelete = (id) => {
     Swal.fire({
       title: 'Are you sure?',
@@ -62,17 +58,14 @@ const MyPosts = () => {
       }
     });
   };
-
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 bg-white shadow-md rounded-lg overflow-hidden">
       <Helmet>
         <title>My Post</title>
       </Helmet>
-
       <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-6 border-b pb-2">
         My Posts
       </h2>
-
       <div className="overflow-x-auto">
         <table className="table w-full text-sm">
           <thead>
@@ -83,7 +76,6 @@ const MyPosts = () => {
               <th className="whitespace-nowrap">Actions</th>
             </tr>
           </thead>
-
           <tbody>
             {myPosts.map((post, index) => (
               <tr key={post._id} className="hover:bg-gray-50 transition">
@@ -120,7 +112,6 @@ const MyPosts = () => {
           </tbody>
         </table>
       </div>
-
       {/* Pagination */}
       <div className="flex flex-wrap justify-center items-center mt-6 gap-2">
         <button
@@ -130,19 +121,16 @@ const MyPosts = () => {
         >
           <MdKeyboardArrowLeft /> Prev
         </button>
-
         {[...Array(totalPages).keys()].map((n) => (
           <button
             key={n}
             onClick={() => setCurrentPage(n + 1)}
-            className={`btn btn-sm ${
-              currentPage === n + 1 ? 'btn-primary' : 'btn-outline'
-            }`}
+            className={`btn btn-sm ${currentPage === n + 1 ? 'btn-primary' : 'btn-outline'
+              }`}
           >
             {n + 1}
           </button>
         ))}
-
         <button
           onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
           disabled={currentPage === totalPages}

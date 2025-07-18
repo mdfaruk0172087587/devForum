@@ -34,78 +34,77 @@ export const router = createBrowserRouter([
                 element: <Home></Home>
             },
             {
-                path : '/membership',
-                element : <PrivateRoute>
+                path: '/membership',
+                element: <PrivateRoute>
                     <Membership></Membership>
                 </PrivateRoute>
             },
             {
-                path : '/postDetails/:id',
-                element : <PrivateRoute>
+                path: '/postDetails/:id',
+                element: <PrivateRoute>
                     <PostDetails></PostDetails>
                 </PrivateRoute>
             },
             {
-                path : '/login',
-                element : <Login></Login>,
+                path: '/login',
+                element: <Login></Login>,
             },
             {
-                path : '/forbidden',
+                path: '/forbidden',
                 element: <Forbidden></Forbidden>
             },
             {
-                path : '/register',
-                element : <Register></Register>
+                path: '/register',
+                element: <Register></Register>
             }
         ]
     },
     {
-        path : '/dashboard',
-        element : <PrivateRoute>
+        path: '/dashboard',
+        element: <PrivateRoute>
             <DashboardLayOut></DashboardLayOut>
         </PrivateRoute>,
         children: [
             {
-                path : 'addPost',
-                element : <AddPost></AddPost>
+                path: 'addPost',
+                element: <AddPost></AddPost>
             },
             {
-                path : 'myProfile',
-                element : <MyProfile></MyProfile>
+                path: 'myProfile',
+                element: <MyProfile></MyProfile>
             },
             {
-                path : 'myPosts',
-                element : <MyPosts></MyPosts>
+                path: 'myPosts',
+                element: <MyPosts></MyPosts>
             },
             {
-                path : 'comments/:postId',
+                path: 'comments/:postId',
                 element: <Comment></Comment>
             },
             {
                 path: 'adminProfile',
-                element : <AdminRoute>
+                element: <AdminRoute>
                     <AdminProfile></AdminProfile>
                 </AdminRoute>
             },
             {
-                path : 'manageUsers',
-                element : <AdminRoute>
+                path: 'manageUsers',
+                element: <AdminRoute>
                     <ManageUsers></ManageUsers>
                 </AdminRoute>
             },
             {
-                path : 'makeAnnouncement',
+                path: 'makeAnnouncement',
                 element: <AdminRoute>
                     <MakeAnnouncement></MakeAnnouncement>
                 </AdminRoute>
             },
             {
-                path : 'reportedActivities',
-                element : <AdminRoute>
-                     <ReportedActivities></ReportedActivities>
+                path: 'reportedActivities',
+                element: <AdminRoute>
+                    <ReportedActivities></ReportedActivities>
                 </AdminRoute>
             }
-            
         ]
     }
 ]);

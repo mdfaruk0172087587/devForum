@@ -19,7 +19,6 @@ const AllPost = () => {
   const [searchTag, setSearchTag] = useState('');
   const [sortByPopularity, setSortByPopularity] = useState(false);
   const limit = 5;
-
   const { data, isLoading } = useQuery({
     queryKey: ['allPost', currentPage, sortByPopularity, searchTag],
     queryFn: async () => {
@@ -30,8 +29,6 @@ const AllPost = () => {
     },
     keepPreviousData: true,
   });
-
-
   // totalPosts cha ck
   useEffect(() => {
     if (data?.totalPosts >= 0) {
@@ -42,48 +39,41 @@ const AllPost = () => {
     return <Loading />;
   }
   const totalPages = data?.totalPages || 1;
-  console.log(data.posts)
-
   return (
     <div className="py-6">
       <BannerWithSearch setSearchTag={setSearchTag} setCurrentPage={setCurrentPage}></BannerWithSearch>
       <TagSection setCurrentPage={setCurrentPage} setSearchTag={setSearchTag}></TagSection>
-
       <h2 className="text-3xl font-extrabold text-center mb-2 flex items-center justify-center gap-2 text-gray-800">
         <FaClipboardList className="text-blue-500" /> All Posts
       </h2>
-     <div className="text-center text-gray-700 mb-6 max-w-2xl mx-auto leading-relaxed text-base md:text-lg">
-  <motion.span
-    initial={{ opacity: 0, y: 10 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.6 }}
-    className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 font-bold text-xl mb-2"
-  >
-    Welcome to DevForum 🚀
-  </motion.span>
-
-  Dive into expert discussions, real-world solutions, and helpful questions about today’s top web technologies.
-
-  <div className="flex justify-center flex-wrap gap-2 mt-4">
-    <span className="badge badge-outline flex items-center gap-1 px-3 py-2 bg-blue-100 text-blue-700">
-      <SiReact /> React
-    </span>
-    <span className="badge badge-outline flex items-center gap-1 px-3 py-2 bg-yellow-100 text-yellow-700">
-      <SiJavascript /> JavaScript
-    </span>
-    <span className="badge badge-outline flex items-center gap-1 px-3 py-2 bg-green-100 text-green-700">
-      <SiNodedotjs /> Node.js
-    </span>
-    <span className="badge badge-outline flex items-center gap-1 px-3 py-2 bg-gray-200 text-gray-800">
-      + More
-    </span>
-  </div>
-
-  <span className="block mt-4 text-sm text-gray-600">
-    Use the search bar or select a tag above to explore content you're most interested in. Let's learn and grow together 💡
-  </span>
-</div>
-
+      <div className="text-center text-gray-700 mb-6 max-w-2xl mx-auto leading-relaxed text-base md:text-lg">
+        <motion.span
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 font-bold text-xl mb-2"
+        >
+          Welcome to DevForum 🚀
+        </motion.span>
+        Dive into expert discussions, real-world solutions, and helpful questions about today’s top web technologies.
+        <div className="flex justify-center flex-wrap gap-2 mt-4">
+          <span className="badge badge-outline flex items-center gap-1 px-3 py-2 bg-blue-100 text-blue-700">
+            <SiReact /> React
+          </span>
+          <span className="badge badge-outline flex items-center gap-1 px-3 py-2 bg-yellow-100 text-yellow-700">
+            <SiJavascript /> JavaScript
+          </span>
+          <span className="badge badge-outline flex items-center gap-1 px-3 py-2 bg-green-100 text-green-700">
+            <SiNodedotjs /> Node.js
+          </span>
+          <span className="badge badge-outline flex items-center gap-1 px-3 py-2 bg-gray-200 text-gray-800">
+            + More
+          </span>
+        </div>
+        <span className="block mt-4 text-sm text-gray-600">
+          Use the search bar or select a tag above to explore content you're most interested in. Let's learn and grow together 💡
+        </span>
+      </div>
       <div className='flex  justify-center'>
         <button
           onClick={() => {
@@ -101,10 +91,9 @@ const AllPost = () => {
           data?.posts?.map(post => <DisplayAllPost post={post} key={post._id}></DisplayAllPost>)
         }
       </div>
-
       {/* Pagination */}
       <Pagination pageCount={totalPages} onPageChange={setCurrentPage}></Pagination>
-     {/* <div className='flex justify-center mt-6 overflow-x-auto'>
+      {/* <div className='flex justify-center mt-6 overflow-x-auto'>
        <div className="flex justify-center mt-6 gap-2 max-w-full flex-wrap  min-w-max px-2">
         <button
           onClick={() => setCurrentPage(p => Math.max(p - 1, 1))}

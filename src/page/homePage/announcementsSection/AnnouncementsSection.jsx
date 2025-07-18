@@ -9,7 +9,6 @@ import { FiVolume2 } from 'react-icons/fi';
 const AnnouncementsSection = () => {
   const { setAnnouncementCount } = useAuth();
   const axiosUse = axiosUnSecure();
-
   const { data: announcementData = [], isLoading } = useQuery({
     queryKey: ['announcements'],
     queryFn: async () => {
@@ -17,21 +16,17 @@ const AnnouncementsSection = () => {
       return res.data.announcements;
     }
   });
-
   useEffect(() => {
     if (announcementData.length > 0) {
       setAnnouncementCount(announcementData.length);
     }
   }, [announcementData, setAnnouncementCount]);
-
   if (isLoading) {
     return <Loading />;
   }
-
   if (announcementData.length === 0) {
     return null;
   }
-
   return (
     <section className="my-12 px-4 lg:px-8">
       {/* Header */}
@@ -45,7 +40,6 @@ const AnnouncementsSection = () => {
           and upcoming community events. Never miss an important update!
         </p>
       </div>
-
       {/* Announcement Cards */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {announcementData.map((announcement) => (

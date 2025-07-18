@@ -19,17 +19,11 @@ const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
     const useAxios = axiosUnSecure();
-
- 
-
     // handle submit
     const onSubmit = (data) => {
-        
-      
         // register
         createUser(data?.email, data?.password)
-            .then( async() => {
-
+            .then(async () => {
                 // update user firebase
                 const updateFirebase = {
                     displayName: data.name,
@@ -37,7 +31,7 @@ const Register = () => {
                 }
                 updateUser(updateFirebase)
                     .then(() => {
-                      
+
                     })
                     .catch(error => {
                         Swal.fire({
@@ -46,7 +40,6 @@ const Register = () => {
                             draggable: true
                         });
                     })
-
                 // users database a post
                 const userPost = {
                     name: data.name,
@@ -56,15 +49,13 @@ const Register = () => {
                     createdAt: new Date().toISOString(),
                     last_log_in: new Date().toISOString(),
                 }
-             await useAxios.post('/users', userPost)
-
+                await useAxios.post('/users', userPost)
                 // success
                 Swal.fire({
                     title: "Your Register Successfully!",
                     icon: "success",
                     draggable: true
                 });
-
                 navigate('/')
             })
             .catch(error => {
@@ -75,21 +66,15 @@ const Register = () => {
                 });
             })
     }
-
     // handle upload photo
     const handleUploadPhoto = async (e) => {
         const image = e.target.files[0];
-
         const formData = new FormData();
         formData.append('image', image)
-
         const imageUrlUpload = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_url}`
-
         const res = await axios.post(imageUrlUpload, formData);
         setUploadImage(res.data.data.url)
     }
-
-
     return (
         <div className="hero bg-base-200 min-h-screen">
             <Helmet>
@@ -97,7 +82,7 @@ const Register = () => {
             </Helmet>
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
-                   <Lottie animationData={registerLottie} loop={true}></Lottie>
+                    <Lottie animationData={registerLottie} loop={true}></Lottie>
                 </div>
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
                     <h1 className="text-3xl text-center mt-2 font-bold">Register now!</h1>
@@ -124,7 +109,6 @@ const Register = () => {
                             }
                             {/* password */}
                             <label className="label relative">Password</label>
-
                             <input
                                 type={showPassword ? 'text' : 'password'}
                                 {...register('password', {
@@ -141,7 +125,6 @@ const Register = () => {
                                 className="input input-bordered w-full pr-12"
                                 placeholder="Password"
                             />
-
                             {/*  Eye Toggle Button */}
                             <button
                                 type="button"
@@ -150,20 +133,13 @@ const Register = () => {
                             >
                                 {showPassword ? <PiEyesFill size={22} /> : <LiaEyeSlash size={22} />}
                             </button>
-
-
                             {/* Error Message */}
-
                             {
                                 errors.password && <p className='text-red-500 text-sm mt-1'>{errors.password?.message}</p>
                             }
-
-
                             <button type='submit' className="btn btn-neutral mt-4">Register</button>
-
                         </form>
                         <p className='text-lg'>Already have an account? <Link to='/login' className='text-[#8FA748]'>Login</Link></p>
-
                         <GoogleLogin></GoogleLogin>
                     </div>
                 </div>

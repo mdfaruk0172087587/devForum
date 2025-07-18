@@ -6,7 +6,6 @@ import Logo from './Logo';
 
 const Navbar = () => {
     const { user, logout, announcementCount } = useAuth();
-
     const handleLogOut = () => {
         Swal.fire({
             title: "Are you sure?",
@@ -28,7 +27,6 @@ const Navbar = () => {
             }
         });
     };
-
     const links = (
         <>
             <li>
@@ -57,7 +55,6 @@ const Navbar = () => {
             </li>
         </>
     );
-
     return (
         <div className="navbar bg-white shadow-sm px-4">
             {/* Start */}
@@ -75,7 +72,7 @@ const Navbar = () => {
                         {links}
                     </ul>
                 </div>
-               <Logo></Logo>
+                <Logo></Logo>
             </div>
 
             {/* Center */}

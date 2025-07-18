@@ -3,12 +3,11 @@ import useAuth from '../../../hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import axiosSecure from '../../../hooks/axiosSecure';
 import Loading from '../../../components/Loading';
-import { FaTag } from 'react-icons/fa'; // React Icon
+import { FaTag } from 'react-icons/fa'; 
 
 const MyProfilePost = () => {
   const { user } = useAuth();
   const axiosInstance = axiosSecure();
-
   const { data: profilePost = [], isLoading } = useQuery({
     queryKey: ['userPost', user?.email],
     queryFn: async () => {
@@ -16,15 +15,12 @@ const MyProfilePost = () => {
       return res.data.posts;
     }
   });
-
   if (isLoading) {
     return <Loading />;
   }
-
   return (
     <div>
       <h3 className="text-2xl font-bold mb-4 text-indigo-700 border-b pb-2">Recent Posts</h3>
-
       {profilePost.length === 0 ? (
         <p className="text-gray-500 italic">You haven’t posted anything yet.</p>
       ) : (

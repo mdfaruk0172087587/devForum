@@ -10,7 +10,6 @@ const ReportedActivities = () => {
   const axiosInstance = axiosSecure();
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 10;
-
   const { data = {}, isLoading, refetch } = useQuery({
     queryKey: ['reportedActivities', currentPage],
     queryFn: async () => {
@@ -19,28 +18,24 @@ const ReportedActivities = () => {
     },
     keepPreviousData: true
   });
-
   const replays = data.replays || [];
   const totalPages = data.totalPages || 1;
-
   if (isLoading) {
     return <Loading />;
   }
-
   if (replays.length === 0) {
     return (
       <p className="text-center text-gray-600 py-10 text-lg">
-  <MdOutlineReportProblem className="inline-block mr-2 text-xl text-red-500" />
-  Hmmm, no reported activities found yet.
-  <br />
-  Looks like there’s nothing to review or report at the moment.
-  <br />
-  Keep contributing to the forum — any issues or reports will show up here!
-</p>
+        <MdOutlineReportProblem className="inline-block mr-2 text-xl text-red-500" />
+        Hmmm, no reported activities found yet.
+        <br />
+        Looks like there’s nothing to review or report at the moment.
+        <br />
+        Keep contributing to the forum — any issues or reports will show up here!
+      </p>
 
     );
   }
-
   return (
     <div className="lg:max-w-6xl lg:mx-auto p-6 bg-white shadow-md rounded-md border my-10">
       <Helmet>
@@ -50,7 +45,6 @@ const ReportedActivities = () => {
         <MdOutlineReportProblem className="text-red-500 text-3xl" />
         Reported Activities
       </h1>
-
       <div className="overflow-x-auto">
         <table className="table w-full">
           <thead className="bg-gray-100 text-gray-700 text-sm">
@@ -73,7 +67,6 @@ const ReportedActivities = () => {
           </tbody>
         </table>
       </div>
-
       {/* Pagination */}
       <div className="flex justify-center mt-8 gap-2 flex-wrap items-center">
         <button
@@ -83,7 +76,6 @@ const ReportedActivities = () => {
         >
           <MdNavigateBefore /> Prev
         </button>
-
         {[...Array(totalPages).keys()].map(n => (
           <button
             key={n}
@@ -93,7 +85,6 @@ const ReportedActivities = () => {
             {n + 1}
           </button>
         ))}
-
         <button
           onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))}
           disabled={currentPage === totalPages}

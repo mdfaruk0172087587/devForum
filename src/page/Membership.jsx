@@ -8,7 +8,7 @@ const Membership = () => {
             <Helmet>
                 <title>Membership</title>
             </Helmet>
-           <Payment></Payment>
+            <Payment></Payment>
         </div>
     );
 };

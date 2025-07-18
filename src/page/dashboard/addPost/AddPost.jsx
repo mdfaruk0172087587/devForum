@@ -15,7 +15,6 @@ const AddPost = () => {
   const navigate = useNavigate();
   const axiosInstance = axiosSecure();
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
-
   const { data: LoadPost = {}, isLoading } = useQuery({
     queryKey: ['userPostCount', user?.email],
     queryFn: async () => {
@@ -24,7 +23,6 @@ const AddPost = () => {
     },
     enabled: !!user?.email,
   });
-
   const { data: tagData = [], isLoading: tagLoading } = useQuery({
     queryKey: ['tags'],
     queryFn: async () => {
@@ -32,10 +30,8 @@ const AddPost = () => {
       return tagRes.data.tags;
     }
   });
-
   const postCount = LoadPost.count;
   const member = LoadPost.role;
-
   const onSubmit = async (data) => {
     const newPost = {
       authorImage: user?.photoURL,
@@ -48,7 +44,6 @@ const AddPost = () => {
       downVote: 0,
       createdAt: new Date().toISOString(),
     };
-
     try {
       const res = await axiosInstance.post('/devForum', newPost);
       if (res.data.insertedId) {
@@ -72,9 +67,7 @@ const AddPost = () => {
       });
     }
   };
-
   if (isLoading || tagLoading || !user?.email) return <Loading />;
-
   if (postCount >= 5 && member !== 'member') {
     return (
       <div className="text-center mt-20 space-y-4">
@@ -87,7 +80,6 @@ const AddPost = () => {
       </div>
     );
   }
-
   return (
     <div className="lg:min-w-3xl lg:mx-auto bg-white p-8 shadow-lg rounded-lg">
       <Helmet>
@@ -104,7 +96,6 @@ const AddPost = () => {
             className="input input-bordered w-full"
           />
         </div>
-
         <div>
           <label className="label flex items-center gap-2"><FaUser /> Your Name</label>
           <input
@@ -114,7 +105,6 @@ const AddPost = () => {
             className="input input-bordered w-full"
           />
         </div>
-
         <div>
           <label className="label flex items-center gap-2"><FaEnvelope /> Your Email</label>
           <input
@@ -124,7 +114,6 @@ const AddPost = () => {
             className="input input-bordered w-full"
           />
         </div>
-
         <div>
           <label className="label flex items-center gap-2"><FaHeading /> Post Title</label>
           <input
@@ -133,7 +122,6 @@ const AddPost = () => {
           />
           {errors.title && <p className="text-red-500">{errors.title.message}</p>}
         </div>
-
         <div>
           <label className="label flex items-center gap-2"><MdDescription /> Post Description</label>
           <textarea
@@ -142,7 +130,6 @@ const AddPost = () => {
           />
           {errors.description && <p className="text-red-500">{errors.description.message}</p>}
         </div>
-
         <div>
           <label className="label flex items-center gap-2"><FaTag /> Select Tag</label>
           <select
@@ -157,7 +144,6 @@ const AddPost = () => {
           </select>
           {errors.tag && <p className="text-red-500 text-sm mt-1">{errors.tag.message}</p>}
         </div>
-
         <button type="submit" className="btn btn-primary w-full mt-4">
           🚀 Add Post
         </button>

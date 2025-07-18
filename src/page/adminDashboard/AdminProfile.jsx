@@ -10,71 +10,64 @@ import Loading from '../../components/Loading';
 import { Helmet } from 'react-helmet-async';
 
 const COLORS = ['#8884d8', '#82ca9d', '#ffc658'];
-
 const AdminProfile = () => {
     const { user, totalPosts, loading } = useAuth();
     const axiosInstance = axiosSecure();
-
     const { register, handleSubmit, reset } = useForm();
-
-    const { data: commentCount = 0 , isLoading:commentLoading} = useQuery({
+    const { data: commentCount = 0, isLoading: commentLoading } = useQuery({
         queryKey: ['comments'],
         queryFn: async () => {
             const commentRes = await axiosInstance.get('/comments');
             return commentRes.data.count;
         }
     });
-    const { data: usersCount = 0 , isLoading:usersLoading} = useQuery({
+    const { data: usersCount = 0, isLoading: usersLoading } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
             const usersRes = await axiosInstance.get('/users');
             return usersRes.data.count;
         }
     })
-
     // Pie chart data
     const chartData = [
         { name: 'Posts', value: totalPosts },
         { name: 'Comments', value: commentCount },
         { name: 'Users', value: usersCount },
     ];
-
     // form submit
     const onSubmit = async (data) => {
         const postData = { tag: data?.tag }
-        try{
-             const tagPost = await axiosInstance.post('/tags', postData);
-              if (tagPost.data.insertedId) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Tag Added!',
-                text: `Tag "${data.tag}" has been successfully added.`,
-                timer: 2000,
-                showConfirmButton: false
-            });
-            reset();
-        }
-        else {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops!',
-                text: 'Something went wrong. Tag was not added.',
-            });
-        }
+        try {
+            const tagPost = await axiosInstance.post('/tags', postData);
+            if (tagPost.data.insertedId) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Tag Added!',
+                    text: `Tag "${data.tag}" has been successfully added.`,
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+                reset();
+            }
+            else {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops!',
+                    text: 'Something went wrong. Tag was not added.',
+                });
+            }
         }
         catch (error) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error!',
-            text: error.response?.data?.message || error.message || 'An unexpected error occurred.',
-        });
-    }
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: error.response?.data?.message || error.message || 'An unexpected error occurred.',
+            });
+        }
     };
-
     if (loading || commentLoading || usersLoading) {
         return <Loading />;
     }
-
     return (
         <div className="max-w-5xl mx-auto p-6 space-y-12">
             <Helmet>
@@ -101,7 +94,6 @@ const AdminProfile = () => {
                     </div>
                 </div>
             </div>
-
             {/* Pie Chart */}
             <div className="bg-white shadow-md rounded-lg p-6">
                 <h3 className="text-xl font-semibold mb-6 text-center">Platform Overview</h3>
@@ -123,7 +115,6 @@ const AdminProfile = () => {
                     </PieChart>
                 </ResponsiveContainer>
             </div>
-
             {/* Add Tag Form */}
             <div className="bg-white shadow-md rounded-lg p-6 max-w-md mx-auto">
                 <h3 className="text-xl font-semibold mb-6 flex items-center justify-center gap-2">

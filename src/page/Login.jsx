@@ -16,7 +16,6 @@ const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
     const location = useLocation();
-
     // onSubmit
     const onSubmit = (data) => {
         //    login
@@ -53,23 +52,19 @@ const Login = () => {
                 </div>
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
                     <h1 className="text-3xl text-center mt-2 font-bold">Login now!</h1>
-
                     <div className="card-body">
                         <form onSubmit={handleSubmit(onSubmit)} className="fieldset">
                             <label className="label">Email</label>
                             <input type='email' {...register('email', { required: true, })} className="input" placeholder="Email" />
-
                             {
                                 errors.email?.type === 'required' && <p className='text-red-500'>Email is required</p>
                             }
-
                             <label className="label relative">Password</label>
-                            <input type= {showPassword? 'text': 'password'} {...register('password', { required: true, minLength: 6 })} className="input" placeholder="Password" />
+                            <input type={showPassword ? 'text' : 'password'} {...register('password', { required: true, minLength: 6 })} className="input" placeholder="Password" />
                             {/* Eye Toggle Button */}
                             <button className='absolute bottom-44 right-14 z-20  -translate-y-1/2 text-gray-500 hover:text-blue-500' type='button' onClick={() => setShowPassword(!showPassword)}>
-                                {showPassword? <PiEyesFill size={24}></PiEyesFill > : <LiaEyeSlash size={24}></LiaEyeSlash>}
+                                {showPassword ? <PiEyesFill size={24}></PiEyesFill > : <LiaEyeSlash size={24}></LiaEyeSlash>}
                             </button>
-
                             {
                                 errors.password?.type === 'required' && <p className='text-red-500'>Password is required</p>
                             }
@@ -78,11 +73,9 @@ const Login = () => {
                             }
 
                             <button className="btn btn-neutral mt-4">Login</button>
-                           
                         </form>
-                         <p className='text-lg'>Don’t have any account? <Link to='/register'><span className='text-[#8FA748]'>Register</span></Link></p>
-
-                         <GoogleLogin></GoogleLogin>
+                        <p className='text-lg'>Don’t have any account? <Link to='/register'><span className='text-[#8FA748]'>Register</span></Link></p>
+                        <GoogleLogin></GoogleLogin>
                     </div>
                 </div>
             </div>

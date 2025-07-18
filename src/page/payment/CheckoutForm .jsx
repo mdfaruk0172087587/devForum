@@ -6,8 +6,8 @@ import Swal from 'sweetalert2';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../../components/Loading';
 import { Link, useNavigate } from 'react-router';
-import { FaArrowRight, FaCrown, FaTools, FaUserShield } from 'react-icons/fa'; // 👑 Membership icon
-import { BsCreditCard2Front } from 'react-icons/bs'; // 💳 Card icon
+import { FaArrowRight, FaCrown, FaTools, FaUserShield } from 'react-icons/fa'; 
+import { BsCreditCard2Front } from 'react-icons/bs'; 
 
 const CheckoutForm = () => {
     const axiosInstance = axiosSecure();
@@ -16,7 +16,6 @@ const CheckoutForm = () => {
     const elements = useElements();
     const navigate = useNavigate();
     const [error, setError] = useState('');
-
     const { data: userData = {}, isLoading, refetch } = useQuery({
         queryKey: ['checkForm', user?.email],
         queryFn: async () => {
@@ -24,31 +23,25 @@ const CheckoutForm = () => {
             return userRes.data.user;
         }
     });
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!stripe || !elements) return;
-
         const card = elements.getElement(CardElement);
         if (!card) return;
-
         const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: 'card',
             card,
         });
-
         if (error) {
             setError(error.message);
         } else {
             setError('');
             console.log(paymentMethod)
         }
-
         const paymentRes = await axiosInstance.post('/create-payment-intent', {
             amountInCents: 20 * 100,
         });
         const clientSecret = paymentRes.data.clientSecret;
-
         const result = await stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card,
@@ -58,7 +51,6 @@ const CheckoutForm = () => {
                 },
             },
         });
-
         if (result.error) {
             setError(result.error.message);
         } else {
@@ -70,7 +62,6 @@ const CheckoutForm = () => {
                     paymentMethod: result.paymentIntent.payment_method_types,
                     transactionId: result.paymentIntent.id
                 };
-
                 const paymentRes = await axiosInstance.post('/payments', paymentData);
                 if (paymentRes.data.insertedId) {
                     refetch();
@@ -85,40 +76,36 @@ const CheckoutForm = () => {
             }
         }
     };
-
     if (isLoading) {
         return <Loading />;
     }
-
     if (userData.role === 'member') {
         return (
             <section className="text-center space-y-6 py-20 px-4">
-            <div className="bg-green-50 border border-green-300 text-green-900 px-6 py-6 rounded-lg shadow-md flex items-center justify-center gap-3">
-                <FaCrown className="text-3xl text-green-600" />
-                <div className="text-left">
-                    <h2 className="text-2xl font-semibold">🎉 Congratulations!</h2>
-                    <p className="text-lg mt-1">
-                        You are already a <span className="font-bold text-green-700">Member</span> of <strong>DevForum</strong>!
-                    </p>
-                    <p className="text-sm text-gray-700 mt-2">
-                        As a member, you now have full access to create posts, join discussions, and contribute your thoughts freely within the community.
-                    </p>
+                <div className="bg-green-50 border border-green-300 text-green-900 px-6 py-6 rounded-lg shadow-md flex items-center justify-center gap-3">
+                    <FaCrown className="text-3xl text-green-600" />
+                    <div className="text-left">
+                        <h2 className="text-2xl font-semibold">🎉 Congratulations!</h2>
+                        <p className="text-lg mt-1">
+                            You are already a <span className="font-bold text-green-700">Member</span> of <strong>DevForum</strong>!
+                        </p>
+                        <p className="text-sm text-gray-700 mt-2">
+                            As a member, you now have full access to create posts, join discussions, and contribute your thoughts freely within the community.
+                        </p>
+                    </div>
                 </div>
-            </div>
-
-            <Link
-                to="/dashboard/addPost"
-                className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full transition-all duration-200 shadow-md"
-            >
-                <span>Go to Add Post</span>
-                <FaArrowRight className="text-sm" />
-            </Link>
-        </section>
+                <Link
+                    to="/dashboard/addPost"
+                    className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full transition-all duration-200 shadow-md"
+                >
+                    <span>Go to Add Post</span>
+                    <FaArrowRight className="text-sm" />
+                </Link>
+            </section>
         );
     }
-
-    if(userData.role === 'admin'){
-        return  <section className="text-center space-y-6 py-20 px-4">
+    if (userData.role === 'admin') {
+        return <section className="text-center space-y-6 py-20 px-4">
             <div className="bg-blue-50 border border-blue-300 text-blue-900 px-6 py-6 rounded-lg shadow-md flex items-center justify-center gap-3">
                 <FaUserShield className="text-3xl text-blue-600" />
                 <div className="text-left">
@@ -131,7 +118,6 @@ const CheckoutForm = () => {
                     </p>
                 </div>
             </div>
-
             <Link
                 to="/dashboard/manageUsers"
                 className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full transition-all duration-200 shadow-md"
@@ -141,7 +127,6 @@ const CheckoutForm = () => {
             </Link>
         </section>
     }
-
     return (
         <div className="py-28 bg-[#F8FAFC] min-h-screen">
             <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 rounded-2xl shadow-xl w-full max-w-md mx-auto">

@@ -21,11 +21,9 @@ const PostDetails = () => {
             return res.data.post;
         }
     })
-
     if (isLoading) {
         return <Loading />
     }
-
     const handleUpVote = async (id) => {
         try {
             const res = await axiosInstance.patch(`/devForum/upvote/${id}`);
@@ -40,7 +38,6 @@ const PostDetails = () => {
             });
         }
     }
-
     const handleDownVote = async (id) => {
         try {
             const downRes = await axiosInstance.patch(`/devForum/downvote/${id}`);
@@ -55,7 +52,6 @@ const PostDetails = () => {
             });
         }
     }
-
     const onSubmit = async (data) => {
         const commentPost = {
             commenterEmail: user?.email,
@@ -72,7 +68,6 @@ const PostDetails = () => {
             reset();
         }
     }
-
     return (
         <div className="max-w-3xl mx-auto bg-white p-6 shadow-md rounded-lg my-8">
             <div className="flex items-center gap-4 mb-6">
@@ -82,11 +77,9 @@ const PostDetails = () => {
                     <p className="text-sm text-gray-500">{new Date(post?.createdAt).toLocaleString()}</p>
                 </div>
             </div>
-
             <h2 className="text-2xl font-bold text-gray-900 mb-3">{post?.title}</h2>
             <p className="text-gray-700 leading-relaxed mb-4">{post?.description}</p>
             <p className="text-sm text-gray-600 mb-6"><strong>Tag:</strong> <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">{post?.tag}</span></p>
-
             {user && (
                 <div className="flex items-center gap-4 mb-6">
                     <button
@@ -102,7 +95,6 @@ const PostDetails = () => {
                     <PostShareButton postId={id} />
                 </div>
             )}
-
             {user && (
                 <div className="mt-6">
                     <h3 className="text-lg font-semibold mb-2 text-gray-800">Leave a Comment</h3>
@@ -117,7 +109,6 @@ const PostDetails = () => {
                     </form>
                 </div>
             )}
-
             {!user && (
                 <p className="text-sm text-red-500 mt-4">You must be logged in to comment or vote.</p>
             )}

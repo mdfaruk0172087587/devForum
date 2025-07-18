@@ -9,7 +9,6 @@ import { FaRegCalendarAlt } from 'react-icons/fa';
 const DisplayAllPost = ({ post }) => {
   const { _id, authorImage, title, createdAt, tag, upVote, downVote } = post;
   const axiosUse = axiosUnSecure();
-
   const { data: commentCount = 0, isLoading } = useQuery({
     queryKey: ['commentsCount'],
     queryFn: async () => {
@@ -17,11 +16,9 @@ const DisplayAllPost = ({ post }) => {
       return res.data.count;
     },
   });
-
   if (isLoading) {
     return <Loading />;
   }
-
   return (
     <div className="card bg-base-100 shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100">
       <div className="card-body space-y-3">
@@ -36,11 +33,9 @@ const DisplayAllPost = ({ post }) => {
             </p>
           </div>
         </div>
-
         {/* Tag & Stats */}
         <div className="text-sm flex flex-wrap gap-4">
           <p className="badge badge-info badge-outline px-3 py-1">#{tag}</p>
-
           <p className="flex items-center gap-1 text-green-600 font-medium">
             <BiLike /> {upVote}
           </p>
@@ -54,7 +49,6 @@ const DisplayAllPost = ({ post }) => {
             Total Votes: <span className="font-bold">{upVote - downVote}</span>
           </p>
         </div>
-
         {/* Action */}
         <div className="card-actions justify-end">
           <Link to={`/postDetails/${_id}`} className="btn btn-sm btn-primary">

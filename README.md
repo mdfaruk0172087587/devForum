@@ -1,12 +1,78 @@
-# React + Vite
+# 🧠 DevForum - A Modern Discussion Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+DevForum It is a modern and user-friendly online discussion platform where users can create posts, comment, vote, and share feedback.
 
-Currently, two official plugins are available:
+## 🚀 Live Site
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🔗 [Visit DevForum](https://your-live-site-link.vercel.app)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ✨ Features
+
+- 🔐 Firebase Authentication (Email/Password, Google Login)
+- 📝 Create, Edit, and Delete Posts
+- 🧠 Post with Tags (Searchable & Filterable)
+- 💬 Nested Comment System with Reply
+- 👍 Upvote / 👎 Downvote Posts
+- 📈 Popular Posts with Vote Ranking
+- 👤 Author Profile with Statistics
+- 📊 Admin Dashboard
+  - Tag Management
+  - User Role Control (Make Admin/Remove Admin)
+  - User Search
+- 🌐 Social Share via `react-share`
+- 💳 Stripe Payment Integration
+- 📊 Pie Chart & Stats with Recharts
+- 🔍 Tag-based & Keyword Search
+- 📱 Fully Responsive Design (Mobile-first)
+- 🔒 Route Protection & Role-Based Access
+- 🧩 Animations via Framer Motion & Lottie
+- 🛠️ Error Pages (404, Forbidden, etc.)
+- 📌 Tooltip-enhanced UX for clarity
+- 📚 SEO Friendly via `react-helmet-async`
+- ⏳ Loading State & Feedback with SweetAlert2
+- 🔄 Pagination via `react-paginate`
+
+---
+
+## 🛠️ Technologies & Libraries Used
+
+| Category         | Packages / Tools |
+|------------------|------------------|
+| **Frontend**     | React, React Router DOM |
+| **Styling**      | Tailwind CSS, DaisyUI |
+| **Form Handling**| react-hook-form, react-select |
+| **State/Data**   | Axios, TanStack Query |
+| **Auth**         | Firebase Auth |
+| **UI & UX**      | react-icons, react-tooltip, SweetAlert2, Lottie, Framer Motion |
+| **Payment**      | react-stripe-js |
+| **Charting**     | recharts |
+| **SEO**          | react-helmet-async |
+| **Pagination**   | react-paginate |
+| **Social Share** | react-share |
+
+---
+
+## 🔐 User Roles
+
+- **Admin**: Full dashboard access, tag/user management
+- **Member**: Can post, vote, comment
+- **General User**: View content, limited interaction
+
+---
+
+## 🧪 Setup & Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/Programming-Hero-Web-Course4/b11a12-client-side-mdfaruk0172087587.git
+
+# Go to project directory
+cd devforum-client
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev

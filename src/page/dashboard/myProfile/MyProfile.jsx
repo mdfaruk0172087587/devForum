@@ -16,11 +16,9 @@ const MyProfile = () => {
       return res.data.user;
     }
   })
-
   if (isLoading) {
     return <Loading></Loading>
   }
-
   return (
     <div className="lg:min-w-3xl lg:mx-auto p-6 bg-white shadow-xl rounded-2xl">
       <Helmet>
@@ -29,7 +27,6 @@ const MyProfile = () => {
       <h2 className="text-3xl font-bold mb-6 text-indigo-600 text-center">
         My Profile
       </h2>
-
       {/* User Info Section */}
       <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 mb-8">
         <img
@@ -40,7 +37,6 @@ const MyProfile = () => {
         <div className="text-center sm:text-left">
           <p className="text-2xl font-semibold text-gray-800">{userInfo.name}</p>
           <p className="text-gray-600">{userInfo.email}</p>
-
           {/* Badges */}
           <div className="mt-3 flex justify-center sm:justify-start gap-2">
             {userInfo.role === 'member' ? (
@@ -51,7 +47,6 @@ const MyProfile = () => {
           </div>
         </div>
       </div>
-
       {/* Recent Posts Section */}
       <MyProfilePost />
     </div>
