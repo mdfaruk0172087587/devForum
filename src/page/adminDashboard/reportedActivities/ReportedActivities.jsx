@@ -29,15 +29,20 @@ const ReportedActivities = () => {
 
   if (replays.length === 0) {
     return (
-      <p className="text-center text-gray-500 py-10 text-lg">
-        <MdOutlineReportProblem className="inline-block mr-2 text-xl" />
-        No reported activities found.
-      </p>
+      <p className="text-center text-gray-600 py-10 text-lg">
+  <MdOutlineReportProblem className="inline-block mr-2 text-xl text-red-500" />
+  Hmmm, no reported activities found yet.
+  <br />
+  Looks like there’s nothing to review or report at the moment.
+  <br />
+  Keep contributing to the forum — any issues or reports will show up here!
+</p>
+
     );
   }
 
   return (
-    <div className="max-w-6xl mx-auto p-6 bg-white shadow-md rounded-md border my-10">
+    <div className="lg:max-w-6xl lg:mx-auto p-6 bg-white shadow-md rounded-md border my-10">
       <Helmet>
         <title>Reported Activities</title>
       </Helmet>

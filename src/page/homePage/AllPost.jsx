@@ -10,6 +10,7 @@ import DisplayAllPost from './displayAllPost/DisplayAllPost';
 import { FaClipboardList } from 'react-icons/fa';
 import { SiReact, SiJavascript, SiNodedotjs } from "react-icons/si";
 import { motion } from "framer-motion";
+import Pagination from './Pagination';
 
 const AllPost = () => {
   const { setTotalPosts } = useAuth();
@@ -102,7 +103,9 @@ const AllPost = () => {
       </div>
 
       {/* Pagination */}
-      <div className="flex justify-center mt-6 gap-2">
+      <Pagination pageCount={totalPages} onPageChange={setCurrentPage}></Pagination>
+     {/* <div className='flex justify-center mt-6 overflow-x-auto'>
+       <div className="flex justify-center mt-6 gap-2 max-w-full flex-wrap  min-w-max px-2">
         <button
           onClick={() => setCurrentPage(p => Math.max(p - 1, 1))}
           disabled={currentPage === 1}
@@ -115,7 +118,7 @@ const AllPost = () => {
           <button
             key={n}
             onClick={() => setCurrentPage(n + 1)}
-            className={`px-4 py-2 rounded ${currentPage === n + 1
+            className={`px-4 py-2 rounded text-sm md:text-base ${currentPage === n + 1
                 ? 'bg-blue-600 text-white'
                 : 'bg-gray-100 hover:bg-gray-300'
               }`}
@@ -132,6 +135,7 @@ const AllPost = () => {
           Next
         </button>
       </div>
+     </div> */}
     </div>
   );
 };

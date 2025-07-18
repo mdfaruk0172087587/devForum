@@ -89,7 +89,7 @@ const AddPost = () => {
   }
 
   return (
-    <div className="max-w-2xl mx-auto bg-white p-8 shadow-lg rounded-lg">
+    <div className="lg:min-w-3xl lg:mx-auto bg-white p-8 shadow-lg rounded-lg">
       <Helmet>
         <title>Add Post</title>
       </Helmet>

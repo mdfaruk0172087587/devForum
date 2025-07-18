@@ -22,7 +22,7 @@ const MyProfile = () => {
   }
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white shadow-xl rounded-2xl">
+    <div className="lg:min-w-3xl lg:mx-auto p-6 bg-white shadow-xl rounded-2xl">
       <Helmet>
         <title>My Profile</title>
       </Helmet>
