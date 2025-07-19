@@ -1,24 +1,12 @@
-import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { Link } from 'react-router';
-import axiosUnSecure from '../../../hooks/axiosUnSecure';
 import Loading from '../../../components/Loading';
 import { BiLike, BiDislike, BiCommentDetail } from 'react-icons/bi';
 import { FaRegCalendarAlt } from 'react-icons/fa';
 
 const DisplayAllPost = ({ post }) => {
-  const { _id, authorImage, title, createdAt, tag, upVote, downVote } = post;
-  const axiosUse = axiosUnSecure();
-  const { data: commentCount = 0, isLoading } = useQuery({
-    queryKey: ['commentsCount'],
-    queryFn: async () => {
-      const res = await axiosUse.get(`/comments/${_id}`);
-      return res.data.count;
-    },
-  });
-  if (isLoading) {
-    return <Loading />;
-  }
+ 
+  const { _id, authorImage, title, createdAt, tag, upVote, downVote,commentCount } = post;
   return (
     <div className="card bg-base-100 shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100">
       <div className="card-body space-y-3">

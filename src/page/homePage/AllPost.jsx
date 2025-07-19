@@ -28,7 +28,7 @@ const AllPost = () => {
     },
     keepPreviousData: true,
   });
-  
+ 
   if (isLoading) {
     return <Loading />;
   }

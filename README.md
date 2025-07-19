@@ -4,7 +4,7 @@ DevForum It is a modern and user-friendly online discussion platform where users
 
 ## 🚀 Live Site
 
-🔗 [Visit DevForum](https://your-live-site-link.vercel.app)
+🔗 [Visit DevForum](https://magnificent-kulfi-510251.netlify.app/)
 
 ---
 
