@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { AuthContext } from './AuthContext';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import { auth } from '../firebase/firebase.config';
-import axios from 'axios';
+import axiosSecure from '../hooks/axiosSecure';
 
 const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [announcementCount, setAnnouncementCount] = useState(0);
+    const axiosIn = axiosSecure();
     // register
     const createUser = (email, password) => {
         setLoading(true);
@@ -30,17 +31,33 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, googleProvider)
     }
     // logout
-    const logout = () => {
+    const logout =async () => {
         setLoading(true);
-        return signOut(auth);
+        await signOut(auth);
+        await axiosIn.post('/logout', {}, {
+             withCredentials: true
+         });
+          setUser(null);
+         setLoading(false);
+
+        return true;
+        
     };
     useEffect(() => {
+        if(!user?.email){
+            axiosIn.post('/logout', {}, {
+             withCredentials: true
+         });
+        }
+    }, [user?.email, axiosIn])
+    useEffect(() => {
+
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser)
             setLoading(false)
             if (currentUser?.email) {
                 const userData = { email: currentUser.email };
-                axios.post('https://assignment-12-server-side-zeta.vercel.app/jwt', userData, {
+                axiosIn.post('/jwt', userData, {
                     withCredentials: true
                 })
                     .then(() => {
@@ -49,6 +66,11 @@ const AuthProvider = ({ children }) => {
                     .catch(() => {
 
                     })
+            }
+            else{
+             axiosIn.post('/logout', {}, {
+             withCredentials: true
+         });
             }
         })
         return () => {
