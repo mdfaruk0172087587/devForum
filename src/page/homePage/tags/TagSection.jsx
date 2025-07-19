@@ -3,9 +3,9 @@ import React from 'react';
 import axiosUnSecure from '../../../hooks/axiosUnSecure';
 import Loading from '../../../components/Loading';
 
-const TagSection = ({ setSearchTag, setCurrentPage }) => {
+const TagSection = ({ setSearchTag, setCurrentPage, setActiveTag, activeTag }) => {
   const axiosUse = axiosUnSecure();
-  const [activeTag, setActiveTag] = React.useState(''); 
+   
   const { data: tagData = [], isLoading } = useQuery({
     queryKey: ['tags'],
     queryFn: async () => {

@@ -5,6 +5,7 @@ import Loading from '../../../components/Loading';
 import ReportedReplay from './ReportedReplay';
 import { MdNavigateBefore, MdNavigateNext, MdOutlineReportProblem } from 'react-icons/md';
 import { Helmet } from 'react-helmet-async';
+import Pagination from '../../homePage/Pagination';
 
 const ReportedActivities = () => {
   const axiosInstance = axiosSecure();
@@ -68,31 +69,7 @@ const ReportedActivities = () => {
         </table>
       </div>
       {/* Pagination */}
-      <div className="flex justify-center mt-8 gap-2 flex-wrap items-center">
-        <button
-          onClick={() => setCurrentPage(p => Math.max(p - 1, 1))}
-          disabled={currentPage === 1}
-          className="btn btn-sm flex items-center gap-1"
-        >
-          <MdNavigateBefore /> Prev
-        </button>
-        {[...Array(totalPages).keys()].map(n => (
-          <button
-            key={n}
-            onClick={() => setCurrentPage(n + 1)}
-            className={`btn btn-sm ${currentPage === n + 1 ? 'btn-primary' : 'btn-outline'} rounded-full w-9`}
-          >
-            {n + 1}
-          </button>
-        ))}
-        <button
-          onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))}
-          disabled={currentPage === totalPages}
-          className="btn btn-sm flex items-center gap-1"
-        >
-          Next <MdNavigateNext />
-        </button>
-      </div>
+     <Pagination  pageCount={totalPages} currentPage={currentPage} onPageChange={setCurrentPage}></Pagination>
     </div>
   );
 };

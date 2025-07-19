@@ -9,7 +9,6 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [announcementCount, setAnnouncementCount] = useState(0);
-    const [totalPosts, setTotalPosts] = useState(0);
     // register
     const createUser = (email, password) => {
         setLoading(true);
@@ -41,7 +40,7 @@ const AuthProvider = ({ children }) => {
             setLoading(false)
             if (currentUser?.email) {
                 const userData = { email: currentUser.email };
-                axios.post('http://localhost:3000/jwt', userData, {
+                axios.post('https://assignment-12-server-side-zeta.vercel.app/jwt', userData, {
                     withCredentials: true
                 })
                     .then(() => {
@@ -67,8 +66,6 @@ const AuthProvider = ({ children }) => {
         updateUser,
         announcementCount,
         setAnnouncementCount,
-        setTotalPosts,
-        totalPosts,
     }
     return (
         <AuthContext value={userInfo}>{children}</AuthContext>

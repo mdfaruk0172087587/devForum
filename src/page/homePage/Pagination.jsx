@@ -2,16 +2,18 @@ import React from 'react';
 import ReactPaginate from 'react-paginate';
 
 
-const Pagination = ({ pageCount, onPageChange }) => {
+const Pagination = ({ pageCount, onPageChange, currentPage }) => {
+  if(!pageCount || pageCount < 1) return null
   return (
     <div className='flex justify-center mt-6'>
       <ReactPaginate
+         forcePage={Math.min(currentPage - 1, pageCount - 1)}
         previousLabel={'←'}
         nextLabel={'→'}
         breakLabel={'...'}
         pageCount={pageCount}
         marginPagesDisplayed={1}
-        pageRangeDisplayed={2} 
+        pageRangeDisplayed={2}
         onPageChange={(selectedItem) => {
           onPageChange(selectedItem.selected + 1);
           window.scrollTo({ top: 0, behavior: 'smooth' });

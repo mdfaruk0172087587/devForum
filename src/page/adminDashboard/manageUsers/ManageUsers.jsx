@@ -6,6 +6,7 @@ import Loading from '../../../components/Loading';
 import useAuth from '../../../hooks/useAuth';
 import { FaSearch, FaUserShield, FaUserTimes } from 'react-icons/fa';
 import { Helmet } from 'react-helmet-async';
+import Pagination from '../../homePage/Pagination';
 
 const ManageUsers = () => {
     const { user } = useAuth();
@@ -49,7 +50,7 @@ const ManageUsers = () => {
     };
     const handleSearch = (e) => {
         e.preventDefault();
-        setCurrentPage(1); // Reset to first page
+        setCurrentPage(1); 
         setQueryName(searchName.trim());
     };
     return (
@@ -127,31 +128,7 @@ const ManageUsers = () => {
                             </tbody>
                         </table>
                         {/* Pagination Buttons */}
-                        <div className="flex flex-wrap justify-center mt-4 gap-2">
-                            <button
-                                onClick={() => setCurrentPage(p => Math.max(p - 1, 1))}
-                                disabled={currentPage === 1}
-                                className="btn btn-sm"
-                            >
-                                Previous
-                            </button>
-                            {[...Array(totalPages).keys()].map(n => (
-                                <button
-                                    key={n}
-                                    onClick={() => setCurrentPage(n + 1)}
-                                    className={`btn btn-sm ${currentPage === n + 1 ? 'btn-primary' : 'btn-outline'}`}
-                                >
-                                    {n + 1}
-                                </button>
-                            ))}
-                            <button
-                                onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))}
-                                disabled={currentPage === totalPages}
-                                className="btn btn-sm"
-                            >
-                                Next
-                            </button>
-                        </div>
+                       <Pagination pageCount={totalPages} currentPage ={currentPage} onPageChange={setCurrentPage}></Pagination>
                     </>
                 )}
             </div>

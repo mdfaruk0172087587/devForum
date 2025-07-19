@@ -1,9 +1,8 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axiosUnSecure from '../../hooks/axiosUnSecure';
 import Loading from '../../components/Loading';
-import { Link } from 'react-router';
-import useAuth from '../../hooks/useAuth';
 import BannerWithSearch from './BannerWithSearch/BannerWithSearch';
 import TagSection from './tags/TagSection';
 import DisplayAllPost from './displayAllPost/DisplayAllPost';
@@ -13,10 +12,10 @@ import { motion } from "framer-motion";
 import Pagination from './Pagination';
 
 const AllPost = () => {
-  const { setTotalPosts } = useAuth();
   const useAxios = axiosUnSecure();
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTag, setSearchTag] = useState('');
+  const [activeTag, setActiveTag] = React.useState('');
   const [sortByPopularity, setSortByPopularity] = useState(false);
   const limit = 5;
   const { data, isLoading } = useQuery({
@@ -29,12 +28,7 @@ const AllPost = () => {
     },
     keepPreviousData: true,
   });
-  // totalPosts cha ck
-  useEffect(() => {
-    if (data?.totalPosts >= 0) {
-      setTotalPosts(data.totalPosts)
-    }
-  }, [data, setTotalPosts])
+  
   if (isLoading) {
     return <Loading />;
   }
@@ -42,7 +36,7 @@ const AllPost = () => {
   return (
     <div className="py-6">
       <BannerWithSearch setSearchTag={setSearchTag} setCurrentPage={setCurrentPage}></BannerWithSearch>
-      <TagSection setCurrentPage={setCurrentPage} setSearchTag={setSearchTag}></TagSection>
+      <TagSection setCurrentPage={setCurrentPage} setSearchTag={setSearchTag} activeTag={activeTag} setActiveTag={setActiveTag}></TagSection>
       <h2 className="text-3xl font-extrabold text-center mb-2 flex items-center justify-center gap-2 text-gray-800">
         <FaClipboardList className="text-blue-500" /> All Posts
       </h2>
@@ -92,39 +86,7 @@ const AllPost = () => {
         }
       </div>
       {/* Pagination */}
-      <Pagination pageCount={totalPages} onPageChange={setCurrentPage}></Pagination>
-      {/* <div className='flex justify-center mt-6 overflow-x-auto'>
-       <div className="flex justify-center mt-6 gap-2 max-w-full flex-wrap  min-w-max px-2">
-        <button
-          onClick={() => setCurrentPage(p => Math.max(p - 1, 1))}
-          disabled={currentPage === 1}
-          className="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 disabled:opacity-50"
-        >
-          Previous
-        </button>
-
-        {[...Array(totalPages).keys()].map(n => (
-          <button
-            key={n}
-            onClick={() => setCurrentPage(n + 1)}
-            className={`px-4 py-2 rounded text-sm md:text-base ${currentPage === n + 1
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-100 hover:bg-gray-300'
-              }`}
-          >
-            {n + 1}
-          </button>
-        ))}
-
-        <button
-          onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))}
-          disabled={currentPage === totalPages}
-          className="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 disabled:opacity-50"
-        >
-          Next
-        </button>
-      </div>
-     </div> */}
+      <Pagination pageCount={totalPages} currentPage={currentPage} onPageChange={setCurrentPage}></Pagination>
     </div>
   );
 };

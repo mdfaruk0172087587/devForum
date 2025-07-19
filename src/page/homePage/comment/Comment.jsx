@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import CommentTr from './CommentTr';
 import Loading from '../../../components/Loading';
 import { FiChevronLeft, FiChevronRight, FiMessageCircle } from 'react-icons/fi';
+import Pagination from '../Pagination';
 
 const Comment = () => {
     const axiosInstance = axiosSecure();
@@ -63,31 +64,7 @@ const Comment = () => {
                 </table>
             </div>
             {/* Pagination */}
-            <div className="flex justify-center mt-6 gap-2 flex-wrap">
-                <button
-                    onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-                    disabled={currentPage === 1}
-                    className="btn btn-sm btn-outline flex items-center gap-1"
-                >
-                    <FiChevronLeft /> Prev
-                </button>
-                {[...Array(totalPages).keys()].map((n) => (
-                    <button
-                        key={n}
-                        onClick={() => setCurrentPage(n + 1)}
-                        className={`btn btn-sm ${currentPage === n + 1 ? 'btn-primary' : 'btn-outline'}`}
-                    >
-                        {n + 1}
-                    </button>
-                ))}
-                <button
-                    onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
-                    disabled={currentPage === totalPages}
-                    className="btn btn-sm btn-outline flex items-center gap-1"
-                >
-                    Next <FiChevronRight />
-                </button>
-            </div>
+           <Pagination pageCount={totalPages} currentPage={currentPage} onPageChange={setCurrentPage}></Pagination>
         </div>
     );
 };

@@ -3,6 +3,7 @@ import Logo from '../components/Logo';
 import { NavLink, Outlet } from 'react-router';
 import { FaListUl, FaPlusSquare, FaUserCircle, FaUserCog, FaBullhorn, FaExclamationTriangle, FaUsersCog } from 'react-icons/fa';
 import useUserRole from '../hooks/useUserRole';
+import AdminProfile from '../page/adminDashboard/AdminProfile';
 
 const DashboardLayOut = () => {
     const { role, roleLoading } = useUserRole();
@@ -27,6 +28,10 @@ const DashboardLayOut = () => {
                     <div className="mx-2 flex-1 px-2 text-lg font-semibold">Dashboard</div>
                 </div>
                 {/* Page content here */}
+                {/* <AdminProfile></AdminProfile> */}
+                {/* <NavLink to='/dashboard/myProfile' className={linkClasses}>
+                    <FaUserCircle /> My Profile
+                </NavLink> */}
                 <Outlet />
             </div>
             <div className="drawer-side">
@@ -37,6 +42,9 @@ const DashboardLayOut = () => {
                     {!roleLoading && role !== 'admin' && (
                         <>
                             <p className="mt-4 mb-2 text-gray-500 font-semibold">User Menu</p>
+                            {/* <li>
+                                <NavLink className={linkClasses}>Home</NavLink>
+                            </li> */}
                             <li>
                                 <NavLink to='/dashboard/myProfile' className={linkClasses}>
                                     <FaUserCircle /> My Profile

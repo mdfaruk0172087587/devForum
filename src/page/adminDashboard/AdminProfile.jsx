@@ -11,7 +11,7 @@ import { Helmet } from 'react-helmet-async';
 
 const COLORS = ['#8884d8', '#82ca9d', '#ffc658'];
 const AdminProfile = () => {
-    const { user, totalPosts, loading } = useAuth();
+    const { user, loading } = useAuth();
     const axiosInstance = axiosSecure();
     const { register, handleSubmit, reset } = useForm();
     const { data: commentCount = 0, isLoading: commentLoading } = useQuery({
@@ -26,6 +26,13 @@ const AdminProfile = () => {
         queryFn: async () => {
             const usersRes = await axiosInstance.get('/users');
             return usersRes.data.count;
+        }
+    })
+    const {data:totalPosts= 0, isLoading: postLoading} = useQuery({
+        queryKey: ['posts'],
+        queryFn: async() => {
+            const postsRes = await(axiosInstance.get('/devForum'));
+            return postsRes.data.totalPosts;
         }
     })
     // Pie chart data
@@ -65,7 +72,7 @@ const AdminProfile = () => {
             });
         }
     };
-    if (loading || commentLoading || usersLoading) {
+    if (loading || commentLoading || usersLoading || postLoading) {
         return <Loading />;
     }
     return (

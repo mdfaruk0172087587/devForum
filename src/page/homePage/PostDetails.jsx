@@ -92,7 +92,7 @@ const PostDetails = () => {
                         className="flex items-center gap-1 text-sm text-gray-700 hover:text-red-600 transition">
                         <FaThumbsDown className="text-lg" /> {post?.downVote}
                     </button>
-                    <PostShareButton postId={id} />
+                    <PostShareButton id={id} />
                 </div>
             )}
             {user && (

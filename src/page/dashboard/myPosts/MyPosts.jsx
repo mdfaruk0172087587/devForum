@@ -8,6 +8,7 @@ import { FaRegCommentDots, FaTrashAlt } from 'react-icons/fa';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import { Link } from 'react-router';
 import { Helmet } from 'react-helmet-async';
+import Pagination from '../../homePage/Pagination';
 
 const MyPosts = () => {
   const axiosInstance = axiosSecure();
@@ -113,32 +114,7 @@ const MyPosts = () => {
         </table>
       </div>
       {/* Pagination */}
-      <div className="flex flex-wrap justify-center items-center mt-6 gap-2">
-        <button
-          onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-          disabled={currentPage === 1}
-          className="btn btn-sm btn-outline flex items-center gap-1"
-        >
-          <MdKeyboardArrowLeft /> Prev
-        </button>
-        {[...Array(totalPages).keys()].map((n) => (
-          <button
-            key={n}
-            onClick={() => setCurrentPage(n + 1)}
-            className={`btn btn-sm ${currentPage === n + 1 ? 'btn-primary' : 'btn-outline'
-              }`}
-          >
-            {n + 1}
-          </button>
-        ))}
-        <button
-          onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
-          disabled={currentPage === totalPages}
-          className="btn btn-sm btn-outline flex items-center gap-1"
-        >
-          Next <MdKeyboardArrowRight />
-        </button>
-      </div>
+     <Pagination pageCount={totalPages} currentPage={currentPage} onPageChange={setCurrentPage}></Pagination>
     </div>
   );
 };
