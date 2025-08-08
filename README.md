@@ -66,10 +66,10 @@ DevForum It is a modern and user-friendly online discussion platform where users
 
 ```bash
 # Clone the repository
-git clone https://github.com/Programming-Hero-Web-Course4/b11a12-client-side-mdfaruk0172087587.git
+git clone  https://github.com/mdfaruk0172087587/devForum.git
 
 # Go to project directory
-cd devforum-client
+cd assignment-12-client-side
 
 # Install dependencies
 npm install
