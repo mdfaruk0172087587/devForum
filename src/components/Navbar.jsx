@@ -3,7 +3,7 @@ import useAuth from '../hooks/useAuth';
 import Swal from 'sweetalert2';
 import { Link, NavLink } from 'react-router';
 import Logo from './Logo';
-
+// cons
 const Navbar = () => {
     const { user, logout, announcementCount } = useAuth();
     const handleLogOut = () => {
