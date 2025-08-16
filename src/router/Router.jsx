@@ -66,6 +66,10 @@ export const router = createBrowserRouter([
         </PrivateRoute>,
         children: [
             {
+                path: '',
+                element : <div>hi</div>
+            },
+            {
                 path: 'addPost',
                 element: <AddPost></AddPost>
             },
