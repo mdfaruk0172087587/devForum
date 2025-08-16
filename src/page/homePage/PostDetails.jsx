@@ -69,50 +69,109 @@ const PostDetails = () => {
         }
     }
     return (
-        <div className="max-w-3xl mx-auto bg-white p-6 shadow-md rounded-lg my-8">
-            <div className="flex items-center gap-4 mb-6">
-                <img src={post?.authorImage} alt="Author" className="w-14 h-14 rounded-full border border-gray-200 shadow-sm" />
-                <div>
-                    <h3 className="text-lg font-semibold text-gray-800">{post?.authorName}</h3>
-                    <p className="text-sm text-gray-500">{new Date(post?.createdAt).toLocaleString()}</p>
-                </div>
+       <div className="my-10 max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+    {/* Left Column: Post Content */}
+    <div className="lg:col-span-2 bg-white shadow-sm rounded-2xl p-6 border border-gray-200">
+        {/* Author Info */}
+        <div className="flex items-center gap-4 mb-6">
+            <img
+                src={post?.authorImage}
+                alt="Author"
+                className="w-14 h-14 rounded-full border border-gray-200 shadow-sm"
+            />
+            <div>
+                <h3 className="text-lg font-semibold text-gray-800">{post?.authorName}</h3>
+                <p className="text-sm text-gray-500">
+                    {new Date(post?.createdAt).toLocaleString()}
+                </p>
             </div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-3">{post?.title}</h2>
-            <p className="text-gray-700 leading-relaxed mb-4">{post?.description}</p>
-            <p className="text-sm text-gray-600 mb-6"><strong>Tag:</strong> <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">{post?.tag}</span></p>
-            {user && (
-                <div className="flex items-center gap-4 mb-6">
-                    <button
-                        onClick={() => handleUpVote(id)}
-                        className="flex items-center gap-1 text-sm text-gray-700 hover:text-green-600 transition">
-                        <FaThumbsUp className="text-lg" /> {post?.upVote}
-                    </button>
-                    <button
-                        onClick={() => handleDownVote(id)}
-                        className="flex items-center gap-1 text-sm text-gray-700 hover:text-red-600 transition">
-                        <FaThumbsDown className="text-lg" /> {post?.downVote}
-                    </button>
-                    <PostShareButton id={id} />
-                </div>
-            )}
-            {user && (
-                <div className="mt-6">
-                    <h3 className="text-lg font-semibold mb-2 text-gray-800">Leave a Comment</h3>
-                    <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col sm:flex-row gap-3 items-start sm:items-center'>
-                        <input
-                            type="text"
-                            {...register('text', { required: true })}
-                            placeholder="Write a comment..."
-                            className="input input-bordered w-full sm:flex-1"
-                        />
-                        <button type='submit' className="btn btn-primary">Comment</button>
-                    </form>
-                </div>
-            )}
-            {!user && (
-                <p className="text-sm text-red-500 mt-4">You must be logged in to comment or vote.</p>
-            )}
         </div>
+
+        {/* Post Content */}
+        <h2 className="text-2xl font-bold text-gray-900 mb-3">{post?.title}</h2>
+        <p className="text-gray-700 leading-relaxed mb-4">{post?.description}</p>
+
+        <p className="text-sm text-gray-600 mb-6">
+            <strong>Tag:</strong>{" "}
+            <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">
+                {post?.tag}
+            </span>
+        </p>
+
+        {/* Voting + Share */}
+        {user ? (
+            <div className="flex items-center gap-6 mb-6">
+                <button
+                    onClick={() => handleUpVote(id)}
+                    className="flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-green-600 transition"
+                >
+                    <FaThumbsUp className="text-lg" /> {post?.upVote}
+                </button>
+                <button
+                    onClick={() => handleDownVote(id)}
+                    className="flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-red-600 transition"
+                >
+                    <FaThumbsDown className="text-lg" /> {post?.downVote}
+                </button>
+                <PostShareButton id={id} />
+            </div>
+        ) : (
+            <p className="text-sm text-red-500 mb-6">
+                You must be logged in to comment or vote.
+            </p>
+        )}
+
+        {/* Comment Section */}
+        {user && (
+            <div className="mt-6">
+                <h3 className="text-lg font-semibold mb-3 text-gray-800">
+                    Leave a Comment
+                </h3>
+                <form
+                    onSubmit={handleSubmit(onSubmit)}
+                    className="flex flex-col sm:flex-row gap-3 items-start sm:items-center"
+                >
+                    <input
+                        type="text"
+                        {...register("text", { required: true })}
+                        placeholder="Write a comment..."
+                        className="input input-bordered w-full sm:flex-1"
+                    />
+                    <button type="submit" className="btn btn-primary">
+                        Comment
+                    </button>
+                </form>
+            </div>
+        )}
+    </div>
+
+    {/* Right Column: Sidebar */}
+    <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 shadow-sm">
+        <h3 className="text-lg font-semibold mb-4 text-gray-800">Post Info</h3>
+        <ul className="space-y-3 text-sm text-gray-600">
+            <li>
+                <strong>Author:</strong> {post?.authorName}
+            </li>
+            <li>
+                <strong>Created:</strong>{" "}
+                {new Date(post?.createdAt).toLocaleDateString()}
+            </li>
+            <li>
+                <strong>Upvotes:</strong> {post?.upVote}
+            </li>
+            <li>
+                <strong>Downvotes:</strong> {post?.downVote}
+            </li>
+            <li>
+                <strong>Tag:</strong>{" "}
+                <span className="bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full text-xs">
+                    {post?.tag}
+                </span>
+            </li>
+        </ul>
+    </div>
+</div>
+
     );
 };
 

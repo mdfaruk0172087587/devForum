@@ -1,11 +1,15 @@
 import { IoMdNotificationsOutline } from 'react-icons/io';
 import useAuth from '../hooks/useAuth';
 import Swal from 'sweetalert2';
-import { Link, NavLink } from 'react-router';
+import { Link, NavLink, useNavigate, useLocation } from 'react-router';
 import Logo from './Logo';
+import React from 'react';
 
 const Navbar = () => {
     const { user, logout, announcementCount } = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
+
     const handleLogOut = () => {
         Swal.fire({
             title: "Are you sure?",
@@ -27,6 +31,18 @@ const Navbar = () => {
             }
         });
     };
+
+    const handleNotificationClick = () => {
+        if (location.pathname !== '/') {
+            // অন্য page থাকলে home page navigate করে scroll info পাঠানো
+            navigate('/', { state: { scrollTo: 'announcements' } });
+        } else {
+            // home page-এ থাকলে direct scroll
+            const el = document.getElementById('announcements');
+            el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
+
     const links = (
         <>
             <li>
@@ -67,8 +83,9 @@ const Navbar = () => {
             </li>
         </>
     );
+
     return (
-        <div className="navbar bg-white shadow-sm px-14">
+        <div className="navbar bg-white shadow-sm px-13">
             {/* Start */}
             <div className="navbar-start">
                 <div className="dropdown">
@@ -84,7 +101,7 @@ const Navbar = () => {
                         {links}
                     </ul>
                 </div>
-                <Logo></Logo>
+                <Logo />
             </div>
 
             {/* Center */}
@@ -97,8 +114,11 @@ const Navbar = () => {
             {/* End */}
             <div className="navbar-end gap-3">
                 {/* Notification */}
-                <div className="relative">
-                    <IoMdNotificationsOutline size={26} className="text-gray-700 shadow-md hover:scale-105 transition-transform duration-200" />
+                <div className="relative cursor-pointer" onClick={handleNotificationClick}>
+                    <IoMdNotificationsOutline
+                        size={26}
+                        className="text-gray-700 shadow-md hover:scale-105 transition-transform duration-200"
+                    />
                     {announcementCount > 0 && (
                         <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-semibold px-1.5 py-0.5 rounded-full">
                             {announcementCount}

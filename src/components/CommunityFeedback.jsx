@@ -49,7 +49,7 @@ const CommunityFeedback = () => {
         {feedbacks.map((item) => (
           <div
             key={item.id}
-            className="bg-white shadow-md rounded-2xl p-6 flex flex-col items-center text-center hover:shadow-xl transition"
+            className="bg-white shadow-md rounded-lg p-6 flex flex-col items-center text-center hover:shadow-xl transition"
           >
             <img
               src={item.image}

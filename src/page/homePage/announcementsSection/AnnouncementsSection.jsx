@@ -28,7 +28,7 @@ const AnnouncementsSection = () => {
     return null;
   }
   return (
-    <section className="my-12 px-4 lg:px-8">
+    <section className="mb-12">
       {/* Header */}
       <div className="mb-10 text-center max-w-3xl mx-auto">
         <div className="flex justify-center items-center gap-3 mb-4">
@@ -41,7 +41,7 @@ const AnnouncementsSection = () => {
         </p>
       </div>
       {/* Announcement Cards */}
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {announcementData.map((announcement) => (
           <Announcement key={announcement._id} announcement={announcement} />
         ))}

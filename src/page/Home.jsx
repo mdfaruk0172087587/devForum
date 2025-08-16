@@ -1,31 +1,40 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import AllPost from './homePage/AllPost';
 import AnnouncementsSection from './homePage/announcementsSection/AnnouncementsSection';
 import CommunityFeedback from '../components/CommunityFeedback';
-import FeaturedPosts from '../components/FeaturedPosts ';
-import LatestPost from '../components/LatestPost';
 import FAQSection from '../components/FAQSection';
-import Contact from '../components/Contact';
+import { useLocation } from 'react-router';
+import UpVote from '../components/UpVote';
+import LastPost from '../components/LastPost';
+import FeaturesDev from '../components/FeaturesDev';
 
 const Home = () => {
+    const location = useLocation();
+    useEffect(() => {
+  if (location.state?.scrollTo === 'announcements') {
+    const el = document.getElementById('announcements');
+    el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}, [location]);
     return (
         <div>
 
             {/* allPost */}
             <AllPost></AllPost>
-            {/* announcement */}
-            <AnnouncementsSection></AnnouncementsSection>
-            {/* featured  */}
-            <FeaturedPosts></FeaturedPosts>
-            {/* latest post */}
-            <LatestPost></LatestPost>
-             {/* faq */}
-            <FAQSection></FAQSection>
+            {/* upvote */}
+            <UpVote></UpVote>
+            {/* last */}
+            <LastPost></LastPost>
+            {/* features */}
+            <FeaturesDev></FeaturesDev>
             {/* feedback */}
             <CommunityFeedback></CommunityFeedback>
-           
-
-
+             {/* announcement */}
+           <section id='announcements'>
+             <AnnouncementsSection></AnnouncementsSection>
+           </section>
+            {/* faq */}
+            <FAQSection></FAQSection>
         </div>
     );
 };
