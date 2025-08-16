@@ -1,7 +1,7 @@
 import React from 'react';
 import Logo from '../components/Logo';
 import { NavLink, Outlet } from 'react-router';
-import { FaListUl, FaPlusSquare, FaUserCircle, FaUserCog, FaBullhorn, FaExclamationTriangle, FaUsersCog } from 'react-icons/fa';
+import { FaListUl, FaPlusSquare, FaUserCircle, FaUserCog, FaBullhorn, FaExclamationTriangle, FaUsersCog, FaHome } from 'react-icons/fa';
 import useUserRole from '../hooks/useUserRole';
 import AdminProfile from '../page/adminDashboard/AdminProfile';
 
@@ -27,24 +27,21 @@ const DashboardLayOut = () => {
                     </div>
                     <div className="mx-2 flex-1 px-2 text-lg font-semibold">Dashboard</div>
                 </div>
-                {/* Page content here */}
-                {/* <AdminProfile></AdminProfile> */}
-                {/* <NavLink to='/dashboard/myProfile' className={linkClasses}>
-                    <FaUserCircle /> My Profile
-                </NavLink> */}
                 <Outlet />
             </div>
             <div className="drawer-side">
                 <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                 <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4 space-y-2">
                     <Logo />
+                      <li>
+                        <NavLink to="/dashboard" className={linkClasses}>
+                            <FaHome /> Home
+                        </NavLink>
+                    </li>
                     {/* Member Section */}
                     {!roleLoading && role !== 'admin' && (
                         <>
                             <p className="mt-4 mb-2 text-gray-500 font-semibold">User Menu</p>
-                            {/* <li>
-                                <NavLink className={linkClasses}>Home</NavLink>
-                            </li> */}
                             <li>
                                 <NavLink to='/dashboard/myProfile' className={linkClasses}>
                                     <FaUserCircle /> My Profile

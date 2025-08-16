@@ -8,7 +8,7 @@ const BannerWithSearch = ({ setCurrentPage, setSearchTag }) => {
     setCurrentPage(1);
   };
   return (
-    <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 py-24 px-6 text-white text-center rounded-b-3xl shadow-md">
+    <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 py-24 px-6 text-white text-center  shadow-md">
       <h1 className="text-4xl font-extrabold mb-6 tracking-wide">Search Posts by Tag</h1>
       <div className="flex flex-col sm:flex-row justify-center items-center gap-4 max-w-xl mx-auto">
         <div className="relative w-full">
@@ -23,7 +23,7 @@ const BannerWithSearch = ({ setCurrentPage, setSearchTag }) => {
         </div>
         <button
           onClick={handleSearch}
-          className="btn btn-accent shadow-md hover:scale-105 transition-transform duration-200"
+          className="btn btn-primary shadow-md hover:scale-105 transition-transform duration-200"
         >
           Search
         </button>

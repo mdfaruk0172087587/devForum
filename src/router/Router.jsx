@@ -20,6 +20,8 @@ import ReportedActivities from "../page/adminDashboard/reportedActivities/Report
 import Forbidden from "../page/Forbidden";
 import AdminRoute from "./AdminRoute";
 import Error from "../page/Error";
+import AboutUs from "../components/AboutUs";
+import DashboardHome from "../page/DashboardHome";
 
 
 export const router = createBrowserRouter([
@@ -50,6 +52,10 @@ export const router = createBrowserRouter([
                 element: <Login></Login>,
             },
             {
+                path: '/about-us',
+                element: <AboutUs></AboutUs>
+            },
+            {
                 path: '/forbidden',
                 element: <Forbidden></Forbidden>
             },
@@ -67,7 +73,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: '',
-                element : <div>hi</div>
+                element : <DashboardHome></DashboardHome>
             },
             {
                 path: 'addPost',

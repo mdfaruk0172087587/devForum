@@ -8,7 +8,7 @@ const DisplayAllPost = ({ post }) => {
  
   const { _id, authorImage, title, createdAt, tag, upVote, downVote,commentCount } = post;
   return (
-    <div className="card bg-base-100 shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100">
+    <div className="card bg-base-100 hover:shadow-lg border border-gray-100 shadow-md  duration-200  transition">
       <div className="card-body space-y-3">
         {/* Header */}
         <div className="flex items-center gap-4">
@@ -39,7 +39,7 @@ const DisplayAllPost = ({ post }) => {
         </div>
         {/* Action */}
         <div className="card-actions justify-end">
-          <Link to={`/postDetails/${_id}`} className="btn btn-sm btn-primary">
+          <Link to={`/postDetails/${_id}`} className="btn btn-sm btn-primary shadow-md hover:scale-105 transition-transform duration-200">
             View Details
           </Link>
         </div>

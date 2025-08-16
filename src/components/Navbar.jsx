@@ -3,7 +3,7 @@ import useAuth from '../hooks/useAuth';
 import Swal from 'sweetalert2';
 import { Link, NavLink } from 'react-router';
 import Logo from './Logo';
-// cons
+
 const Navbar = () => {
     const { user, logout, announcementCount } = useAuth();
     const handleLogOut = () => {
@@ -53,6 +53,18 @@ const Navbar = () => {
                     Membership
                 </NavLink>
             </li>
+            <li>
+                <NavLink
+                    to="/about-us"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "text-primary font-bold border-b-2 border-primary"
+                            : "text-gray-700 hover:text-primary"
+                    }
+                >
+                    About
+                </NavLink>
+            </li>
         </>
     );
     return (
@@ -86,7 +98,7 @@ const Navbar = () => {
             <div className="navbar-end gap-3">
                 {/* Notification */}
                 <div className="relative">
-                    <IoMdNotificationsOutline size={26} className="text-gray-700" />
+                    <IoMdNotificationsOutline size={26} className="text-gray-700 shadow-md hover:scale-105 transition-transform duration-200" />
                     {announcementCount > 0 && (
                         <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-semibold px-1.5 py-0.5 rounded-full">
                             {announcementCount}
@@ -111,7 +123,7 @@ const Navbar = () => {
                         </ul>
                     </div>
                 ) : (
-                    <Link to="/login" className="btn btn-sm btn-primary">Join Us</Link>
+                    <Link to="/login" className="btn btn-sm btn-primary shadow-md hover:scale-105 transition-transform duration-200">Join Us</Link>
                 )}
             </div>
         </div>

@@ -17,7 +17,7 @@ const AllPost = () => {
   const [searchTag, setSearchTag] = useState('');
   const [activeTag, setActiveTag] = React.useState('');
   const [sortByPopularity, setSortByPopularity] = useState(false);
-  const limit = 5;
+  const limit = 8;
   const { data, isLoading } = useQuery({
     queryKey: ['allPost', currentPage, sortByPopularity, searchTag],
     queryFn: async () => {
@@ -80,7 +80,7 @@ const AllPost = () => {
         </button>
       </div>
       {/* Posts */}
-      <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-2'>
+      <div className='grid lg:grid-cols-4 md:grid-cols-2 gap-2'>
         {
           data?.posts?.map(post => <DisplayAllPost post={post} key={post._id}></DisplayAllPost>)
         }

@@ -26,7 +26,7 @@ const TagSection = ({ setSearchTag, setCurrentPage, setActiveTag, activeTag }) =
       {/* All Button */}
       <button
         onClick={() => handleClick('')}
-        className={`btn border-none ${activeTag === '' ? 'bg-blue-600 text-white' : 'bg-[rgba(0,0,0,0.05)] text-black hover:bg-[rgba(0,0,0,0.1)]'
+        className={`btn border-none shadow-md hover:scale-105 transition-transform duration-200 ${activeTag === '' ? 'bg-blue-600 text-white ' : 'bg-[rgba(0,0,0,0.05)] text-black hover:bg-[rgba(0,0,0,0.1)] '
           }`}
       >
         All
@@ -36,7 +36,7 @@ const TagSection = ({ setSearchTag, setCurrentPage, setActiveTag, activeTag }) =
         <button
           key={data._id}
           onClick={() => handleClick(data.tag)}
-          className={`btn border-none ${activeTag === data.tag
+          className={`btn border-none shadow-md hover:scale-105 transition-transform duration-200 ${activeTag === data.tag
               ? 'bg-blue-600 text-white'
               : 'bg-[rgba(0,0,0,0.05)] text-black hover:bg-[rgba(0,0,0,0.1)]'
             }`}
