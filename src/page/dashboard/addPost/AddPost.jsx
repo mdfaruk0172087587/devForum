@@ -81,73 +81,85 @@ const AddPost = () => {
     );
   }
   return (
-    <div className="lg:min-w-3xl lg:mx-auto bg-white p-8 shadow-lg rounded-lg">
+    <div className=" p-6 ">
       <Helmet>
         <title>Add Post</title>
       </Helmet>
       <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">📢 Add a New Post</h2>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-        <div>
-          <label className="label flex items-center gap-2"><FaImage /> Image</label>
-          <input
-            {...register('authorImage')}
-            value={user?.photoURL}
-            readOnly
-            className="input input-bordered w-full"
-          />
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label className="label flex items-center gap-2"><FaImage /> Image</label>
+            <input
+              {...register('authorImage')}
+              value={user?.photoURL}
+              readOnly
+              className="input input-bordered w-full"
+            />
+          </div>
+
+          <div>
+            <label className="label flex items-center gap-2"><FaUser /> Your Name</label>
+            <input
+              {...register('authorName')}
+              value={user?.displayName}
+              readOnly
+              className="input input-bordered w-full"
+            />
+          </div>
+
+          <div>
+            <label className="label flex items-center gap-2"><FaEnvelope /> Your Email</label>
+            <input
+              {...register('authorEmail')}
+              value={user?.email}
+              readOnly
+              className="input input-bordered w-full"
+            />
+          </div>
+
+          <div>
+            <label className="label flex items-center gap-2"><FaHeading /> Post Title</label>
+            <input
+              {...register('title', { required: 'Post title is required' })}
+              className="input input-bordered w-full"
+            />
+            {errors.title && <p className="text-red-500">{errors.title.message}</p>}
+          </div>
+
+          <div>
+            <label className="label flex items-center gap-2"><MdDescription /> Post Description</label>
+            <textarea
+              {...register('description', { required: 'Description is required' })}
+              className="textarea textarea-bordered w-full"
+            />
+            {errors.description && <p className="text-red-500">{errors.description.message}</p>}
+          </div>
+
+          <div>
+            <label className="label flex items-center gap-2"><FaTag /> Select Tag</label>
+            <select
+              {...register('tag', { required: 'Tag is required' })}
+              defaultValue=""
+              className="select select-accent w-full"
+            >
+              <option value="" disabled>Select Tag</option>
+              {tagData.map(data => (
+                <option key={data._id} value={data.tag}>{data.tag}</option>
+              ))}
+            </select>
+            {errors.tag && <p className="text-red-500 text-sm mt-1">{errors.tag.message}</p>}
+          </div>
         </div>
-        <div>
-          <label className="label flex items-center gap-2"><FaUser /> Your Name</label>
-          <input
-            {...register('authorName')}
-            value={user?.displayName}
-            readOnly
-            className="input input-bordered w-full"
-          />
+
+        <div className="flex justify-center">
+          <button type="submit" className="btn btn-primary mt-4 w-full md:w-1/2 lg:w-1/3">
+            🚀 Add Post
+          </button>
         </div>
-        <div>
-          <label className="label flex items-center gap-2"><FaEnvelope /> Your Email</label>
-          <input
-            {...register('authorEmail')}
-            value={user?.email}
-            readOnly
-            className="input input-bordered w-full"
-          />
-        </div>
-        <div>
-          <label className="label flex items-center gap-2"><FaHeading /> Post Title</label>
-          <input
-            {...register('title', { required: 'Post title is required' })}
-            className="input input-bordered w-full"
-          />
-          {errors.title && <p className="text-red-500">{errors.title.message}</p>}
-        </div>
-        <div>
-          <label className="label flex items-center gap-2"><MdDescription /> Post Description</label>
-          <textarea
-            {...register('description', { required: 'Description is required' })}
-            className="textarea textarea-bordered w-full"
-          />
-          {errors.description && <p className="text-red-500">{errors.description.message}</p>}
-        </div>
-        <div>
-          <label className="label flex items-center gap-2"><FaTag /> Select Tag</label>
-          <select
-            {...register('tag', { required: 'Tag is required' })}
-            defaultValue=""
-            className="select select-accent w-full"
-          >
-            <option value="" disabled>Select Tag</option>
-            {tagData.map(data => (
-              <option key={data._id} value={data.tag}>{data.tag}</option>
-            ))}
-          </select>
-          {errors.tag && <p className="text-red-500 text-sm mt-1">{errors.tag.message}</p>}
-        </div>
-        <button type="submit" className="btn btn-primary w-full mt-4">
-          🚀 Add Post
-        </button>
       </form>
+
+
     </div>
   );
 };

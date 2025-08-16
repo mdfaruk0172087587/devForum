@@ -50,7 +50,7 @@ const ManageUsers = () => {
     };
     const handleSearch = (e) => {
         e.preventDefault();
-        setCurrentPage(1); 
+        setCurrentPage(1);
         setQueryName(searchName.trim());
     };
     return (
@@ -78,7 +78,13 @@ const ManageUsers = () => {
                 {isLoading ? (
                     <Loading />
                 ) : users.length === 0 ? (
-                    <p className="text-center text-gray-500 py-6 text-lg">No users found.</p>
+                    <div className="text-center text-gray-500 py-6">
+                        <p className="text-lg font-medium mb-2">No users matched your search.</p>
+                        <p className="text-sm italic">
+                            💡 Tip: Try typing a <span className="font-semibold">name</span> or just a
+                            <span className="font-bold text-indigo-600"> "." </span> to see all users.
+                        </p>
+                    </div>
                 ) : (
                     <>
                         <table className="table table-zebra w-full text-center text-sm sm:text-base">
@@ -128,7 +134,7 @@ const ManageUsers = () => {
                             </tbody>
                         </table>
                         {/* Pagination Buttons */}
-                       <Pagination pageCount={totalPages} currentPage ={currentPage} onPageChange={setCurrentPage}></Pagination>
+                        <Pagination pageCount={totalPages} currentPage={currentPage} onPageChange={setCurrentPage}></Pagination>
                     </>
                 )}
             </div>

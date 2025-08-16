@@ -38,7 +38,7 @@ const MakeAnnouncement = () => {
         }
     };
     return (
-        <div className="max-w-3xl mx-auto bg-white p-8 shadow-xl rounded-xl mt-10">
+        <div className="p-6">
             <Helmet>
                 <title>Make Announcement</title>
             </Helmet>

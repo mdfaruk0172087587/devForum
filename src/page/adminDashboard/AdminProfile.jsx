@@ -28,10 +28,10 @@ const AdminProfile = () => {
             return usersRes.data.count;
         }
     })
-    const {data:totalPosts= 0, isLoading: postLoading} = useQuery({
+    const { data: totalPosts = 0, isLoading: postLoading } = useQuery({
         queryKey: ['posts'],
-        queryFn: async() => {
-            const postsRes = await(axiosInstance.get('/devForum'));
+        queryFn: async () => {
+            const postsRes = await (axiosInstance.get('/devForum'));
             return postsRes.data.totalPosts;
         }
     })
@@ -76,31 +76,43 @@ const AdminProfile = () => {
         return <Loading />;
     }
     return (
-        <div className="max-w-5xl mx-auto p-6 space-y-12">
+        <div className="p-6 space-y-6">
             <Helmet>
                 <title>Admin Profile</title>
             </Helmet>
             {/* Profile Section */}
-            <div className="bg-white shadow-md rounded-lg p-6 flex flex-col md:flex-row items-center gap-6">
+            <div className="bg-white shadow-md rounded-lg p-6 flex flex-col items-center text-center space-y-4">
+                {/* Profile Image */}
                 <img
                     src={user?.photoURL}
                     alt="Admin"
                     className="w-24 h-24 rounded-full border-4 border-blue-500"
                 />
-                <div className="text-center md:text-left">
-                    <h2 className="text-3xl font-bold flex items-center justify-center md:justify-start gap-3 mb-1">
+
+                {/* Name & Email */}
+                <div>
+                    <h2 className="text-2xl md:text-3xl font-bold flex items-center justify-center gap-3 mb-2">
                         <FaUser className="text-blue-500" /> {user?.displayName}
                     </h2>
-                    <p className="flex items-center justify-center md:justify-start gap-2 text-gray-600 mb-3">
+                    <p className="flex items-center justify-center gap-2 text-gray-600">
                         <FaEnvelope /> {user?.email}
                     </p>
-                    <div className="mt-4 flex justify-center md:justify-start flex-wrap gap-4">
-                        <span className="badge badge-primary px-4 py-2 text-lg">Posts: {totalPosts}</span>
-                        <span className="badge badge-secondary px-4 py-2 text-lg">Comments: {commentCount}</span>
-                        <span className="badge badge-accent px-4 py-2 text-lg">Users: {usersCount}</span>
-                    </div>
+                </div>
+
+                {/* Stats */}
+                <div className="flex flex-wrap justify-center gap-4 pt-2">
+                    <span className="badge badge-primary px-4 py-2 text-lg">
+                        Posts: {totalPosts}
+                    </span>
+                    <span className="badge badge-secondary px-4 py-2 text-lg">
+                        Comments: {commentCount}
+                    </span>
+                    <span className="badge badge-accent px-4 py-2 text-lg">
+                        Users: {usersCount}
+                    </span>
                 </div>
             </div>
+
             {/* Pie Chart */}
             <div className="bg-white shadow-md rounded-lg p-6">
                 <h3 className="text-xl font-semibold mb-6 text-center">Platform Overview</h3>

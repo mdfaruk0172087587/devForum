@@ -34,14 +34,13 @@ const DashboardLayOut = () => {
                 <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4 space-y-2">
                     <Logo />
                       <li>
-                        <NavLink to="/dashboard" className={linkClasses}>
+                        <NavLink to="/dashboard" end className={linkClasses}>
                             <FaHome /> Home
                         </NavLink>
                     </li>
                     {/* Member Section */}
                     {!roleLoading && role !== 'admin' && (
                         <>
-                            <p className="mt-4 mb-2 text-gray-500 font-semibold">User Menu</p>
                             <li>
                                 <NavLink to='/dashboard/myProfile' className={linkClasses}>
                                     <FaUserCircle /> My Profile
@@ -62,7 +61,6 @@ const DashboardLayOut = () => {
                     {/* Admin Section */}
                     {!roleLoading && role === 'admin' && (
                         <>
-                            <p className="mt-4 mb-2 text-gray-500 font-semibold">Admin Panel</p>
                             <li>
                                 <NavLink to='/dashboard/adminProfile' className={linkClasses}>
                                     <FaUserCog /> Admin Profile

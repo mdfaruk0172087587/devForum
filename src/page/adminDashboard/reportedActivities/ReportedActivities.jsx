@@ -38,7 +38,7 @@ const ReportedActivities = () => {
     );
   }
   return (
-    <div className="lg:max-w-6xl lg:mx-auto p-6 bg-white shadow-md rounded-md border my-10">
+    <div className=" p-6">
       <Helmet>
         <title>Reported Activities</title>
       </Helmet>

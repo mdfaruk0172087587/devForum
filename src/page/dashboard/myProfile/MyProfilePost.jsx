@@ -3,7 +3,8 @@ import useAuth from '../../../hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import axiosSecure from '../../../hooks/axiosSecure';
 import Loading from '../../../components/Loading';
-import { FaTag } from 'react-icons/fa'; 
+import { FaRegSadTear, FaTag } from 'react-icons/fa'; 
+import { Link } from 'react-router';
 
 const MyProfilePost = () => {
   const { user } = useAuth();
@@ -22,7 +23,18 @@ const MyProfilePost = () => {
     <div>
       <h3 className="text-2xl font-bold mb-4 text-indigo-700 border-b pb-2">Recent Posts</h3>
       {profilePost.length === 0 ? (
-        <p className="text-gray-500 italic">You haven’t posted anything yet.</p>
+       <div className="p-6 border-2 border-dashed border-indigo-300 rounded-xl text-center bg-indigo-50">
+      <FaRegSadTear className="mx-auto text-4xl text-indigo-400 mb-3" />
+      <p className="text-gray-600 mb-3 font-medium">
+        You haven’t posted anything yet.
+      </p>
+      <Link
+        to="/dashboard/addPost"
+        className="inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg shadow hover:bg-indigo-700 transition"
+      >
+        ➕ Create Your First Post
+      </Link>
+    </div>
       ) : (
         <ul className="space-y-4">
           {profilePost.map((post) => (

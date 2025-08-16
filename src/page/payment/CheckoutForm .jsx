@@ -128,7 +128,7 @@ const CheckoutForm = () => {
         </section>
     }
     return (
-        <div className="py-28 bg-[#F8FAFC] min-h-screen">
+        <div className="py-6">
             <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 rounded-2xl shadow-xl w-full max-w-md mx-auto">
                 <h2 className="text-2xl font-semibold text-center text-indigo-600 flex items-center justify-center gap-2">
                     <BsCreditCard2Front className="text-3xl" />
