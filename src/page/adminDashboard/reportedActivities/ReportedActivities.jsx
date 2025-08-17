@@ -34,7 +34,6 @@ const ReportedActivities = () => {
         <br />
         Keep contributing to the forum — any issues or reports will show up here!
       </p>
-
     );
   }
   return (

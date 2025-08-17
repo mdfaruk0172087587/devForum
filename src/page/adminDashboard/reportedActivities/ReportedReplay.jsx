@@ -41,10 +41,10 @@ const ReportedReplay = ({ replay, index, refetch }) => {
         });
     };
     return (
-        <tr>
-            <td>{index}</td>
-            <td>{feedback}</td>
-            <td>{reportedEmail}</td>
+        <tr className='hover:bg-gray-100 transition-colors duration-200'>
+            <td className=" font-semibold text-gray-700 dark:text-gray-300">{index}</td>
+            <td className="font-mono text-sm text-gray-700 dark:text-gray-300">{feedback}</td>
+            <td className="font-mono text-sm text-gray-700 dark:text-gray-300">{reportedEmail}</td>
             <td>
                 <button
                     onClick={() => handleDelete(commentId, _id)}

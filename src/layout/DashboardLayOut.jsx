@@ -1,7 +1,7 @@
 import React from 'react';
 import Logo from '../components/Logo';
 import { NavLink, Outlet } from 'react-router';
-import { FaListUl, FaPlusSquare, FaUserCircle, FaUserCog, FaBullhorn, FaExclamationTriangle, FaUsersCog, FaHome } from 'react-icons/fa';
+import { FaListUl, FaPlusSquare, FaUserCircle, FaUserCog, FaBullhorn, FaExclamationTriangle, FaUsersCog, FaHome, FaThLarge } from 'react-icons/fa';
 import useUserRole from '../hooks/useUserRole';
 import AdminProfile from '../page/adminDashboard/AdminProfile';
 
@@ -35,7 +35,7 @@ const DashboardLayOut = () => {
                     <Logo />
                       <li>
                         <NavLink to="/dashboard" end className={linkClasses}>
-                            <FaHome /> Home
+                            <FaThLarge></FaThLarge> Overview
                         </NavLink>
                     </li>
                     {/* Member Section */}

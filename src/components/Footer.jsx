@@ -61,7 +61,7 @@ const Footer = () => {
             </>
                 :
                 <>
-                    <li>
+                   
                         <NavLink
                             to="/"
                             className={({ isActive }) =>
@@ -72,8 +72,7 @@ const Footer = () => {
                         >
                             Home
                         </NavLink>
-                    </li>
-                    <li>
+                  
                         <NavLink
                             to="/about-us"
                             className={({ isActive }) =>
@@ -84,8 +83,7 @@ const Footer = () => {
                         >
                             About
                         </NavLink>
-                    </li>
-                    <li>
+                   
                         <NavLink
                             to="/blog"
                             className={({ isActive }) =>
@@ -96,8 +94,7 @@ const Footer = () => {
                         >
                             Blog
                         </NavLink>
-                    </li>
-                    <li>
+                  
                         <NavLink
                             to="/privacy"
                             className={({ isActive }) =>
@@ -108,7 +105,7 @@ const Footer = () => {
                         >
                             Privacy
                         </NavLink>
-                    </li>
+                   
                 </>}
 
         </>

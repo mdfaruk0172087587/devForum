@@ -56,13 +56,13 @@ const Comment = () => {
                 <>
                     <div className="overflow-x-auto">
                         <table className="table w-full">
-                            <thead className="bg-gray-100">
-                                <tr className="text-left">
-                                    <th>#</th>
-                                    <th>Email</th>
-                                    <th>Comment</th>
-                                    <th>Feedback</th>
-                                    <th>Action</th>
+                            <thead className="">
+                                <tr className="bg-gray-100 text-gray-700 text-left">
+                                    <th  className="whitespace-nowrap">#</th>
+                                    <th  className="whitespace-nowrap">Email</th>
+                                    <th  className="whitespace-nowrap">Comment</th>
+                                    <th  className="whitespace-nowrap">Feedback</th>
+                                    <th  className="whitespace-nowrap">Action</th>
                                 </tr>
                             </thead>
                             <tbody>

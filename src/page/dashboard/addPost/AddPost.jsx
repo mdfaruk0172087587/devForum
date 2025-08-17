@@ -94,7 +94,7 @@ const AddPost = () => {
               {...register('authorImage')}
               value={user?.photoURL}
               readOnly
-              className="input input-bordered w-full"
+              className="input input-bordered w-full bg-white text-gray-900"
             />
           </div>
 
@@ -104,7 +104,7 @@ const AddPost = () => {
               {...register('authorName')}
               value={user?.displayName}
               readOnly
-              className="input input-bordered w-full"
+              className="input input-bordered w-full  bg-white text-gray-900"
             />
           </div>
 
@@ -114,7 +114,7 @@ const AddPost = () => {
               {...register('authorEmail')}
               value={user?.email}
               readOnly
-              className="input input-bordered w-full"
+              className="input input-bordered w-full  bg-white text-gray-900"
             />
           </div>
 
@@ -122,7 +122,7 @@ const AddPost = () => {
             <label className="label flex items-center gap-2 text-gray-700 dark:text-gray-300"><FaHeading /> Post Title</label>
             <input
               {...register('title', { required: 'Post title is required' })}
-              className="input input-bordered w-full"
+              className="input input-bordered w-full  bg-white text-gray-900"
             />
             {errors.title && <p className="text-red-500">{errors.title.message}</p>}
           </div>
@@ -131,7 +131,7 @@ const AddPost = () => {
             <label className="label flex items-center gap-2 text-gray-700 dark:text-gray-300"><MdDescription /> Post Description</label>
             <textarea
               {...register('description', { required: 'Description is required' })}
-              className="textarea textarea-bordered w-full"
+              className="textarea textarea-bordered w-full  bg-white text-gray-900"
             />
             {errors.description && <p className="text-red-500">{errors.description.message}</p>}
           </div>
@@ -141,7 +141,7 @@ const AddPost = () => {
             <select
               {...register('tag', { required: 'Tag is required' })}
               defaultValue=""
-              className="select select-accent w-full"
+              className="select select-accent w-full  bg-white text-gray-900"
             >
               <option value="" disabled>Select Tag</option>
               {tagData.map(data => (

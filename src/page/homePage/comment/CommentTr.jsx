@@ -43,15 +43,15 @@ const CommentTr = ({ comment, index, refetch }) => {
   return (
     <>
       <tr className="hover:bg-gray-100 transition-colors duration-200">
-        <td className="text-center font-semibold">{index}</td>
-        <td className="font-mono text-sm">{comment.commenterEmail}</td>
-        <td>
+        <td className="text-center font-semibold text-gray-700 dark:text-gray-300">{index}</td>
+        <td className="font-mono text-sm text-gray-700 dark:text-gray-300">{comment.commenterEmail}</td>
+        <td className='font-mono text-sm text-gray-700 dark:text-gray-300'>
           {comment.commentText.length > 20 ? (
             <>
               {comment.commentText.slice(0, 20)}...
               <button
                 onClick={() => document.getElementById('comment_modal').showModal()}
-                className="text-indigo-600 underline ml-2 flex items-center gap-1 hover:text-indigo-800"
+                className="text-indigo-600 underline ml-2 flex items-center gap-1 hover:text-indigo-800 "
                 aria-label="Read full comment"
               >
                 <FiEye /> Read More
@@ -63,7 +63,7 @@ const CommentTr = ({ comment, index, refetch }) => {
         </td>
         <td>
           <select
-            className="select select-sm select-bordered w-full max-w-xs"
+            className="select select-sm select-bordered w-full max-w-xs bg-white text-gray-900"
             value={feedback}
             onChange={(e) => setFeedback(e.target.value)}
             disabled={comment.status === true || reported}
@@ -77,9 +77,9 @@ const CommentTr = ({ comment, index, refetch }) => {
             <option value="Abusive or inappropriate language">Abusive or inappropriate language</option>
           </select>
         </td>
-        <td className="flex items-center gap-2">
+        <td className="flex items-center gap-2 ">
           <button
-            className={`btn btn-sm flex items-center gap-1 ${reported ? 'btn-success cursor-default' : 'btn-warning hover:btn-error'
+            className={`btn btn-sm flex items-center gap-1 text-gray-700 dark:text-gray-300 ${reported ? 'btn-success cursor-default' : 'btn-warning hover:btn-error '
               }`}
             onClick={handleReport}
             disabled={!feedback || reported || comment.status === true}
