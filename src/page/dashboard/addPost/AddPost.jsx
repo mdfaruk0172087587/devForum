@@ -89,7 +89,7 @@ const AddPost = () => {
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="label flex items-center gap-2"><FaImage /> Image</label>
+            <label className="label flex items-center gap-2 text-gray-700 dark:text-gray-300"><FaImage /> Image</label>
             <input
               {...register('authorImage')}
               value={user?.photoURL}
@@ -99,7 +99,7 @@ const AddPost = () => {
           </div>
 
           <div>
-            <label className="label flex items-center gap-2"><FaUser /> Your Name</label>
+            <label className="label flex items-center gap-2 text-gray-700 dark:text-gray-300"><FaUser /> Your Name</label>
             <input
               {...register('authorName')}
               value={user?.displayName}
@@ -109,7 +109,7 @@ const AddPost = () => {
           </div>
 
           <div>
-            <label className="label flex items-center gap-2"><FaEnvelope /> Your Email</label>
+            <label className="label flex items-center gap-2 text-gray-700 dark:text-gray-300"><FaEnvelope /> Your Email</label>
             <input
               {...register('authorEmail')}
               value={user?.email}
@@ -119,7 +119,7 @@ const AddPost = () => {
           </div>
 
           <div>
-            <label className="label flex items-center gap-2"><FaHeading /> Post Title</label>
+            <label className="label flex items-center gap-2 text-gray-700 dark:text-gray-300"><FaHeading /> Post Title</label>
             <input
               {...register('title', { required: 'Post title is required' })}
               className="input input-bordered w-full"
@@ -128,7 +128,7 @@ const AddPost = () => {
           </div>
 
           <div>
-            <label className="label flex items-center gap-2"><MdDescription /> Post Description</label>
+            <label className="label flex items-center gap-2 text-gray-700 dark:text-gray-300"><MdDescription /> Post Description</label>
             <textarea
               {...register('description', { required: 'Description is required' })}
               className="textarea textarea-bordered w-full"
@@ -137,7 +137,7 @@ const AddPost = () => {
           </div>
 
           <div>
-            <label className="label flex items-center gap-2"><FaTag /> Select Tag</label>
+            <label className="label flex items-center gap-2 text-gray-700 dark:text-gray-300"><FaTag /> Select Tag</label>
             <select
               {...register('tag', { required: 'Tag is required' })}
               defaultValue=""

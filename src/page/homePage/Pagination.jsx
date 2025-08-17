@@ -5,7 +5,7 @@ import ReactPaginate from 'react-paginate';
 const Pagination = ({ pageCount, onPageChange, currentPage }) => {
   if(!pageCount || pageCount < 1) return null
   return (
-    <div className='flex justify-center mt-6'>
+    <div className='flex justify-center mt-6 text-gray-700'>
       <ReactPaginate
          forcePage={Math.min(currentPage - 1, pageCount - 1)}
         previousLabel={'←'}

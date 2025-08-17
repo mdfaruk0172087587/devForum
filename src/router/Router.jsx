@@ -22,6 +22,8 @@ import AdminRoute from "./AdminRoute";
 import Error from "../page/Error";
 import AboutUs from "../components/AboutUs";
 import DashboardHome from "../page/DashboardHome";
+import Blog from "../page/homePage/comment/Blog";
+import Privacy from "../components/Privacy";
 
 
 export const router = createBrowserRouter([
@@ -43,9 +45,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/postDetails/:id',
-                element: <PrivateRoute>
-                    <PostDetails></PostDetails>
-                </PrivateRoute>
+                element: <PostDetails></PostDetails>
             },
             {
                 path: '/login',
@@ -54,6 +54,14 @@ export const router = createBrowserRouter([
             {
                 path: '/about-us',
                 element: <AboutUs></AboutUs>
+            },
+            {
+                path: 'privacy',
+                element: <Privacy></Privacy>
+            },
+            {
+                path: '/blog',
+                element: <Blog></Blog>
             },
             {
                 path: '/forbidden',

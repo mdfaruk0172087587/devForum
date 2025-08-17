@@ -8,7 +8,7 @@ const DisplayAllPost = ({ post }) => {
 
   const { _id, authorImage, title, createdAt, tag, upVote, downVote, commentCount } = post;
   return (
-    <div className="card bg-base-100 border border-gray-200 shadow-md hover:shadow-xl rounded-lg transform hover:scale-[1.02] transition-all duration-300">
+    <div className="card bg-white border border-gray-200 shadow-md hover:shadow-xl rounded-lg transform hover:scale-[1.02] transition-all duration-300">
   <div className="card-body space-y-5">
 
     {/* Header */}
@@ -19,7 +19,7 @@ const DisplayAllPost = ({ post }) => {
         className="w-16 h-16 rounded-full border-2 border-primary shadow-sm"
       />
       <div className="flex-1">
-        <h2 className="text-lg md:text-2xl font-bold line-clamp-3">{title}</h2>
+        <h2 className="text-lg md:text-2xl font-bold line-clamp-3 text-gray-700">{title}</h2>
         <p className="text-xs md:text-sm text-gray-500 flex items-center gap-1 mt-1">
           <FaRegCalendarAlt className="text-gray-400" />{" "}
           {new Date(createdAt).toLocaleDateString()}
@@ -50,7 +50,7 @@ const DisplayAllPost = ({ post }) => {
     <div className="card-actions justify-end mt-4">
       <Link
         to={`/postDetails/${_id}`}
-        className="btn btn-md md:btn-lg btn-primary shadow-md rounded-full hover:scale-105 transition-transform duration-200"
+        className="btn btn-primary shadow-md rounded-full hover:scale-105 transition-transform duration-200 "
       >
         View Details
       </Link>

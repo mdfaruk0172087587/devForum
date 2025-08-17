@@ -14,7 +14,7 @@ const LastPost = () => {
   });
   return (
     <div className="">
-      <h2 className="text-3xl font-bold text-center">Latest Posts</h2>
+      <h2 className="text-3xl font-bold text-center text-gray-600">Latest Posts</h2>
       <p className="text-center text-gray-600 mb-8 mt-2">
         Check out the most recent discussions and updates from our community. Stay informed and engaged with the latest posts.
       </p>
@@ -32,13 +32,13 @@ const LastPost = () => {
                 className="w-10 h-10 rounded-full mr-3 border-2 border-blue-500"
               />
               <div>
-                <h3 className="font-semibold">{post.authorName}</h3>
+                <h3 className="font-semibold text-gray-600">{post.authorName}</h3>
                 <p className="text-sm text-gray-500">{post.createdAt}</p>
               </div>
             </div>
 
             {/* Post Title */}
-            <h4 className="font-bold text-xl mb-2">{post.title}</h4>
+            <h4 className="font-bold text-xl mb-2 text-gray-600">{post.title}</h4>
 
             {/* Description */}
             <p className="text-gray-600 mb-3">{post.description}</p>

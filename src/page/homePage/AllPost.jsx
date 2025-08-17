@@ -48,8 +48,8 @@ const AllPost = () => {
 
       {/* Sort Dropdown */}
       <div className="flex justify-center mb-4">
-        <div className="dropdown">
-          <label tabIndex={0} className="btn btn-outline m-1">
+        <div className="dropdown dark:bg-white">
+          <label tabIndex={0} className="btn btn-outline m-1 text-gray-500">
             Sort by
           </label>
           <ul

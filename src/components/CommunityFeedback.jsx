@@ -39,7 +39,7 @@ const CommunityFeedback = () => {
 
   return (
     <div className="pb-12">
-      <h2 className="text-3xl font-bold text-center mb-4">Community Feedback</h2>
+      <h2 className="text-3xl font-bold text-center mb-4 text-gray-600">Community Feedback</h2>
       <p className="text-center text-gray-600 max-w-2xl mx-auto mb-8">
         এই প্রজেক্টের উদ্দেশ্য হলো ডেভেলপারদের জন্য একটি interactive কমিউনিটি তৈরি করা, যেখানে
         সবাই knowledge শেয়ার করতে পারে, প্রশ্ন করতে পারে এবং একে অপরের থেকে শিখতে পারে।
@@ -56,7 +56,7 @@ const CommunityFeedback = () => {
               alt={item.name}
               className="w-16 h-16 rounded-full mb-4 border-2 border-blue-500"
             />
-            <h3 className="text-lg font-semibold">{item.name}</h3>
+            <h3 className="text-lg font-semibold text-gray-600">{item.name}</h3>
             <p className="text-sm text-gray-500 mb-2">{item.role}</p>
             <p className="text-gray-600 italic">“{item.feedback}”</p>
           </div>

@@ -13,7 +13,7 @@ const UpVote = () => {
     });
     return (
        <div className="pb-12">
-      <h2 className="text-3xl font-bold text-center mb-6">Featured Posts</h2>
+      <h2 className="text-3xl font-bold text-center mb-6 text-gray-600">Featured Posts</h2>
       <p className="text-center text-gray-600 max-w-2xl mx-auto mb-8">
         এখানে আমরা কমিউনিটিতে সবচেয়ে বেশি upvote পাওয়া অথবা pinned পোস্টগুলো highlight করেছি।
       </p>
@@ -26,7 +26,7 @@ const UpVote = () => {
           >
             <img src={post.authorImage} alt={post.authorName} className="w-full h-40 object-cover" />
             <div className="p-4">
-              <h3 className="font-semibold text-lg mb-1">{post.title}</h3>
+              <h3 className="font-semibold text-lg mb-1 text-gray-600">{post.title}</h3>
               <p className="text-sm text-gray-500 mb-2">by {post.authorName}</p>
               <p className="text-sm text-gray-700 font-medium">👍 {post.upVote} upvotes</p>
             </div>

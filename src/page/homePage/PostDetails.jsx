@@ -1,7 +1,7 @@
 import React from 'react';
 import axiosSecure from '../../hooks/axiosSecure';
 import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router';
+import { Link, useParams } from 'react-router';
 import Loading from '../../components/Loading';
 import { FaShareAlt, FaThumbsDown, FaThumbsUp } from 'react-icons/fa';
 import useAuth from '../../hooks/useAuth';
@@ -117,7 +117,7 @@ const PostDetails = () => {
             </div>
         ) : (
             <p className="text-sm text-red-500 mb-6">
-                You must be logged in to comment or vote.
+                You must be logged in to comment or vote. <Link className='text-blue-400 underline' to='/login'>Login</Link>
             </p>
         )}
 
@@ -135,7 +135,7 @@ const PostDetails = () => {
                         type="text"
                         {...register("text", { required: true })}
                         placeholder="Write a comment..."
-                        className="input input-bordered w-full sm:flex-1"
+                        className="input input-bordered w-full sm:flex-1 "
                     />
                     <button type="submit" className="btn btn-primary">
                         Comment

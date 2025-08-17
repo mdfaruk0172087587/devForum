@@ -29,7 +29,7 @@ const FeaturesDev = () => {
   return (
     <section className="py-12">
       <div className="text-center mb-12">
-        <h2 className="text-3xl font-bold mb-4">DevForum Features</h2>
+        <h2 className="text-3xl font-bold mb-4 text-gray-600">DevForum Features</h2>
         <p className="text-gray-600 max-w-xl mx-auto">
           Explore the key features implemented in the DevForum project. These features enhance user experience, engagement, and accessibility.
         </p>
@@ -42,7 +42,7 @@ const FeaturesDev = () => {
             className="bg-white rounded-lg shadow-lg p-6 hover:shadow-2xl transition-all duration-300 flex flex-col items-start gap-4"
           >
             <div>{feature.icon}</div>
-            <h3 className="text-xl font-semibold">{feature.title}</h3>
+            <h3 className="text-xl font-semibold text-gray-600">{feature.title}</h3>
             <p className="text-gray-700">{feature.description}</p>
           </div>
         ))}

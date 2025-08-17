@@ -110,11 +110,11 @@ const MyPosts = () => {
               <tbody>
                 {myPosts.map((post, index) => (
                   <tr key={post._id} className="hover:bg-gray-50 transition">
-                    <td className="font-medium">
+                    <td className="font-medium text-gray-700 dark:text-gray-300">
                       {(currentPage - 1) * limit + index + 1}
                     </td>
-                    <td className="max-w-[200px] truncate">{post.title}</td>
-                    <td>{post.upVote + post.downVote}</td>
+                    <td className="max-w-[200px] truncate text-gray-700 dark:text-gray-300">{post.title}</td>
+                    <td className='text-gray-700 dark:text-gray-300'>{post.upVote + post.downVote}</td>
                     <td>
                       <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                         <Link

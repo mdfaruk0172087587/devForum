@@ -48,22 +48,22 @@ const MakeAnnouncement = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 max-w-xl mx-auto">
                 {/* Author Image */}
                 <div>
-                    <label className="label font-semibold"><FiImage></FiImage> Author Image URL</label>
+                    <label className="label font-semibold text-gray-700"><FiImage></FiImage> Author Image URL</label>
                     <input
                         type="url"
                         value={user?.photoURL} readOnly
-                        className="input input-bordered w-full"
+                        className="input input-bordered w-full bg-white text-gray-950"
                         {...register('authorImage', { required: 'Author image is required' })}
                     />
                     {errors.authorImage && <p className="text-red-500 text-sm mt-1">{errors.authorImage.message}</p>}
                 </div>
                 {/* Author Name */}
                 <div>
-                    <label className="label font-semibold"><FiUser></FiUser> Author Name</label>
+                    <label className="label font-semibold text-gray-700"><FiUser></FiUser> Author Name</label>
                     <input
                         type="text"
                         value={user?.displayName} readOnly
-                        className="input input-bordered w-full"
+                        className="input input-bordered w-full  bg-white text-gray-950"
                         {...register('authorName', { required: 'Author name is required' })}
                     />
                     {errors.authorName && <p className="text-red-500 text-sm mt-1">{errors.authorName.message}</p>}
@@ -71,21 +71,21 @@ const MakeAnnouncement = () => {
 
                 {/* Title */}
                 <div>
-                    <label className="label font-semibold"> <FiType></FiType> Announcement Title</label>
+                    <label className="label font-semibold text-gray-700"> <FiType></FiType> Announcement Title</label>
                     <input
                         type="text"
                         placeholder="Enter announcement title"
-                        className="input input-bordered w-full"
+                        className="input input-bordered w-full  bg-white text-gray-950"
                         {...register('title', { required: 'Title is required' })}
                     />
                     {errors.title && <p className="text-red-500 text-sm mt-1">{errors.title.message}</p>}
                 </div>
                 {/* Description */}
                 <div>
-                    <label className="label font-semibold"> <FiMessageCircle></FiMessageCircle> Description</label>
+                    <label className="label font-semibold text-gray-700"> <FiMessageCircle></FiMessageCircle> Description</label>
                     <textarea
                         placeholder="Write your announcement..."
-                        className="textarea textarea-bordered w-full"
+                        className="textarea textarea-bordered w-full  bg-white text-gray-950"
                         rows="5"
                         {...register('description', { required: 'Description is required' })}
                     ></textarea>

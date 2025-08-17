@@ -91,8 +91,8 @@ const AdminProfile = () => {
 
                 {/* Name & Email */}
                 <div>
-                    <h2 className="text-2xl md:text-3xl font-bold flex items-center justify-center gap-3 mb-2">
-                        <FaUser className="text-blue-500" /> {user?.displayName}
+                    <h2 className="text-2xl md:text-3xl font-bold flex items-center justify-center gap-3 mb-2 text-gray-700">
+                        <FaUser className="text-blue-500 " /> {user?.displayName}
                     </h2>
                     <p className="flex items-center justify-center gap-2 text-gray-600">
                         <FaEnvelope /> {user?.email}
@@ -115,7 +115,7 @@ const AdminProfile = () => {
 
             {/* Pie Chart */}
             <div className="bg-white shadow-md rounded-lg p-6">
-                <h3 className="text-xl font-semibold mb-6 text-center">Platform Overview</h3>
+                <h3 className="text-xl font-semibold mb-6 text-center text-gray-700">Platform Overview</h3>
                 <ResponsiveContainer width="100%" height={300}>
                     <PieChart>
                         <Pie
@@ -136,7 +136,7 @@ const AdminProfile = () => {
             </div>
             {/* Add Tag Form */}
             <div className="bg-white shadow-md rounded-lg p-6 max-w-md mx-auto">
-                <h3 className="text-xl font-semibold mb-6 flex items-center justify-center gap-2">
+                <h3 className="text-xl font-semibold mb-6 flex items-center justify-center gap-2 text-gray-700">
                     <FaTags /> Add New Tag
                 </h3>
                 <form onSubmit={handleSubmit(onSubmit)} className="flex gap-4 items-center justify-center">
@@ -144,7 +144,7 @@ const AdminProfile = () => {
                         {...register("tag", { required: true })}
                         type="text"
                         placeholder="Enter tag name (e.g., React)"
-                        className="input input-bordered w-full max-w-xs"
+                        className="input input-bordered w-full max-w-xs "
                     />
                     <button type="submit" className="btn btn-primary px-6">
                         Add Tag

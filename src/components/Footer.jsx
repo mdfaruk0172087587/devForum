@@ -1,52 +1,125 @@
 import React from 'react';
 import { FaFacebook, FaGithub, FaLinkedin } from 'react-icons/fa';
 import { NavLink } from 'react-router';
+import useAuth from '../hooks/useAuth';
 
 const Footer = () => {
+    const { user } = useAuth()
     const links = (
         <>
-
-            <NavLink
-                to="/"
-                className={({ isActive }) =>
-                    isActive
-                        ? "text-primary font-bold border-b-2 border-primary"
-                        : "text-gray-700 hover:text-primary"
-                }
-            >
-                Home
-            </NavLink>
-
-            <NavLink
-                to="/membership"
-                className={({ isActive }) =>
-                    isActive
-                        ? "text-primary font-bold border-b-2 border-primary"
-                        : "text-gray-700 hover:text-primary"
-                }
-            >
-                Membership
-            </NavLink>
-            <NavLink
-                to="/about-us"
-                className={({ isActive }) =>
-                    isActive
-                        ? "text-primary font-bold border-b-2 border-primary"
-                        : "text-gray-700 hover:text-primary"
-                }
-            >
-                About
-            </NavLink>
+            {user ? <>
+                <NavLink
+                    to="/"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "text-primary font-bold border-b-2 border-primary dark:text-primary"
+                            : "text-gray-700 hover:text-primary dark:text-gray-200"
+                    }
+                >
+                    Home
+                </NavLink>
+                <NavLink
+                    to="/membership"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "text-primary font-bold border-b-2 border-primary"
+                            : "text-gray-700 hover:text-primary dark:text-primary"
+                    }
+                >
+                    Membership
+                </NavLink>
+                <NavLink
+                    to="/about-us"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "text-primary font-bold border-b-2 border-primary"
+                            : "text-gray-700 hover:text-primary"
+                    }
+                >
+                    About
+                </NavLink>
+                <NavLink
+                    to="/blog"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "text-primary font-bold border-b-2 border-primary"
+                            : "text-gray-700 hover:text-primary"
+                    }
+                >
+                    Blog
+                </NavLink>
+                <NavLink
+                    to="/privacy"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "text-primary font-bold border-b-2 border-primary"
+                            : "text-gray-700 hover:text-primary"
+                    }
+                >
+                    Privacy
+                </NavLink>
+            </>
+                :
+                <>
+                    <li>
+                        <NavLink
+                            to="/"
+                            className={({ isActive }) =>
+                                isActive
+                                    ? "text-primary font-bold border-b-2 border-primary"
+                                    : "text-gray-700 hover:text-primary"
+                            }
+                        >
+                            Home
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to="/about-us"
+                            className={({ isActive }) =>
+                                isActive
+                                    ? "text-primary font-bold border-b-2 border-primary"
+                                    : "text-gray-700 hover:text-primary"
+                            }
+                        >
+                            About
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to="/blog"
+                            className={({ isActive }) =>
+                                isActive
+                                    ? "text-primary font-bold border-b-2 border-primary"
+                                    : "text-gray-600 hover:text-primary"
+                            }
+                        >
+                            Blog
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to="/privacy"
+                            className={({ isActive }) =>
+                                isActive
+                                    ? "text-primary font-bold border-b-2 border-primary"
+                                    : "text-gray-700 hover:text-primary dark:text-blue-500"
+                            }
+                        >
+                            Privacy
+                        </NavLink>
+                    </li>
+                </>}
 
         </>
     );
     return (
-        <footer className="footer footer-horizontal footer-center bg-base-300 text-base-content rounded p-10">
-            <nav className="grid grid-flow-col gap-4">
+        <footer className="footer footer-horizontal footer-center bg-[#d1d5db] p-10">
+            <nav className="grid grid-flow-col gap-4 ">
                 {links}
             </nav>
             <nav>
-                <div className="grid grid-flow-col gap-6 text-3xl">
+                <div className="grid grid-flow-col gap-6 text-3xl text-gray-700">
                     {/* Facebook */}
                     <a
                         href="https://facebook.com/faruk5872a"
@@ -79,7 +152,7 @@ const Footer = () => {
                 </div>
             </nav>
             <aside>
-                <p>Copyright © {new Date().getFullYear()} - All right reserved by Omar Faruk</p>
+                <p className='text-gray-700'>Copyright © {new Date().getFullYear()} - All right reserved by Omar Faruk</p>
             </aside>
         </footer>
     );

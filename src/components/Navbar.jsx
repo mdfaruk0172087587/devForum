@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { Link, NavLink, useNavigate, useLocation } from 'react-router';
 import Logo from './Logo';
 import React from 'react';
+import ThemeToggle from './ThemeToggle';
 
 const Navbar = () => {
     const { user, logout, announcementCount } = useAuth();
@@ -45,7 +46,8 @@ const Navbar = () => {
 
     const links = (
         <>
-            <li>
+        {user? <>
+        <li>
                 <NavLink
                     to="/"
                     className={({ isActive }) =>
@@ -81,6 +83,83 @@ const Navbar = () => {
                     About
                 </NavLink>
             </li>
+            <li>
+                <NavLink
+                    to="/blog"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "text-primary font-bold border-b-2 border-primary"
+                            : "text-gray-700 hover:text-primary"
+                    }
+                >
+                    Blog
+                </NavLink>
+            </li>
+            <li>
+                <NavLink
+                    to="/privacy"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "text-primary font-bold border-b-2 border-primary"
+                            : "text-gray-700 hover:text-primary"
+                    }
+                >
+                    Privacy
+                </NavLink>
+            </li>
+        </>
+        :
+         <>
+        <li>
+                <NavLink
+                    to="/"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "text-primary font-bold border-b-2 border-primary"
+                            : "text-gray-700 hover:text-primary"
+                    }
+                >
+                    Home
+                </NavLink>
+            </li>
+            <li>
+                <NavLink
+                    to="/about-us"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "text-primary font-bold border-b-2 border-primary"
+                            : "text-gray-700 hover:text-primary"
+                    }
+                >
+                    About
+                </NavLink>
+            </li>
+            <li>
+                <NavLink
+                    to="/blog"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "text-primary font-bold border-b-2 border-primary"
+                            : "text-gray-700 hover:text-primary"
+                    }
+                >
+                    Blog
+                </NavLink>
+            </li>
+            <li>
+                <NavLink
+                    to="/privacy"
+                    className={({ isActive }) =>
+                        isActive
+                            ? "text-primary font-bold border-b-2 border-primary"
+                            : "text-gray-700 hover:text-primary"
+                    }
+                >
+                    Privacy
+                </NavLink>
+            </li>
+        </>}
+            
         </>
     );
 
@@ -109,6 +188,7 @@ const Navbar = () => {
                 <ul className="menu menu-horizontal px-1 gap-3">
                     {links}
                 </ul>
+                <ThemeToggle></ThemeToggle>
             </div>
 
             {/* End */}
@@ -125,7 +205,6 @@ const Navbar = () => {
                         </span>
                     )}
                 </div>
-
                 {/* Profile/Login */}
                 {user ? (
                     <div className="dropdown dropdown-end">
@@ -134,9 +213,9 @@ const Navbar = () => {
                                 <img src={user?.photoURL} alt="User" />
                             </div>
                         </div>
-                        <ul tabIndex={0} className="mt-3 z-[1] p-3 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-48 space-y-2">
-                            <li className="text-sm text-gray-600 font-semibold pointer-events-none">👤 {user?.displayName}</li>
-                            <li><Link to="/dashboard" className="hover:bg-base-200">Dashboard</Link></li>
+                        <ul tabIndex={0} className="mt-3 z-[1] p-3 shadow menu menu-sm dropdown-content  rounded-box w-48 space-y-2">
+                            <li className="text-sm text-gray-600 font-semibold pointer-events-none ">👤 {user?.displayName}</li>
+                            <li><Link to="/dashboard" className="text-gray-600">Dashboard</Link></li>
                             <li>
                                 <button onClick={handleLogOut} className="btn btn-sm btn-error text-white w-full">Logout</button>
                             </li>

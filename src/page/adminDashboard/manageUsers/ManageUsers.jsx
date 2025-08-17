@@ -67,7 +67,7 @@ const ManageUsers = () => {
                     value={searchName}
                     onChange={(e) => setSearchName(e.target.value)}
                     placeholder="Search by name"
-                    className="input input-bordered w-full"
+                    className="input input-bordered w-full bg-white text-gray-950"
                 />
                 <button type="submit" className="btn btn-primary flex items-center justify-center gap-2 px-4">
                     <FaSearch /> <span className="hidden sm:inline">Search</span>
@@ -88,33 +88,42 @@ const ManageUsers = () => {
                 ) : (
                     <>
                         <table className="table table-zebra w-full text-center text-sm sm:text-base">
-                            <thead>
+                            <thead className="bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-200">
                                 <tr>
                                     <th>#</th>
                                     <th>User Name</th>
-                                    <th className='hidden md:table-cell'>Email</th>
+                                    <th className="hidden md:table-cell">Email</th>
                                     <th>Subscription</th>
                                     <th>Make Admin</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody className="bg-white dark:bg-gray-900 dark:text-gray-100">
                                 {users.map((user, i) => (
-                                    <tr key={user._id}>
-                                        <td>{(currentPage - 1) * limit + i + 1}</td>
-                                        <td className="break-words">{user.name}</td>
-                                        <td className="break-words hidden md:table-cell">{user.email}</td>
+                                    <tr
+                                        key={user._id}
+                                        className="hover:bg-gray-50 dark:hover:bg-gray-700 transition"
+                                    >
+                                        <td className='text-gray-500'>{(currentPage - 1) * limit + i + 1}</td>
+                                        <td className="break-words text-gray-500">{user.name}</td>
+                                        <td className="break-words hidden md:table-cell text-gray-500">{user.email}</td>
                                         <td>
-                                            {user.role === 'admin'
-                                                ? <span className="text-green-600 font-semibold">Admin</span>
-                                                : user.role === 'member'
-                                                    ? <span className="text-blue-600 font-semibold">Member</span>
-                                                    : 'User'}
+                                            {user.role === "admin" ? (
+                                                <span className="text-green-600 dark:text-green-400 font-semibold">
+                                                    Admin
+                                                </span>
+                                            ) : user.role === "member" ? (
+                                                <span className="text-blue-600 dark:text-blue-400 font-semibold">
+                                                    Member
+                                                </span>
+                                            ) : (
+                                                <span className="text-gray-700 dark:text-gray-300">User</span>
+                                            )}
                                         </td>
                                         <td>
-                                            {user.role === 'admin' ? (
+                                            {user.role === "admin" ? (
                                                 <button
                                                     onClick={() => handleRemoveAdmin(user._id)}
-                                                    className="btn btn-sm btn-warning flex items-center justify-center gap-2"
+                                                    className="btn btn-sm btn-warning flex items-center justify-center gap-2 dark:text-white"
                                                 >
                                                     <FaUserTimes className="text-xs sm:text-base" />
                                                     <span className="hidden md:inline">Remove</span>
@@ -122,7 +131,7 @@ const ManageUsers = () => {
                                             ) : (
                                                 <button
                                                     onClick={() => handleMakeAdmin(user._id)}
-                                                    className="btn btn-sm btn-success flex items-center justify-center gap-2"
+                                                    className="btn btn-sm btn-success flex items-center justify-center gap-2 dark:text-white"
                                                 >
                                                     <FaUserShield className="text-xs sm:text-base" />
                                                     <span className="hidden md:inline">Make</span>
@@ -133,6 +142,7 @@ const ManageUsers = () => {
                                 ))}
                             </tbody>
                         </table>
+
                         {/* Pagination Buttons */}
                         <Pagination pageCount={totalPages} currentPage={currentPage} onPageChange={setCurrentPage}></Pagination>
                     </>
