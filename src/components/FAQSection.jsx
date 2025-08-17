@@ -2,13 +2,12 @@ import React from 'react';
 
 const FAQSection = () => {
   return (
-    <div className="py-12">
+    <div className="pb-12">
       {/* Title & Description */}
-      <div className="max-w-2xl mx-auto text-center mb-8 ">
-        <h2 className="text-3xl font-bold mb-4 text-gray-600">How It Works</h2>
+      <div className="max-w-2xl mx-auto text-center mb-6 ">
+        <h2 className="text-3xl font-bold mb-2 text-gray-600">How It Works</h2>
         <p className="text-gray-600">
-          DevForum ব্যবহার সংক্রান্ত সাধারণ প্রশ্ন ও উত্তর। এখানে আপনি জানতে পারবেন কিভাবে account
-          তৈরি করতে হয়, পোস্ট করতে হয় এবং কমিউনিটি-তে interact করতে হয়।
+         Common questions and answers about using DevForum. Here, you can learn how to create an account, make posts, and interact within the community.
         </p>
       </div>
 

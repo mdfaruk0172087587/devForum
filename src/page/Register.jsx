@@ -82,9 +82,9 @@ const Register = () => {
                 <title>Register Page</title>
             </Helmet>
             {/* Main Content */}
-            <div className="flex flex-1">
+            <div className="flex flex-1 flex-col-reverse md:flex-row">
                 {/* Left Side - Form */}
-                <div className="w-full md:w-1/2 flex justify-center items-center p-8">
+                <div className="w-full md:w-1/2 flex justify-center items-center p-6 md:p-8">
                     <div className="w-full max-w-sm">
                             <Logo></Logo>
                         <h2 className="text-3xl font-medium text-center  text-gray-900 mb-6">Welcome back</h2>
@@ -142,7 +142,7 @@ const Register = () => {
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute right-[15%] bottom-[9.5%] md:right-[58%] lg:bottom-[24.5%] lg:right-[61%] z-10 text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-300"
+                                    className="absolute right-[15%] -bottom-[69%] md:bottom-[9%]  md:right-[58%] lg:bottom-[24.5%] lg:right-[61%] z-10 text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-300"
                                 >
                                     {showPassword ? <PiEyesFill size={22} /> : <LiaEyeSlash size={22} />}
                                 </button>
@@ -153,9 +153,8 @@ const Register = () => {
                         </div>
                     </div>
                 </div>
-
                 {/* Right Side - Image */}
-                <div className="hidden md:flex w-1/2 bg-purple-100 justify-center items-center p-8">
+                <div className="w-full md:w-1/2 bg-purple-100 flex justify-center items-center p-4 md:p-8">
                     <Lottie animationData={registerLottie} loop={true}></Lottie>
                 </div>
             </div>

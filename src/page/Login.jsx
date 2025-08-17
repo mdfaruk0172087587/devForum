@@ -47,9 +47,9 @@ const Login = () => {
                 <title>Login Page</title>
             </Helmet>
             {/* Main Content */}
-            <div className="flex flex-1">
+            <div className="flex flex-1 flex-col-reverse md:flex-row">
                 {/* Left Side - Form */}
-                <div className="w-full md:w-1/2 flex justify-center items-center p-8 ">
+                <div className="w-full md:w-1/2 flex justify-center items-center p-6 md:p-8">
                     <div className="w-full max-w-sm">
                             <Logo></Logo>
                         <h2 className="text-3xl font-medium text-center  text-gray-900 mb-6">Welcome back</h2>
@@ -87,7 +87,7 @@ const Login = () => {
                     </div>
                 </div>
                 {/* Right Side - Image */}
-                <div className="hidden md:flex w-1/2 bg-purple-100 justify-center items-center p-8">
+                <div className="w-full md:w-1/2 bg-purple-100 flex justify-center items-center p-4 md:p-8">
                     <Lottie animationData={loginLottie} loop={true}></Lottie>
                 </div>
             </div>

@@ -13,9 +13,9 @@ const UpVote = () => {
     });
     return (
        <div className="pb-12">
-      <h2 className="text-3xl font-bold text-center mb-6 text-gray-600">Featured Posts</h2>
+      <h2 className="text-3xl font-bold text-center mb-2 text-gray-600">Featured Posts</h2>
       <p className="text-center text-gray-600 max-w-2xl mx-auto mb-8">
-        এখানে আমরা কমিউনিটিতে সবচেয়ে বেশি upvote পাওয়া অথবা pinned পোস্টগুলো highlight করেছি।
+        Here we have highlighted the most upvoted or pinned posts in the community.
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

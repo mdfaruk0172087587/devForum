@@ -30,7 +30,7 @@ const AnnouncementsSection = () => {
   return (
     <section className="mb-12">
       {/* Header */}
-      <div className="mb-10 text-center max-w-3xl mx-auto">
+      <div className="mb-6 text-center max-w-3xl mx-auto">
         <div className="flex justify-center items-center gap-3 mb-4">
           <FiVolume2 className="text-indigo-600 text-4xl animate-pulse" />
           <h2 className="text-3xl font-extrabold text-gray-800">Announcements</h2>

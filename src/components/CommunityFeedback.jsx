@@ -4,45 +4,44 @@ const CommunityFeedback = () => {
   const feedbacks = [
     {
       id: 1,
-      name: "Rakib Hasan",
+      name: "Jhankar Mahbub",
       role: "Full Stack Developer",
       feedback:
-        "DevForum আমাকে নতুন টেক স্ট্যাক শিখতে অনেক সাহায্য করেছে। কমিউনিটি সত্যিই ফ্রেন্ডলি!",
-      image: "https://i.pravatar.cc/100?img=1",
+        "DevForum has helped me a lot in learning new tech stacks. The community is truly friendly!",
+      image: "https://i.ibb.co.com/mC8H5ZcS/jhonkar.jpg",
     },
     {
       id: 2,
-      name: "Amina Akter",
+      name: "Azizul Islam Milton",
       role: "Frontend Engineer",
       feedback:
-        "এখানে আমি অনেক সমস্যা সমাধানের আইডিয়া পেয়েছি। এক কথায় অসাধারণ একটি প্ল্যাটফর্ম।",
-      image: "https://i.pravatar.cc/100?img=2",
+        "Here, I have found many ideas for problem-solving. In short, it’s an amazing platform.",
+      image: "https://i.ibb.co.com/h1LXfmrB/milton.jpg",
     },
     {
       id: 3,
-      name: "Tanvir Alam",
+      name: "Ahmad Tarique Hasan",
       role: "MERN Stack Learner",
       feedback:
-        "শুরু থেকে এখানে গাইডলাইন ফলো করে প্র্যাকটিস করছি। দারুণ একটা লার্নিং এক্সপেরিয়েন্স।",
-      image: "https://i.pravatar.cc/100?img=3",
+        "I have been following the guidelines here from the beginning and practicing. It’s an amazing learning experience.",
+      image: "https://i.ibb.co.com/GvgpgYb1/tariq.jpg",
     },
     {
       id: 4,
-      name: "Nusrat Jahan",
+      name: "Talha Tarique",
       role: "UI/UX Designer",
       feedback:
-        "কমিউনিটির রেসপন্সিভনেস দারুণ। প্রশ্ন করলে দ্রুত উত্তর পাই। Highly recommended!",
-      image: "https://i.pravatar.cc/100?img=4",
+        "The community’s responsiveness is excellent. I get quick answers whenever I ask questions. Highly recommended!",
+      image: "https://i.ibb.co.com/cc8fhhZB/talha.jpg",
     },
    
   ];
 
   return (
     <div className="pb-12">
-      <h2 className="text-3xl font-bold text-center mb-4 text-gray-600">Community Feedback</h2>
+      <h2 className="text-3xl font-bold text-center mb-2 text-gray-600">Community Feedback</h2>
       <p className="text-center text-gray-600 max-w-2xl mx-auto mb-8">
-        এই প্রজেক্টের উদ্দেশ্য হলো ডেভেলপারদের জন্য একটি interactive কমিউনিটি তৈরি করা, যেখানে
-        সবাই knowledge শেয়ার করতে পারে, প্রশ্ন করতে পারে এবং একে অপরের থেকে শিখতে পারে।
+        Here we showcase a summary of the opinions and experiences shared by our users, offering a glimpse into their feedback and suggestions.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">

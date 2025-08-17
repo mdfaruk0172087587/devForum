@@ -8,8 +8,7 @@ const AboutUs = () => {
       <div className="max-w-3xl mx-auto text-center mb-12">
         <h1 className="text-4xl font-bold mb-4 text-gray-600">About DevForum</h1>
         <p className="text-gray-700 text-lg">
-          DevForum হলো একটি interactive community যেখানে ডেভেলপাররা knowledge share করতে পারে, 
-          নতুন technology শিখতে পারে এবং real-world projects নিয়ে collaborate করতে পারে।
+          DevForum is an interactive community where developers can share knowledge, learn new technologies, and collaborate on real-world projects.
         </p>
       </div>
 
@@ -18,12 +17,10 @@ const AboutUs = () => {
         <div className="flex flex-col justify-center">
           <h2 className="text-3xl font-bold mb-4 text-gray-600">Our Mission</h2>
           <p className="text-gray-700 mb-4">
-            আমাদের লক্ষ্য হলো একটি supportive এবং engaging community তৈরি করা, যেখানে
-            নতুন ও অভিজ্ঞ ডেভেলপাররা একে অপরের সাথে interact করে নিজেদের skill উন্নত করতে পারে।
+            Our goal is to create a supportive and engaging community where both new and experienced developers can interact with each other and improve their skills.
           </p>
           <p className="text-gray-700">
-            আমরা শুধু knowledge share করি না, বরং practical experience এবং project-based learning-কে
-            encourage করি।
+           We not only share knowledge but also encourage practical experience and project-based learning.
           </p>
         </div>
         <img

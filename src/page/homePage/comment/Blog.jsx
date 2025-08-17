@@ -6,22 +6,22 @@ const Blog = () => {
   const blogPosts = [
     {
       title: "Why Use DevForum?",
-      description: "DevForum ব্যবহার করে তুমি ডেভেলপার কমিউনিটির সাথে যুক্ত হতে পারো, নতুন স্কিল শিখতে পারো, এবং দ্রুত সমাধান পেতে পারো।",
+      description: "By using DevForum, you can connect with the developer community, learn new skills, and get solutions quickly.",
       icon: <FaRegLightbulb className="text-yellow-400 text-4xl mb-4" />,
     },
     {
       title: "Hands-on Learning",
-      description: "ডেভেলপাররা বাস্তব প্রকল্পে কাজ করতে পারে, কোড শেয়ার করতে পারে এবং প্র্যাক্টিক্যাল অভিজ্ঞতা অর্জন করতে পারে।",
+      description: "Developers can work on real projects, share code, and gain practical experience.",
       icon: <FaLaptopCode className="text-green-500 text-4xl mb-4" />,
     },
     {
       title: "Collaborate with Peers",
-      description: "কমিউনিটির মাধ্যমে তুমি অন্যান্য ডেভেলপারদের সাথে collaborate করতে পারো, ফিডব্যাক নিতে পারো এবং সমস্যা সমাধান করতে পারো।",
+      description: "Through the community, you can collaborate with other developers, receive feedback, and solve problems.",
       icon: <FaUsers className="text-blue-500 text-4xl mb-4" />,
     },
     {
       title: "Share Your Feedback",
-      description: "DevForum ব্যবহার করে তুমি নিজের মতামত দিতে পারো, অন্যদের ব্লগ বা পোস্টে comment করতে পারো এবং কমিউনিটি আরও উন্নত করতে সাহায্য করতে পারো।",
+      description: "By using DevForum, you can share your opinions, comment on others’ blogs or posts, and help improve the community.",
       icon: <FaComments className="text-purple-500 text-4xl mb-4" />,
     },
   ];
@@ -32,7 +32,7 @@ const Blog = () => {
       <div className="max-w-3xl mx-auto text-center mb-12">
         <h1 className="text-4xl font-bold mb-4 text-gray-600">Why Read Our Blog?</h1>
         <p className="text-gray-700 text-lg">
-          এখানে আমরা দেখাবো DevForum ব্যবহার করে তুমি কি উপকার পাবে, কীভাবে কমিউনিটির সাহায্যে দ্রুত শিখতে পারবে এবং ব্যবহারকারীদের অভিজ্ঞতা।
+          Here, we will show how you can benefit from using DevForum, how you can learn quickly with the help of the community, and users’ experiences.
         </p>
       </div>
 
